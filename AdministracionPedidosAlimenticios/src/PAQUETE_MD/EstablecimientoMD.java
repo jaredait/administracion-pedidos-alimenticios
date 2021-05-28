@@ -22,7 +22,7 @@ public class EstablecimientoMD {
             // leer el archivo properties para la conexion a la db
             this.establecimientoDP = establecimientoDP;
             Properties props = new Properties();
-            props.load(new FileInputStream("src/sql/conexiondb.proprties"));
+            props.load(new FileInputStream("src/sql/conexiondb.properties"));
             String dburl = props.getProperty("dburl");
 
             /*
