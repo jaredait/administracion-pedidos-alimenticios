@@ -8,6 +8,7 @@ import java.util.Properties;
 import java.util.logging.*;
 
 public class EstablecimientoMD {
+
     private EstablecimientoDP establecimientoDP;
     private Connection con;
     private Statement stmt;
@@ -16,26 +17,25 @@ public class EstablecimientoMD {
 
     // constructor
     public EstablecimientoMD(EstablecimientoDP establecimientoDP) {
-        
-        
+
         try {
             // leer el archivo properties para la conexion a la db
             this.establecimientoDP = establecimientoDP;
             Properties props = new Properties();
             props.load(new FileInputStream("src/sql/conexiondb.proprties"));
             String dburl = props.getProperty("dburl");
-            
+
             /*
             // conexion a la db
             DriverManager.deregisterDriver(new org.apache.derby.jdbc.ClientDriver());
             con = DriverManager.getConnection(dburl);
-            */
+             */
         } catch (IOException ex) {
             Logger.getLogger(EstablecimientoMD.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
-    
-    public boolean insertarMD(){
+
+    public boolean insertarMD() {
         boolean completado = false;
         try {
             PreparedStatement st = con.prepareStatement("INSERT INTO Establecimiento"
@@ -48,41 +48,81 @@ public class EstablecimientoMD {
             st.setString(5, establecimientoDP.getCalleSecundaria());
             st.setString(6, establecimientoDP.getNumDireccion());
             st.setString(7, establecimientoDP.getTipo());
+
             int a = st.executeUpdate();
             completado = true;
         } catch (SQLException ex) {
             Logger.getLogger(EstablecimientoMD.class.getName()).log(Level.SEVERE, null, ex);
         }
         return completado;
-    }    
-    
-    public boolean consultarMD(){
-        
+    }
+
+    public boolean consultarMD() {
+
         return false;
     }
-    
-    public boolean actualizarMD(){
-    
-        return false;
+
+    public boolean actualizarMD() {
+        boolean completado = false;
+        try {
+            PreparedStatement st = con.prepareStatement("UPDATE Establecimiento"
+                    + "SET est_nombre=?, est_numTelefono=?, est_callePrincipal=?, "
+                    + "est_calleSecundaria=?, est_numDireccion=?, est_tipo=?"
+                    + "WHERE est_codigo=?)");
+            st.setString(7, establecimientoDP.getCodigo());
+            st.setString(1, establecimientoDP.getNombre());
+            st.setString(2, establecimientoDP.getNumTelefono());
+            st.setString(3, establecimientoDP.getCallePrincipal());
+            st.setString(4, establecimientoDP.getCalleSecundaria());
+            st.setString(5, establecimientoDP.getNumDireccion());
+            st.setString(6, establecimientoDP.getTipo());
+
+            int a = st.executeUpdate();
+            completado = true;
+        } catch (SQLException ex) {
+            Logger.getLogger(EstablecimientoMD.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return completado;
     }
-    
-    public boolean eliminarMD(){
-        
-        return false;
+
+    public boolean eliminarMD() {
+        boolean completado = false;
+        try {
+            PreparedStatement st = con.prepareStatement("DELETE FROM Establecimiento"
+                    + " WHERE est_codigo=?");
+            st.setString(1, establecimientoDP.getCodigo());
+
+            int a = st.executeUpdate();
+            completado = true;
+        } catch (SQLException ex) {
+            Logger.getLogger(EstablecimientoMD.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return completado;
     }
-    
-    public boolean verificarExisteMD(){
-        
-        return false;
+
+    // MODIFICAR LA FORMA DE CONSULTAR SI ES QUE EXISTE EL REGISTRO! NO FUNCIONA!
+    public boolean verificarExisteMD() {
+        boolean existe = false;
+        try {
+            PreparedStatement st = con.prepareStatement("SELECT 1 "
+                    + "FROM Establecimiento WHERE est_codigo=? LIMIT 1");
+            st.setString(1, establecimientoDP.getCodigo());
+            
+            int a = st.executeUpdate();
+            existe = true;
+        } catch (SQLException ex) {
+            Logger.getLogger(EstablecimientoMD.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return existe;
     }
-    
-    public ArrayList<EstablecimientoDP> consultarTodosMD(){
-        
+
+    public ArrayList<EstablecimientoDP> consultarTodosMD() {
+
         return null;
     }
-    
-    public void cargarDatos(){
-        
+
+    public void cargarDatos() {
+
     }
-    
+
 }
