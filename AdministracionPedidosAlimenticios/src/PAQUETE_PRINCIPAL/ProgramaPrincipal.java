@@ -1,18 +1,19 @@
-package administracionpedidosalimenticios;
+package PAQUETE_PRINCIPAL;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
 
-public class AdministracionPedidosAlimenticios {
+public class ProgramaPrincipal {
 
     public static void main(String[] args) {
         // Conexion a la db
-        AdministracionPedidosAlimenticios conexion = new AdministracionPedidosAlimenticios();
+        ProgramaPrincipal conexion = new ProgramaPrincipal();
         Connection connection = null;
         connection = conexion.get_connection();
         System.out.println("Conexion: " + connection);
     }
     
+    // conecta la aplicación con la db. Retorna el objeto conexión si es que se realiza correctamente
     public Connection get_connection() {
          Connection connection = null;
         try {
