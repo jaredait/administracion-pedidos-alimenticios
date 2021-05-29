@@ -1,7 +1,9 @@
 package PAQUETE_PRINCIPAL;
 
+import java.io.FileInputStream;
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.util.Properties;
 
 public class ProgramaPrincipal {
 
@@ -18,8 +20,17 @@ public class ProgramaPrincipal {
          Connection connection = null;
         try {
             Class.forName("com.mysql.jdbc.Driver");
-            //Class.forName("com.mysql.jdbc.Driver");
-            connection = DriverManager.getConnection("jdbc:mysql://sql10.freesqldatabase.com:3306/sql10415625", "sql10415625", "MEuPnqN9wJ");
+            
+            // leer el archivo .properties
+            Properties props = new Properties();
+            props.load(new FileInputStream("src/PAQUETE_PRINCIPAL/conexiondb.properties"));
+            String dburl = props.getProperty("dburl");
+            String user = props.getProperty("databaseuser");
+            String password = props.getProperty("databasepassword");
+            
+            System.out.println(dburl + "\n" + user + "\n" + password);
+            
+            connection = DriverManager.getConnection(dburl, user, password);
         } catch (Exception e) {
             System.out.println("Error: " + e);
         }

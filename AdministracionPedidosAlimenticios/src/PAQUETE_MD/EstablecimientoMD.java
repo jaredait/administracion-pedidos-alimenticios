@@ -19,25 +19,9 @@ public class EstablecimientoMD {
     // constructor
     public EstablecimientoMD(EstablecimientoDP establecimientoDP) {
 
-        try {
-            PAQUETE_PRINCIPAL.ProgramaPrincipal conexion = new PAQUETE_PRINCIPAL.ProgramaPrincipal();
-            con = conexion.getConexion();
-            
-            
-            // leer el archivo properties para la conexion a la db
-            this.establecimientoDP = establecimientoDP;
-            Properties props = new Properties();
-            props.load(new FileInputStream("src/sql/conexiondb.properties"));
-            String dburl = props.getProperty("dburl");
-
-            /*
-            // conexion a la db
-            DriverManager.deregisterDriver(new org.apache.derby.jdbc.ClientDriver());
-            con = DriverManager.getConnection(dburl);
-             */
-        } catch (IOException ex) {
-            Logger.getLogger(EstablecimientoMD.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        // conexion a la db
+        PAQUETE_PRINCIPAL.ProgramaPrincipal conexion = new PAQUETE_PRINCIPAL.ProgramaPrincipal();
+        con = conexion.getConexion();
     }
 
     public boolean insertarMD() {
