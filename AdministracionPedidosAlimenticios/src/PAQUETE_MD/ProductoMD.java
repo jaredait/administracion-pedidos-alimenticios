@@ -67,7 +67,7 @@ public class ProductoMD {
             PreparedStatement st = con.prepareStatement("UPDATE Producto"
                     + "SET pro_nombre=?, pro_precio=?, est_callePrincipal=?, "
                     + "WHERE pro_codigo=?)");
-            st.setString(7, productoDP.getCodigo());
+            st.setString(3, productoDP.getCodigo());
             st.setString(1, productoDP.getNombre());
             st.setString(2, String.valueOf(productoDP.getPrecio()));
 
