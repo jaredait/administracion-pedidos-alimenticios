@@ -1,6 +1,7 @@
 package PAQUETE_MD;
 
 import PAQUETE_DP.EstablecimientoDP;
+import PAQUETE_PRINCIPAL.ProgramaPrincipal;
 import java.io.*;
 import java.sql.*;
 import java.util.ArrayList;
@@ -19,6 +20,10 @@ public class EstablecimientoMD {
     public EstablecimientoMD(EstablecimientoDP establecimientoDP) {
 
         try {
+            PAQUETE_PRINCIPAL.ProgramaPrincipal conexion = new PAQUETE_PRINCIPAL.ProgramaPrincipal();
+            con = conexion.getConexion();
+            
+            
             // leer el archivo properties para la conexion a la db
             this.establecimientoDP = establecimientoDP;
             Properties props = new Properties();

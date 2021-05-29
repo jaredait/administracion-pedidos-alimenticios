@@ -9,12 +9,12 @@ public class ProgramaPrincipal {
         // Conexion a la db
         ProgramaPrincipal conexion = new ProgramaPrincipal();
         Connection connection = null;
-        connection = conexion.get_connection();
+        connection = conexion.getConexion();
         System.out.println("Conexion: " + connection);
     }
     
     // conecta la aplicación con la db. Retorna el objeto conexión si es que se realiza correctamente
-    public Connection get_connection() {
+    public Connection getConexion() {
          Connection connection = null;
         try {
             Class.forName("com.mysql.jdbc.Driver");
