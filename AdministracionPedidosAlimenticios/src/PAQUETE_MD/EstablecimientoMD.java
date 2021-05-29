@@ -2,10 +2,8 @@ package PAQUETE_MD;
 
 import PAQUETE_DP.EstablecimientoDP;
 import PAQUETE_PRINCIPAL.ProgramaPrincipal;
-import java.io.*;
 import java.sql.*;
 import java.util.ArrayList;
-import java.util.Properties;
 import java.util.logging.*;
 
 public class EstablecimientoMD {
@@ -18,18 +16,17 @@ public class EstablecimientoMD {
 
     // constructor
     public EstablecimientoMD(EstablecimientoDP establecimientoDP) {
-
         // conexion a la db
-        PAQUETE_PRINCIPAL.ProgramaPrincipal conexion = new PAQUETE_PRINCIPAL.ProgramaPrincipal();
+        ProgramaPrincipal conexion = new ProgramaPrincipal();
         con = conexion.getConexion();
     }
 
     public boolean insertarMD() {
         boolean completado = false;
         try {
-            PreparedStatement st = con.prepareStatement("INSERT INTO Establecimiento"
-                    + "(codigo, nombre, numTelefono, callePrincipal, "
-                    + "calleSecundaria, numDireccion, tipo) values(?,?,?,?,?,?,?");
+            PreparedStatement st = con.prepareStatement("INSERT INTO ESTABLECIMIENTO"
+                    + " (codigo, nombre, numTelefono, callePrincipal, "
+                    + " calleSecundaria, numDireccion, tipo) values(?,?,?,?,?,?,?");
             st.setString(1, establecimientoDP.getCodigo());
             st.setString(2, establecimientoDP.getNombre());
             st.setString(3, establecimientoDP.getNumTelefono());
@@ -47,19 +44,46 @@ public class EstablecimientoMD {
     }
 
     public boolean consultarMD() {
-        
-        PrepareStatement st = con.prepareStatement(query)
-        
-        return false;
+        boolean completado = false;
+        try {
+            query = "SELECT est_nombre, est_num_telefono, est_calle_principal,"
+                    + " est_calle_secundaria, est_num_direccion, est_tipo"
+                    + " FROM ESTABLECIMIENTO "
+                    + " WHERE est_codigo=?";
+            PreparedStatement st = con.prepareStatement(query);
+            st.setString(1, establecimientoDP.getCodigo());
+            int a = st.executeUpdate();
+            
+            // obtener los datos del registro
+            String nombre = result.getString("est_nombre");
+            String numTelefono = result.getString("est_num_telefono");
+            String callePrincipal = result.getString("est_calle_principal");
+            String calleSecundaria = result.getString("est_calle_secundaria");
+            String numDireccion = result.getString("est_num_direccion");
+            String tipo = result.getString("est_tipo");
+            
+            // cargar los datos al objeto EstablecimientoDP
+            establecimientoDP.setNombre(nombre);
+            establecimientoDP.setNumTelefono(numTelefono);
+            establecimientoDP.setCallePrincipal(callePrincipal);
+            establecimientoDP.setCalleSecundaria(calleSecundaria);
+            establecimientoDP.setNumDireccion(numDireccion);
+            establecimientoDP.setTipo(tipo);
+            
+            completado = true;
+        } catch (SQLException ex) {
+            Logger.getLogger(EstablecimientoMD.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return completado;
     }
 
     public boolean actualizarMD() {
         boolean completado = false;
         try {
-            PreparedStatement st = con.prepareStatement("UPDATE Establecimiento"
-                    + "SET est_nombre=?, est_numTelefono=?, est_callePrincipal=?, "
-                    + "est_calleSecundaria=?, est_numDireccion=?, est_tipo=?"
-                    + "WHERE est_codigo=?)");
+            query = "UPDATE ESTABLECIMIENTO SET est_nombre=?, est_numTelefono=?, "
+                    + " est_callePrincipal=?, est_calleSecundaria=?, "
+                    + " est_numDireccion=?, est_tipo=? WHERE est_codigo=?";
+            PreparedStatement st = con.prepareStatement(query);
             st.setString(7, establecimientoDP.getCodigo());
             st.setString(1, establecimientoDP.getNombre());
             st.setString(2, establecimientoDP.getNumTelefono());
@@ -79,8 +103,8 @@ public class EstablecimientoMD {
     public boolean eliminarMD() {
         boolean completado = false;
         try {
-            PreparedStatement st = con.prepareStatement("DELETE FROM Establecimiento"
-                    + " WHERE est_codigo=?");
+            query = "DELETE FROM ESTABLECIMIENTO WHERE est_codigo=?";
+            PreparedStatement st = con.prepareStatement(query);
             st.setString(1, establecimientoDP.getCodigo());
 
             int a = st.executeUpdate();
@@ -95,8 +119,8 @@ public class EstablecimientoMD {
     public boolean verificarExisteMD() {
         boolean existe = false;
         try {
-            PreparedStatement st = con.prepareStatement("SELECT 1 "
-                    + "FROM Establecimiento WHERE est_codigo=? LIMIT 1");
+            query = "SELECT 1 FROM ESTABLECIMIENTO WHERE est_codigo=? LIMIT 1";
+            PreparedStatement st = con.prepareStatement(query);
             st.setString(1, establecimientoDP.getCodigo());
             
             int a = st.executeUpdate();
