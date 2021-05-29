@@ -14,7 +14,7 @@ public class EstablecimientoMD {
     private Connection con;
     private Statement stmt;
     private ResultSet result;
-    private String cadena;
+    private String query;
 
     // constructor
     public EstablecimientoMD(EstablecimientoDP establecimientoDP) {
@@ -47,7 +47,9 @@ public class EstablecimientoMD {
     }
 
     public boolean consultarMD() {
-
+        
+        PrepareStatement st = con.prepareStatement(query)
+        
         return false;
     }
 

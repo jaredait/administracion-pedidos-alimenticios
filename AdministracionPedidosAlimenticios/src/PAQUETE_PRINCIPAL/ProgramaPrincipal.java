@@ -28,8 +28,6 @@ public class ProgramaPrincipal {
             String user = props.getProperty("databaseuser");
             String password = props.getProperty("databasepassword");
             
-            System.out.println(dburl + "\n" + user + "\n" + password);
-            
             connection = DriverManager.getConnection(dburl, user, password);
         } catch (Exception e) {
             System.out.println("Error: " + e);
