@@ -5,20 +5,20 @@ import javax.swing.JOptionPane;
 import javax.swing.plaf.OptionPaneUI;
 
 public class VentanaEstablecimiento_crear extends javax.swing.JInternalFrame {
-
+    
     // atributos
     private EstablecimientoDP establecimientoDP;
     private boolean existeEstablecimiento;
-
+    
     // constructor
     public VentanaEstablecimiento_crear() {
-
+        
         // instanciar atributos de la clase
         establecimientoDP = new EstablecimientoDP();
         existeEstablecimiento = false;
 
         initComponents();
-    }
+    }    
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -72,12 +72,6 @@ public class VentanaEstablecimiento_crear extends javax.swing.JInternalFrame {
         btn_crearEstab_guardar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btn_crearEstab_guardarActionPerformed(evt);
-            }
-        });
-
-        tf_crearEstab_codigo.addFocusListener(new java.awt.event.FocusAdapter() {
-            public void focusLost(java.awt.event.FocusEvent evt) {
-                tf_crearEstab_codigoFocusLost(evt);
             }
         });
 
@@ -170,36 +164,22 @@ public class VentanaEstablecimiento_crear extends javax.swing.JInternalFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btn_crearEstab_guardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_crearEstab_guardarActionPerformed
-        if (camposCompletos()) {
-            if (existeEstablecimiento) {
-                JOptionPane.showMessageDialog(jPanel1, "El establecimiento ya existe");
+        if(camposCompletos()){
+            
+            if(guardarDatos()){
+                JOptionPane.showMessageDialog(jPanel1, "¡Creación exitosa!");
             } else {
-                guardarDatos();
-                if (establecimientoDP.insertarDP()) {
-                    JOptionPane.showMessageDialog(jPanel1, "¡Creación exitosa!");
-                    limpiarCampos();
-                } else {
-                    JOptionPane.showMessageDialog(jPanel1, "Creación fallida");
-                }
+                JOptionPane.showMessageDialog(jPanel1, "Creación fallida");
             }
         } else {
             JOptionPane.showMessageDialog(jPanel1, "Datos incompletos");
         }
     }//GEN-LAST:event_btn_crearEstab_guardarActionPerformed
 
-    private void tf_crearEstab_codigoFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_tf_crearEstab_codigoFocusLost
-        if (establecimientoDP.verificarExisteDP()) {
-            JOptionPane.showMessageDialog(jPanel1, "El establecimiento ya existe");
-            existeEstablecimiento = true;
-        } else {
-            existeEstablecimiento = false;
-        }
-    }//GEN-LAST:event_tf_crearEstab_codigoFocusLost
-
     // metodos de la clase
-    private boolean camposCompletos() {
+    private boolean camposCompletos(){
         boolean valido = true;
-
+        
         String codigo = tf_crearEstab_codigo.getText().trim();
         String nombre = tf_crearEstab_nombre.getText().trim();
         String telefono = tf_crearEstab_telefono.getText().trim();
@@ -207,16 +187,16 @@ public class VentanaEstablecimiento_crear extends javax.swing.JInternalFrame {
         String calleS = tf_crearEstab_calleSecundaria.getText().trim();
         String numDir = tf_crearEstab_numDireccion.getText().trim();
         String tipo = tf_crearEstab_tipo.getText().trim();
-
-        if (codigo.equals("") || nombre.equals("") || telefono.equals("")
-                || calleP.equals("") || calleS.equals("") || numDir.equals("")
-                || tipo.equals("")) {
+        
+        if(codigo.equals("") || nombre.equals("") || telefono.equals("") || 
+                calleP.equals("") ||  calleS.equals("") || numDir.equals("") || 
+                tipo.equals("")){
             valido = false;
         }
         return valido;
     }
-
-    private boolean guardarDatos() {
+    
+    private boolean guardarDatos(){
         String codigo = tf_crearEstab_codigo.getText().trim();
         String nombre = tf_crearEstab_nombre.getText().trim();
         String telefono = tf_crearEstab_telefono.getText().trim();
@@ -224,7 +204,7 @@ public class VentanaEstablecimiento_crear extends javax.swing.JInternalFrame {
         String calleS = tf_crearEstab_calleSecundaria.getText().trim();
         String numDir = tf_crearEstab_numDireccion.getText().trim();
         String tipo = tf_crearEstab_tipo.getText().trim();
-
+        
         establecimientoDP.setCodigo(codigo);
         establecimientoDP.setNombre(nombre);
         establecimientoDP.setNumTelefono(telefono);
@@ -232,18 +212,8 @@ public class VentanaEstablecimiento_crear extends javax.swing.JInternalFrame {
         establecimientoDP.setCalleSecundaria(calleS);
         establecimientoDP.setNumDireccion(numDir);
         establecimientoDP.setTipo(tipo);
-
+        
         return establecimientoDP.insertarDP();
-    }
-
-    private void limpiarCampos() {
-        tf_crearEstab_codigo.setText("");
-        tf_crearEstab_nombre.setText("");
-        tf_crearEstab_telefono.setText("");
-        tf_crearEstab_callePrincipal.setText("");
-        tf_crearEstab_calleSecundaria.setText("");
-        tf_crearEstab_numDireccion.setText("");
-        tf_crearEstab_tipo.setText("");
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

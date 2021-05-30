@@ -126,11 +126,9 @@ public class EstablecimientoMD {
             query = "SELECT 1 FROM ESTABLECIMIENTO WHERE est_codigo=? LIMIT 1";
             PreparedStatement st = con.prepareStatement(query);
             st.setString(1, establecimientoDP.getCodigo());
-            result = st.executeQuery();
-            
-            if(result.next()){
-                existe = true;
-            }
+
+            int a = st.executeUpdate();
+            existe = true;
         } catch (SQLException ex) {
             Logger.getLogger(EstablecimientoMD.class.getName()).log(Level.SEVERE, null, ex);
         }
