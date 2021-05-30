@@ -27,6 +27,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        escritorio = new javax.swing.JDesktopPane();
         jMenuBar1 = new javax.swing.JMenuBar();
         menu_archivo = new javax.swing.JMenu();
         sub_archivo_salir = new javax.swing.JMenuItem();
@@ -67,6 +68,17 @@ public class MenuPrincipal extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
+        javax.swing.GroupLayout escritorioLayout = new javax.swing.GroupLayout(escritorio);
+        escritorio.setLayout(escritorioLayout);
+        escritorioLayout.setHorizontalGroup(
+            escritorioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 900, Short.MAX_VALUE)
+        );
+        escritorioLayout.setVerticalGroup(
+            escritorioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 677, Short.MAX_VALUE)
+        );
+
         menu_archivo.setText("Archivo");
 
         sub_archivo_salir.setText("Salir");
@@ -100,6 +112,11 @@ public class MenuPrincipal extends javax.swing.JFrame {
         submenu_establecimiento.setText("Establecimiento");
 
         sub_establecimiento_crear.setText("Crear establecimiento");
+        sub_establecimiento_crear.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                sub_establecimiento_crearActionPerformed(evt);
+            }
+        });
         submenu_establecimiento.add(sub_establecimiento_crear);
 
         sub_establecimiento_consultar.setText("Consultar establecimiento");
@@ -201,11 +218,11 @@ public class MenuPrincipal extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 692, Short.MAX_VALUE)
+            .addComponent(escritorio)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 436, Short.MAX_VALUE)
+            .addComponent(escritorio)
         );
 
         pack();
@@ -218,6 +235,12 @@ public class MenuPrincipal extends javax.swing.JFrame {
     private void sub_establecimiento_eliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_sub_establecimiento_eliminarActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_sub_establecimiento_eliminarActionPerformed
+
+    private void sub_establecimiento_crearActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_sub_establecimiento_crearActionPerformed
+        VentanaEstablecimiento_crear ventanaEstablecimiento_crear = new VentanaEstablecimiento_crear();
+        escritorio.add(ventanaEstablecimiento_crear);
+        ventanaEstablecimiento_crear.show();        
+    }//GEN-LAST:event_sub_establecimiento_crearActionPerformed
 
     /**
      * @param args the command line arguments
@@ -255,6 +278,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JDesktopPane escritorio;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JMenu menu_archivo;
     private javax.swing.JMenu menu_ayuda;
