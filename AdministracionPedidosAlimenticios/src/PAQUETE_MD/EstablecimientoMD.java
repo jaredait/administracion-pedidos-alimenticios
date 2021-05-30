@@ -53,7 +53,11 @@ public class EstablecimientoMD {
             PreparedStatement st = con.prepareStatement(query);
             st.setString(1, establecimientoDP.getCodigo());
             int a = st.executeUpdate();
-            
+
+            query = "SELECT * FROM ESTABLECIMIENTO";
+            stmt = con.createStatement();
+            result = stmt.executeQuery(query);
+
             // obtener los datos del registro
             String nombre = result.getString("est_nombre");
             String numTelefono = result.getString("est_num_telefono");
@@ -61,7 +65,7 @@ public class EstablecimientoMD {
             String calleSecundaria = result.getString("est_calle_secundaria");
             String numDireccion = result.getString("est_num_direccion");
             String tipo = result.getString("est_tipo");
-            
+
             // cargar los datos al objeto EstablecimientoDP
             establecimientoDP.setNombre(nombre);
             establecimientoDP.setNumTelefono(numTelefono);
@@ -69,7 +73,7 @@ public class EstablecimientoMD {
             establecimientoDP.setCalleSecundaria(calleSecundaria);
             establecimientoDP.setNumDireccion(numDireccion);
             establecimientoDP.setTipo(tipo);
-            
+
             completado = true;
         } catch (SQLException ex) {
             Logger.getLogger(EstablecimientoMD.class.getName()).log(Level.SEVERE, null, ex);
@@ -122,7 +126,7 @@ public class EstablecimientoMD {
             query = "SELECT 1 FROM ESTABLECIMIENTO WHERE est_codigo=? LIMIT 1";
             PreparedStatement st = con.prepareStatement(query);
             st.setString(1, establecimientoDP.getCodigo());
-            
+
             int a = st.executeUpdate();
             existe = true;
         } catch (SQLException ex) {
@@ -132,7 +136,31 @@ public class EstablecimientoMD {
     }
 
     public ArrayList<EstablecimientoDP> consultarTodosMD() {
+        ArrayList<EstablecimientoDP> establecimientos = new ArrayList<>();
+        try {
+            query = "SELECT * FROM ESTABLECIMIENTO";
+            stmt = con.createStatement();
+            result = stmt.executeQuery(query);
 
+            // llenar el ArrayList de objetos EstablecimientoDP
+            while (result.next()) {
+                // obtener los datos del registro
+                String codigo = result.getString("est_codigo");
+                String nombre = result.getString("est_nombre");
+                String numTelefono = result.getString("est_num_telefono");
+                String callePrincipal = result.getString("est_calle_principal");
+                String calleSecundaria = result.getString("est_calle_secundaria");
+                String numDireccion = result.getString("est_num_direccion");
+                String tipo = result.getString("est_tipo");
+
+                establecimientos.add(new EstablecimientoDP(codigo, nombre, numTelefono, callePrincipal, calleSecundaria, numDireccion, tipo));
+
+            }
+
+            completado = true;
+        } catch (SQLException ex) {
+            Logger.getLogger(EstablecimientoMD.class.getName()).log(Level.SEVERE, null, ex);
+        }
         return null;
     }
 

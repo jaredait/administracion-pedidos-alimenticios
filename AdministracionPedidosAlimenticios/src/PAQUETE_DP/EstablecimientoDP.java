@@ -1,4 +1,5 @@
 package PAQUETE_DP;
+import PAQUETE_MD.EstablecimientoMD;
 
 
 public class EstablecimientoDP {
@@ -10,11 +11,22 @@ public class EstablecimientoDP {
     private String calleSecundaria;
     private String numDireccion;
     private String tipo;
-    //private EstablecimientoMD establecimientoMD;
+    private EstablecimientoMD establecimientoMD;
     
-    //constructor
-    public EstablecimientoDP(/*EstablecimientoMD establecimientoMD*/){
+    //constructores
+    public EstablecimientoDP(EstablecimientoMD establecimientoMD){
         //this.establecimientoMD = establecimientoMD;
+    }
+    public EstablecimientoDP(String codigo, String nombre, String numTelefono,
+             String callePrincipal,  String calleSecundaria, 
+             String numDireccion, String tipo){
+        this.codigo = codigo;
+        this.nombre = nombre;
+        this.numTelefono = numTelefono;
+        this.callePrincipal = callePrincipal;
+        this.calleSecundaria = calleSecundaria;
+        this.numDireccion = numDireccion;
+        this.tipo = tipo;
     }
     
     public String getCodigo(){
