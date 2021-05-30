@@ -87,28 +87,23 @@ public class EstablecimientoDP {
     }
     
     public boolean insertarDP(){
-        //return establecimientoMD.insertarMD();
-        return false;
+        return establecimientoMD.insertarMD();
     }
     
     public boolean consultarDP(){
-        //return establecimientoMD.consultarMD();
-        return false;
+        return establecimientoMD.consultarMD();
     }
 
     public boolean modificarDP(){
-        //return establecimientoMD.modificarMD();
-        return false;
+        return establecimientoMD.actualizarMD();
     }
     
     public boolean eliminarDP(){
-        //return establecimientoMD.eliminarMD();
-        return false;
+        return establecimientoMD.eliminarMD();
     }
     
     public boolean verificarExisteDP(){
-        //return establecimientoMD.verificarExisteMD();
-        return false;
+        return establecimientoMD.verificarExisteMD();
     }
     
     public ArrayList<EstablecimientoDP> consultarTodosDP(){

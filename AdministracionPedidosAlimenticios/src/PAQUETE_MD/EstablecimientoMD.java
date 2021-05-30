@@ -19,14 +19,16 @@ public class EstablecimientoMD {
         // conexion a la db
         ProgramaPrincipal conexion = new ProgramaPrincipal();
         con = conexion.getConexion();
+        
+        this.establecimientoDP = establecimientoDP;
     }
 
     public boolean insertarMD() {
         boolean completado = false;
         try {
             PreparedStatement st = con.prepareStatement("INSERT INTO ESTABLECIMIENTO"
-                    + " (codigo, nombre, numTelefono, callePrincipal, "
-                    + " calleSecundaria, numDireccion, tipo) values(?,?,?,?,?,?,?");
+                    + " (est_codigo, est_nombre, est_num_telefono, est_calle_principal, "
+                    + " est_calle_secundaria, est_num_direccion, est_tipo) values(?,?,?,?,?,?,?)");
             st.setString(1, establecimientoDP.getCodigo());
             st.setString(2, establecimientoDP.getNombre());
             st.setString(3, establecimientoDP.getNumTelefono());

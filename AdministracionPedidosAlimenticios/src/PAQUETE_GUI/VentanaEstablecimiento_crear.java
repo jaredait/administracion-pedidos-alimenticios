@@ -174,7 +174,6 @@ public class VentanaEstablecimiento_crear extends javax.swing.JInternalFrame {
             if (existeEstablecimiento) {
                 JOptionPane.showMessageDialog(jPanel1, "El establecimiento ya existe");
             } else {
-                guardarDatos();
                 if (establecimientoDP.insertarDP()) {
                     JOptionPane.showMessageDialog(jPanel1, "¡Creación exitosa!");
                     limpiarCampos();
@@ -188,6 +187,7 @@ public class VentanaEstablecimiento_crear extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_btn_crearEstab_guardarActionPerformed
 
     private void tf_crearEstab_codigoFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_tf_crearEstab_codigoFocusLost
+        establecimientoDP.setCodigo(tf_crearEstab_codigo.getText());
         if (establecimientoDP.verificarExisteDP()) {
             JOptionPane.showMessageDialog(jPanel1, "El establecimiento ya existe");
             existeEstablecimiento = true;
