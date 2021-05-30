@@ -1,5 +1,6 @@
 package PAQUETE_DP;
 import PAQUETE_MD.EstablecimientoMD;
+import java.util.ArrayList;
 
 
 public class EstablecimientoDP {
@@ -110,9 +111,8 @@ public class EstablecimientoDP {
         return false;
     }
     
-    /*
     public ArrayList<EstablecimientoDP> consultarTodosDP(){
         return establecimientoMD.consultarTodosMD();
     }
-    */
+    
 }

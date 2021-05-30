@@ -162,7 +162,7 @@ public class EstablecimientoMD {
         } catch (SQLException ex) {
             Logger.getLogger(EstablecimientoMD.class.getName()).log(Level.SEVERE, null, ex);
         }
-        return null;
+        return establecimientos;
     }
 
     public void cargarDatos() {

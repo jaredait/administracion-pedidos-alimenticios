@@ -5,6 +5,8 @@
  */
 package PAQUETE_GUI;
 
+import javax.swing.JFrame;
+
 /**
  *
  * @author ASUS
@@ -15,6 +17,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
      * Creates new form MenuPrincipal
      */
     public MenuPrincipal() {
+        setExtendedState(JFrame.MAXIMIZED_BOTH);
         initComponents();
     }
 
@@ -120,6 +123,11 @@ public class MenuPrincipal extends javax.swing.JFrame {
         submenu_establecimiento.add(sub_establecimiento_crear);
 
         sub_establecimiento_consultar.setText("Consultar establecimiento");
+        sub_establecimiento_consultar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                sub_establecimiento_consultarActionPerformed(evt);
+            }
+        });
         submenu_establecimiento.add(sub_establecimiento_consultar);
 
         sub_establecimiento_actualizar.setText("Actualizar establecimiento");
@@ -242,6 +250,13 @@ public class MenuPrincipal extends javax.swing.JFrame {
         escritorio.add(ventanaEstablecimiento_crear);
         ventanaEstablecimiento_crear.show();        
     }//GEN-LAST:event_sub_establecimiento_crearActionPerformed
+
+    private void sub_establecimiento_consultarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_sub_establecimiento_consultarActionPerformed
+        VentanaEstablecimiento_consultar ventanaEstablecimiento_consultar = new VentanaEstablecimiento_consultar();
+        escritorio.add(ventanaEstablecimiento_consultar);
+        ventanaEstablecimiento_consultar.show();
+        
+    }//GEN-LAST:event_sub_establecimiento_consultarActionPerformed
 
     /**
      * @param args the command line arguments

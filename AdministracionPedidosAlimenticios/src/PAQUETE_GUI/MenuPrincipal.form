@@ -68,6 +68,9 @@
                   <Properties>
                     <Property name="text" type="java.lang.String" value="Consultar establecimiento"/>
                   </Properties>
+                  <Events>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="sub_establecimiento_consultarActionPerformed"/>
+                  </Events>
                 </MenuItem>
                 <MenuItem class="javax.swing.JMenuItem" name="sub_establecimiento_actualizar">
                   <Properties>
