@@ -157,7 +157,6 @@ public class EstablecimientoMD {
 
             }
 
-            completado = true;
         } catch (SQLException ex) {
             Logger.getLogger(EstablecimientoMD.class.getName()).log(Level.SEVERE, null, ex);
         }

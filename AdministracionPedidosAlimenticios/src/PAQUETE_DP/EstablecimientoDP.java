@@ -14,8 +14,8 @@ public class EstablecimientoDP {
     private EstablecimientoMD establecimientoMD;
     
     //constructores
-    public EstablecimientoDP(EstablecimientoMD establecimientoMD){
-        //this.establecimientoMD = establecimientoMD;
+    public EstablecimientoDP(){
+        establecimientoMD = new EstablecimientoMD(this);
     }
     public EstablecimientoDP(String codigo, String nombre, String numTelefono,
              String callePrincipal,  String calleSecundaria, 
