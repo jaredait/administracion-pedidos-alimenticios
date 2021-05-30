@@ -226,6 +226,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
         );
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void sub_cliente_consultarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_sub_cliente_consultarActionPerformed

@@ -1,5 +1,6 @@
 package PAQUETE_PRINCIPAL;
 
+import PAQUETE_GUI.MenuPrincipal;
 import java.io.FileInputStream;
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -13,6 +14,9 @@ public class ProgramaPrincipal {
         Connection connection = null;
         connection = conexion.getConexion();
         System.out.println("Conexion: " + connection);
+        
+        MenuPrincipal menuPrincipal = new MenuPrincipal();
+        menuPrincipal.setVisible(true);
     }
     
     // conecta la aplicación con la db. Retorna el objeto conexión si es que se realiza correctamente

@@ -1,6 +1,8 @@
 package PAQUETE_GUI;
 
 import PAQUETE_DP.EstablecimientoDP;
+import javax.swing.JOptionPane;
+import javax.swing.plaf.OptionPaneUI;
 
 public class VentanaEstablecimiento_crear extends javax.swing.JInternalFrame {
     
@@ -14,14 +16,9 @@ public class VentanaEstablecimiento_crear extends javax.swing.JInternalFrame {
         // instanciar atributos de la clase
         establecimientoDP = new EstablecimientoDP();
         existeEstablecimiento = false;
-        
-        
+
         initComponents();
-    }
-    
-    
-    // metodos de la clase
-    
+    }    
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -49,6 +46,14 @@ public class VentanaEstablecimiento_crear extends javax.swing.JInternalFrame {
         tf_crearEstab_numDireccion = new javax.swing.JTextField();
         tf_crearEstab_tipo = new javax.swing.JTextField();
 
+        setClosable(true);
+        setIconifiable(true);
+        setMaximizable(true);
+        setResizable(true);
+        setTitle("Crear establecimiento");
+        setToolTipText("");
+        setVisible(true);
+
         jLabel1.setText("Código:");
 
         jLabel2.setText("Nombre:");
@@ -64,6 +69,11 @@ public class VentanaEstablecimiento_crear extends javax.swing.JInternalFrame {
         jLabel7.setText("Tipo:");
 
         btn_crearEstab_guardar.setText("Guardar");
+        btn_crearEstab_guardar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_crearEstab_guardarActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -141,7 +151,7 @@ public class VentanaEstablecimiento_crear extends javax.swing.JInternalFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -153,6 +163,58 @@ public class VentanaEstablecimiento_crear extends javax.swing.JInternalFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void btn_crearEstab_guardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_crearEstab_guardarActionPerformed
+        if(camposCompletos()){
+            
+            if(guardarDatos()){
+                JOptionPane.showMessageDialog(jPanel1, "¡Creación exitosa!");
+            } else {
+                JOptionPane.showMessageDialog(jPanel1, "Creación fallida");
+            }
+        } else {
+            JOptionPane.showMessageDialog(jPanel1, "Datos incompletos");
+        }
+    }//GEN-LAST:event_btn_crearEstab_guardarActionPerformed
+
+    // metodos de la clase
+    private boolean camposCompletos(){
+        boolean valido = true;
+        
+        String codigo = tf_crearEstab_codigo.getText().trim();
+        String nombre = tf_crearEstab_nombre.getText().trim();
+        String telefono = tf_crearEstab_telefono.getText().trim();
+        String calleP = tf_crearEstab_callePrincipal.getText().trim();
+        String calleS = tf_crearEstab_calleSecundaria.getText().trim();
+        String numDir = tf_crearEstab_numDireccion.getText().trim();
+        String tipo = tf_crearEstab_tipo.getText().trim();
+        
+        if(codigo.equals("") || nombre.equals("") || telefono.equals("") || 
+                calleP.equals("") ||  calleS.equals("") || numDir.equals("") || 
+                tipo.equals("")){
+            valido = false;
+        }
+        return valido;
+    }
+    
+    private boolean guardarDatos(){
+        String codigo = tf_crearEstab_codigo.getText().trim();
+        String nombre = tf_crearEstab_nombre.getText().trim();
+        String telefono = tf_crearEstab_telefono.getText().trim();
+        String calleP = tf_crearEstab_callePrincipal.getText().trim();
+        String calleS = tf_crearEstab_calleSecundaria.getText().trim();
+        String numDir = tf_crearEstab_numDireccion.getText().trim();
+        String tipo = tf_crearEstab_tipo.getText().trim();
+        
+        establecimientoDP.setCodigo(codigo);
+        establecimientoDP.setNombre(nombre);
+        establecimientoDP.setNumTelefono(telefono);
+        establecimientoDP.setCallePrincipal(calleP);
+        establecimientoDP.setCalleSecundaria(calleS);
+        establecimientoDP.setNumDireccion(numDir);
+        establecimientoDP.setTipo(tipo);
+        
+        return establecimientoDP.insertarDP();
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btn_crearEstab_guardar;
