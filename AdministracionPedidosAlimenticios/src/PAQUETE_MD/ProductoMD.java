@@ -46,22 +46,18 @@ public class ProductoMD {
     public boolean consultarMD() {
         boolean completado = false;
         try {
-            query = "SELECT prd_nombre, prd_precio"
-                    + " FROM PRODUCTO "
-                    + " WHERE prd_codigo=?";
-            PreparedStatement st = con.prepareStatement(query);
-            st.setString(1, productoDP.getCodigo());
-            int a = st.executeUpdate();
-
-            query = "SELECT * FROM PRODUCTO";
+            query = "SELECT * FROM PRODUCTO WHERE prd_codigo='"+productoDP.getCodigo()+"'";
             stmt = con.createStatement();
             result = stmt.executeQuery(query);
+            result.next();
 
             // obtener los datos del registro
             String nombre = result.getString("prd_nombre");
+            String precio = result.getString("prd_precio");
 
             // cargar los datos al objeto EstablecimientoDP
             productoDP.setNombre(nombre);
+            productoDP.setPrecio(Double.parseDouble(precio));
 
             completado = true;
         } catch (SQLException ex) {
