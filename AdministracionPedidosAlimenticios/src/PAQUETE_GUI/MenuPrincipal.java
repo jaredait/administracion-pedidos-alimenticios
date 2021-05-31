@@ -272,7 +272,9 @@ public class MenuPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_sub_cliente_consultarActionPerformed
 
     private void sub_establecimiento_eliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_sub_establecimiento_eliminarActionPerformed
-        // TODO add your handling code here:
+        VentanaEstablecimiento_eliminar ventanaEstablecimiento_eliminar = new VentanaEstablecimiento_eliminar();
+        escritorio.add(ventanaEstablecimiento_eliminar);
+        ventanaEstablecimiento_eliminar.show();
     }//GEN-LAST:event_sub_establecimiento_eliminarActionPerformed
 
     private void sub_establecimiento_crearActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_sub_establecimiento_crearActionPerformed
