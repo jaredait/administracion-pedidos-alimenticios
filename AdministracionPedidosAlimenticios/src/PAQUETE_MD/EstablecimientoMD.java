@@ -79,9 +79,9 @@ public class EstablecimientoMD {
     public boolean actualizarMD() {
         boolean completado = false;
         try {
-            query = "UPDATE ESTABLECIMIENTO SET est_nombre=?, est_numTelefono=?, "
-                    + " est_callePrincipal=?, est_calleSecundaria=?, "
-                    + " est_numDireccion=?, est_tipo=? WHERE est_codigo=?";
+            query = "UPDATE ESTABLECIMIENTO SET est_nombre=?, est_num_telefono=?, "
+                    + " est_calle_principal=?, est_calle_secundaria=?, "
+                    + " est_num_direccion=?, est_tipo=? WHERE est_codigo=?";
             PreparedStatement st = con.prepareStatement(query);
             st.setString(7, establecimientoDP.getCodigo());
             st.setString(1, establecimientoDP.getNombre());

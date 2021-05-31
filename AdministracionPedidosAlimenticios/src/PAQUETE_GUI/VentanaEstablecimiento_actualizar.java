@@ -5,15 +5,16 @@ import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
 public class VentanaEstablecimiento_actualizar extends javax.swing.JInternalFrame {
+
     // atributos
     EstablecimientoDP establecimientoDP;
     boolean existeEstablecimiento;
-    
+
     // constructor
     public VentanaEstablecimiento_actualizar() {
         establecimientoDP = new EstablecimientoDP();
         existeEstablecimiento = false;
-        
+
         initComponents();
     }
 
@@ -45,6 +46,7 @@ public class VentanaEstablecimiento_actualizar extends javax.swing.JInternalFram
         btn_actualEstab_individual = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
         tf_actualEstab_codigo = new javax.swing.JTextField();
+        btn_crearEstab_guardar = new javax.swing.JButton();
 
         jLabel3.setText("Nombre:");
 
@@ -62,7 +64,7 @@ public class VentanaEstablecimiento_actualizar extends javax.swing.JInternalFram
 
         cb_actualEstab_parametro.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Código" }));
 
-        btn_actualEstab_individual.setText("Consultar");
+        btn_actualEstab_individual.setText("Buscar");
         btn_actualEstab_individual.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btn_actualEstab_individualActionPerformed(evt);
@@ -71,9 +73,10 @@ public class VentanaEstablecimiento_actualizar extends javax.swing.JInternalFram
 
         jLabel2.setText("Código:");
 
-        tf_actualEstab_codigo.addFocusListener(new java.awt.event.FocusAdapter() {
-            public void focusLost(java.awt.event.FocusEvent evt) {
-                tf_actualEstab_codigoFocusLost(evt);
+        btn_crearEstab_guardar.setText("Guardar");
+        btn_crearEstab_guardar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_crearEstab_guardarActionPerformed(evt);
             }
         });
 
@@ -82,35 +85,40 @@ public class VentanaEstablecimiento_actualizar extends javax.swing.JInternalFram
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(120, 120, 120)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                        .addGroup(jPanel1Layout.createSequentialGroup()
-                            .addComponent(jLabel1)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(cb_actualEstab_parametro, javax.swing.GroupLayout.PREFERRED_SIZE, 211, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGroup(jPanel1Layout.createSequentialGroup()
-                            .addComponent(tf_actualEstab_argumento, javax.swing.GroupLayout.PREFERRED_SIZE, 211, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGap(18, 18, 18)
-                            .addComponent(btn_actualEstab_individual)))
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(120, 120, 120)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jLabel8)
-                            .addComponent(jLabel7)
-                            .addComponent(jLabel6)
-                            .addComponent(jLabel5)
-                            .addComponent(jLabel4)
-                            .addComponent(jLabel3)
-                            .addComponent(jLabel2))
-                        .addGap(18, 18, 18)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                            .addComponent(tf_actualEstab_nombre, javax.swing.GroupLayout.DEFAULT_SIZE, 316, Short.MAX_VALUE)
-                            .addComponent(tf_actualEstab_telefono, javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(tf_actualEstab_callePrincipal, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 316, Short.MAX_VALUE)
-                            .addComponent(tf_actualEstab_calleSecundaria, javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(tf_actualEstab_numDireccion, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 316, Short.MAX_VALUE)
-                            .addComponent(tf_actualEstab_tipo, javax.swing.GroupLayout.DEFAULT_SIZE, 316, Short.MAX_VALUE)
-                            .addComponent(tf_actualEstab_codigo))))
+                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                .addGroup(jPanel1Layout.createSequentialGroup()
+                                    .addComponent(jLabel1)
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(cb_actualEstab_parametro, javax.swing.GroupLayout.PREFERRED_SIZE, 211, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGroup(jPanel1Layout.createSequentialGroup()
+                                    .addComponent(tf_actualEstab_argumento, javax.swing.GroupLayout.PREFERRED_SIZE, 211, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGap(18, 18, 18)
+                                    .addComponent(btn_actualEstab_individual)))
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(jLabel8)
+                                    .addComponent(jLabel7)
+                                    .addComponent(jLabel6)
+                                    .addComponent(jLabel5)
+                                    .addComponent(jLabel4)
+                                    .addComponent(jLabel3)
+                                    .addComponent(jLabel2))
+                                .addGap(18, 18, 18)
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                    .addComponent(tf_actualEstab_nombre, javax.swing.GroupLayout.DEFAULT_SIZE, 316, Short.MAX_VALUE)
+                                    .addComponent(tf_actualEstab_telefono, javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(tf_actualEstab_callePrincipal, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 316, Short.MAX_VALUE)
+                                    .addComponent(tf_actualEstab_calleSecundaria, javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(tf_actualEstab_numDireccion, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 316, Short.MAX_VALUE)
+                                    .addComponent(tf_actualEstab_tipo, javax.swing.GroupLayout.DEFAULT_SIZE, 316, Short.MAX_VALUE)
+                                    .addComponent(tf_actualEstab_codigo)))))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(361, 361, 361)
+                        .addComponent(btn_crearEstab_guardar)))
                 .addContainerGap(236, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
@@ -156,7 +164,9 @@ public class VentanaEstablecimiento_actualizar extends javax.swing.JInternalFram
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel8)
                     .addComponent(tf_actualEstab_tipo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(115, 115, 115))
+                .addGap(18, 18, 18)
+                .addComponent(btn_crearEstab_guardar)
+                .addGap(65, 65, 65))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -184,29 +194,85 @@ public class VentanaEstablecimiento_actualizar extends javax.swing.JInternalFram
         }
     }//GEN-LAST:event_btn_actualEstab_individualActionPerformed
 
-    private void tf_actualEstab_codigoFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_tf_actualEstab_codigoFocusLost
-        establecimientoDP.setCodigo(tf_actualEstab_codigo.getText());
-        if (establecimientoDP.verificarExisteDP()) {
-            JOptionPane.showMessageDialog(jPanel1, "El establecimiento ya existe");
-            existeEstablecimiento = true;
+    private void btn_crearEstab_guardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_crearEstab_guardarActionPerformed
+        if (camposCompletos()) {
+            if (existeEstablecimiento) {
+                JOptionPane.showMessageDialog(jPanel1, "El establecimiento ya existe");
+            } else {
+                if (guardarDatos()) {
+                    JOptionPane.showMessageDialog(jPanel1, "¡Creación exitosa!");
+                    limpiarCampos();
+                } else {
+                    JOptionPane.showMessageDialog(jPanel1, "Creación fallida");
+                }
+            }
         } else {
-            existeEstablecimiento = false;
+            JOptionPane.showMessageDialog(jPanel1, "Datos incompletos");
         }
-    }//GEN-LAST:event_tf_actualEstab_codigoFocusLost
+    }//GEN-LAST:event_btn_crearEstab_guardarActionPerformed
 
     // metodos de la clase
     private void cargarEstablecimiento() {
-        DefaultTableModel model = (DefaultTableModel) tb_consEstab_tabla.getModel();
-        model.setRowCount(0);
-
-        model.addRow(new Object[]{establecimientoDP.getCodigo(),
-            establecimientoDP.getNombre(), establecimientoDP.getNumTelefono(),
-            establecimientoDP.getCallePrincipal(), establecimientoDP.getCalleSecundaria(),
-            establecimientoDP.getNumDireccion(), establecimientoDP.getTipo()});
+        tf_actualEstab_codigo.setText(establecimientoDP.getCodigo());
+        tf_actualEstab_nombre.setText(establecimientoDP.getNombre());
+        tf_actualEstab_telefono.setText(establecimientoDP.getNumTelefono());
+        tf_actualEstab_callePrincipal.setText(establecimientoDP.getCallePrincipal());
+        tf_actualEstab_calleSecundaria.setText(establecimientoDP.getCalleSecundaria());
+        tf_actualEstab_numDireccion.setText(establecimientoDP.getNumDireccion());
+        tf_actualEstab_tipo.setText(establecimientoDP.getTipo());
     }
 
+    private boolean camposCompletos() {
+        boolean valido = true;
+
+        String codigo = tf_actualEstab_codigo.getText().trim();
+        String nombre = tf_actualEstab_nombre.getText().trim();
+        String telefono = tf_actualEstab_telefono.getText().trim();
+        String calleP = tf_actualEstab_callePrincipal.getText().trim();
+        String calleS = tf_actualEstab_calleSecundaria.getText().trim();
+        String numDir = tf_actualEstab_numDireccion.getText().trim();
+        String tipo = tf_actualEstab_tipo.getText().trim();
+
+        if (codigo.equals("") || nombre.equals("") || telefono.equals("")
+                || calleP.equals("") || calleS.equals("") || numDir.equals("")
+                || tipo.equals("")) {
+            valido = false;
+        }
+        return valido;
+    }
+
+    private boolean guardarDatos() {
+        String codigo = tf_actualEstab_codigo.getText().trim();
+        String nombre = tf_actualEstab_nombre.getText().trim();
+        String telefono = tf_actualEstab_telefono.getText().trim();
+        String calleP = tf_actualEstab_callePrincipal.getText().trim();
+        String calleS = tf_actualEstab_calleSecundaria.getText().trim();
+        String numDir = tf_actualEstab_numDireccion.getText().trim();
+        String tipo = tf_actualEstab_tipo.getText().trim();
+
+        establecimientoDP.setCodigo(codigo);
+        establecimientoDP.setNombre(nombre);
+        establecimientoDP.setNumTelefono(telefono);
+        establecimientoDP.setCallePrincipal(calleP);
+        establecimientoDP.setCalleSecundaria(calleS);
+        establecimientoDP.setNumDireccion(numDir);
+        establecimientoDP.setTipo(tipo);
+
+        return establecimientoDP.modificarDP();
+    }
+
+    private void limpiarCampos() {
+        tf_actualEstab_codigo.setText("");
+        tf_actualEstab_nombre.setText("");
+        tf_actualEstab_telefono.setText("");
+        tf_actualEstab_callePrincipal.setText("");
+        tf_actualEstab_calleSecundaria.setText("");
+        tf_actualEstab_numDireccion.setText("");
+        tf_actualEstab_tipo.setText("");
+    }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btn_actualEstab_individual;
+    private javax.swing.JButton btn_crearEstab_guardar;
     private javax.swing.JComboBox<String> cb_actualEstab_parametro;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
