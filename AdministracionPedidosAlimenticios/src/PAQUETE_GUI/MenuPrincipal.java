@@ -304,7 +304,9 @@ public class MenuPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_sub_producto_crearActionPerformed
 
     private void sub_cliente_crearActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_sub_cliente_crearActionPerformed
-
+        VentanaCliente_crear ventanaCliente_crear = new VentanaCliente_crear();
+        escritorio.add(ventanaCliente_crear);
+        ventanaCliente_crear.show();
     }//GEN-LAST:event_sub_cliente_crearActionPerformed
     private void sub_producto_consultarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_sub_producto_consultarActionPerformed
         VentanaProducto_consultar ventanaProducto_consultar = new VentanaProducto_consultar();
