@@ -30,6 +30,9 @@
                   <Properties>
                     <Property name="text" type="java.lang.String" value="Crear cliente"/>
                   </Properties>
+                  <Events>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="sub_cliente_crearActionPerformed"/>
+                  </Events>
                 </MenuItem>
                 <MenuItem class="javax.swing.JMenuItem" name="sub_cliente_consultar">
                   <Properties>
