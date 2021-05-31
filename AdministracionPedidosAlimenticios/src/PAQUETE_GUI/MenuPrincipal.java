@@ -306,7 +306,6 @@ public class MenuPrincipal extends javax.swing.JFrame {
     private void sub_cliente_crearActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_sub_cliente_crearActionPerformed
 
     }//GEN-LAST:event_sub_cliente_crearActionPerformed
-
     private void sub_producto_consultarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_sub_producto_consultarActionPerformed
         VentanaProducto_consultar ventanaProducto_consultar = new VentanaProducto_consultar();
         escritorio.add(ventanaProducto_consultar);
