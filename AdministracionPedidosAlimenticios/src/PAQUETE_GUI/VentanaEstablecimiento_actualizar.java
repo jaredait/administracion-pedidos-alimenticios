@@ -48,6 +48,12 @@ public class VentanaEstablecimiento_actualizar extends javax.swing.JInternalFram
         tf_actualEstab_codigo = new javax.swing.JTextField();
         btn_crearEstab_guardar = new javax.swing.JButton();
 
+        setClosable(true);
+        setIconifiable(true);
+        setMaximizable(true);
+        setResizable(true);
+        setTitle("Actualizar establecimiento");
+
         jLabel3.setText("Nombre:");
 
         jLabel4.setText("Teléfono:");

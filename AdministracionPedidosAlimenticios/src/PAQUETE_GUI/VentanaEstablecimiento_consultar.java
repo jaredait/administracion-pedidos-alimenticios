@@ -42,6 +42,8 @@ public class VentanaEstablecimiento_consultar extends javax.swing.JInternalFrame
         setIconifiable(true);
         setMaximizable(true);
         setResizable(true);
+        setTitle("Consultar establecimiento");
+        setToolTipText("");
 
         btn_consEstab_individual.setText("Consultar");
         btn_consEstab_individual.addActionListener(new java.awt.event.ActionListener() {
