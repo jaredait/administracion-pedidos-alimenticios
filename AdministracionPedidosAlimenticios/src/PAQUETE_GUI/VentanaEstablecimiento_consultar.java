@@ -42,6 +42,8 @@ public class VentanaEstablecimiento_consultar extends javax.swing.JInternalFrame
         setIconifiable(true);
         setMaximizable(true);
         setResizable(true);
+        setTitle("Consultar establecimiento");
+        setToolTipText("");
 
         btn_consEstab_individual.setText("Consultar");
         btn_consEstab_individual.addActionListener(new java.awt.event.ActionListener() {
@@ -147,7 +149,10 @@ public class VentanaEstablecimiento_consultar extends javax.swing.JInternalFrame
     }//GEN-LAST:event_btn_consEestab_todosActionPerformed
 
     private void btn_consEstab_individualActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_consEstab_individualActionPerformed
-        if (establecimientoDP.consultarDP()) {
+        establecimientoDP.setCodigo(tf_consEstab_argumento.getText());
+        
+        if (establecimientoDP.verificarExisteDP()) {
+            establecimientoDP.consultarDP();
             cargarEstablecimiento();
         } else {
             JOptionPane.showMessageDialog(jPanel1, "El establecimiento no existe");

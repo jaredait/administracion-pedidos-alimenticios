@@ -174,7 +174,7 @@ public class VentanaEstablecimiento_crear extends javax.swing.JInternalFrame {
             if (existeEstablecimiento) {
                 JOptionPane.showMessageDialog(jPanel1, "El establecimiento ya existe");
             } else {
-                if (establecimientoDP.insertarDP()) {
+                if (guardarDatos()) {
                     JOptionPane.showMessageDialog(jPanel1, "¡Creación exitosa!");
                     limpiarCampos();
                 } else {

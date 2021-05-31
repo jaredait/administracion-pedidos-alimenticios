@@ -94,6 +94,11 @@ public class MenuPrincipal extends javax.swing.JFrame {
         submenu_cliente.setText("Cliente");
 
         sub_cliente_crear.setText("Crear cliente");
+        sub_cliente_crear.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                sub_cliente_crearActionPerformed(evt);
+            }
+        });
         submenu_cliente.add(sub_cliente_crear);
 
         sub_cliente_consultar.setText("Consultar cliente");
@@ -131,6 +136,11 @@ public class MenuPrincipal extends javax.swing.JFrame {
         submenu_establecimiento.add(sub_establecimiento_consultar);
 
         sub_establecimiento_actualizar.setText("Actualizar establecimiento");
+        sub_establecimiento_actualizar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                sub_establecimiento_actualizarActionPerformed(evt);
+            }
+        });
         submenu_establecimiento.add(sub_establecimiento_actualizar);
 
         sub_establecimiento_eliminar.setText("Eliminar establecimiento");
@@ -267,7 +277,9 @@ public class MenuPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_sub_cliente_consultarActionPerformed
 
     private void sub_establecimiento_eliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_sub_establecimiento_eliminarActionPerformed
-        // TODO add your handling code here:
+        VentanaEstablecimiento_eliminar ventanaEstablecimiento_eliminar = new VentanaEstablecimiento_eliminar();
+        escritorio.add(ventanaEstablecimiento_eliminar);
+        ventanaEstablecimiento_eliminar.show();
     }//GEN-LAST:event_sub_establecimiento_eliminarActionPerformed
 
     private void sub_establecimiento_crearActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_sub_establecimiento_crearActionPerformed
@@ -293,6 +305,11 @@ public class MenuPrincipal extends javax.swing.JFrame {
         ventanaProducto_crear.show();
     }//GEN-LAST:event_sub_producto_crearActionPerformed
 
+    private void sub_cliente_crearActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_sub_cliente_crearActionPerformed
+        VentanaCliente_crear ventanaCliente_crear = new VentanaCliente_crear();
+        escritorio.add(ventanaCliente_crear);
+        ventanaCliente_crear.show();
+    }//GEN-LAST:event_sub_cliente_crearActionPerformed
     private void sub_producto_consultarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_sub_producto_consultarActionPerformed
         VentanaProducto_consultar ventanaProducto_consultar = new VentanaProducto_consultar();
         escritorio.add(ventanaProducto_consultar);
@@ -310,6 +327,13 @@ public class MenuPrincipal extends javax.swing.JFrame {
         escritorio.add(ventanaProducto_eliminar);
         ventanaProducto_eliminar.show();
     }//GEN-LAST:event_sub_producto_eliminarActionPerformed
+
+    private void sub_establecimiento_actualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_sub_establecimiento_actualizarActionPerformed
+        VentanaEstablecimiento_actualizar ventanaEstablecimiento_actualizar = new VentanaEstablecimiento_actualizar();
+        escritorio.add(ventanaEstablecimiento_actualizar);
+        ventanaEstablecimiento_actualizar.show();
+    }//GEN-LAST:event_sub_establecimiento_actualizarActionPerformed
+
 
     /**
      * @param args the command line arguments
