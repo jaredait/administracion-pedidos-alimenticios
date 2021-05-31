@@ -159,12 +159,27 @@ public class MenuPrincipal extends javax.swing.JFrame {
         submenu_producto.add(sub_producto_crear);
 
         sub_producto_consultar.setText("Consultar producto");
+        sub_producto_consultar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                sub_producto_consultarActionPerformed(evt);
+            }
+        });
         submenu_producto.add(sub_producto_consultar);
 
         sub_producto_actualizar.setText("Actualizar Producto");
+        sub_producto_actualizar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                sub_producto_actualizarActionPerformed(evt);
+            }
+        });
         submenu_producto.add(sub_producto_actualizar);
 
         sub_producto_eliminar.setText("Eliminar producto");
+        sub_producto_eliminar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                sub_producto_eliminarActionPerformed(evt);
+            }
+        });
         submenu_producto.add(sub_producto_eliminar);
 
         menu_catalogos.add(submenu_producto);
@@ -277,6 +292,24 @@ public class MenuPrincipal extends javax.swing.JFrame {
         escritorio.add(ventanaProducto_crear);
         ventanaProducto_crear.show();
     }//GEN-LAST:event_sub_producto_crearActionPerformed
+
+    private void sub_producto_consultarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_sub_producto_consultarActionPerformed
+        VentanaProducto_consultar ventanaProducto_consultar = new VentanaProducto_consultar();
+        escritorio.add(ventanaProducto_consultar);
+        ventanaProducto_consultar.show();
+    }//GEN-LAST:event_sub_producto_consultarActionPerformed
+
+    private void sub_producto_actualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_sub_producto_actualizarActionPerformed
+        VentanaProducto_actualizar ventanaProducto_actualizar = new VentanaProducto_actualizar();
+        escritorio.add(ventanaProducto_actualizar);
+        ventanaProducto_actualizar.show();
+    }//GEN-LAST:event_sub_producto_actualizarActionPerformed
+
+    private void sub_producto_eliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_sub_producto_eliminarActionPerformed
+        VentanaProducto_eliminar ventanaProducto_eliminar = new VentanaProducto_eliminar();
+        escritorio.add(ventanaProducto_eliminar);
+        ventanaProducto_eliminar.show();
+    }//GEN-LAST:event_sub_producto_eliminarActionPerformed
 
     /**
      * @param args the command line arguments
