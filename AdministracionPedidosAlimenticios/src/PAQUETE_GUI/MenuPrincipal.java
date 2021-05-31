@@ -144,8 +144,18 @@ public class MenuPrincipal extends javax.swing.JFrame {
         menu_catalogos.add(submenu_establecimiento);
 
         submenu_producto.setText("Producto");
+        submenu_producto.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                submenu_productoActionPerformed(evt);
+            }
+        });
 
         sub_producto_crear.setText("Crear producto");
+        sub_producto_crear.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                sub_producto_crearActionPerformed(evt);
+            }
+        });
         submenu_producto.add(sub_producto_crear);
 
         sub_producto_consultar.setText("Consultar producto");
@@ -257,6 +267,16 @@ public class MenuPrincipal extends javax.swing.JFrame {
         ventanaEstablecimiento_consultar.show();
         
     }//GEN-LAST:event_sub_establecimiento_consultarActionPerformed
+
+    private void submenu_productoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_submenu_productoActionPerformed
+        
+    }//GEN-LAST:event_submenu_productoActionPerformed
+
+    private void sub_producto_crearActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_sub_producto_crearActionPerformed
+        VentanaProducto_crear ventanaProducto_crear = new VentanaProducto_crear();
+        escritorio.add(ventanaProducto_crear);
+        ventanaProducto_crear.show();
+    }//GEN-LAST:event_sub_producto_crearActionPerformed
 
     /**
      * @param args the command line arguments
