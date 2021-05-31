@@ -2,10 +2,8 @@ package PAQUETE_MD;
 
 import PAQUETE_DP.ClienteDP;
 import PAQUETE_PRINCIPAL.ProgramaPrincipal;
-import java.io.*;
 import java.sql.*;
 import java.util.ArrayList;
-import java.util.Properties;
 import java.util.logging.*;
 
 public class ClienteMD {
