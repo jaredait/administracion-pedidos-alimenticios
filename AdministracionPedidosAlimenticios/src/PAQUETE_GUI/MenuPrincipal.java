@@ -94,6 +94,11 @@ public class MenuPrincipal extends javax.swing.JFrame {
         submenu_cliente.setText("Cliente");
 
         sub_cliente_crear.setText("Crear cliente");
+        sub_cliente_crear.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                sub_cliente_crearActionPerformed(evt);
+            }
+        });
         submenu_cliente.add(sub_cliente_crear);
 
         sub_cliente_consultar.setText("Consultar cliente");
@@ -300,6 +305,11 @@ public class MenuPrincipal extends javax.swing.JFrame {
         ventanaProducto_crear.show();
     }//GEN-LAST:event_sub_producto_crearActionPerformed
 
+    private void sub_cliente_crearActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_sub_cliente_crearActionPerformed
+        VentanaCliente_crear ventanaCliente_crear = new VentanaCliente_crear();
+        escritorio.add(ventanaCliente_crear);
+        ventanaCliente_crear.show();
+    }//GEN-LAST:event_sub_cliente_crearActionPerformed
     private void sub_producto_consultarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_sub_producto_consultarActionPerformed
         VentanaProducto_consultar ventanaProducto_consultar = new VentanaProducto_consultar();
         escritorio.add(ventanaProducto_consultar);
@@ -323,6 +333,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
         escritorio.add(ventanaEstablecimiento_actualizar);
         ventanaEstablecimiento_actualizar.show();
     }//GEN-LAST:event_sub_establecimiento_actualizarActionPerformed
+
 
     /**
      * @param args the command line arguments

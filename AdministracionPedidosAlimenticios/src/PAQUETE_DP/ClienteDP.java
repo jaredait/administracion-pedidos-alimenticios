@@ -1,6 +1,8 @@
 package PAQUETE_DP;
 
 import PAQUETE_MD.ClienteMD;
+import java.util.ArrayList;
+
 public class ClienteDP {
     //Atributos
     private String cedula;
@@ -10,6 +12,7 @@ public class ClienteDP {
     private String correo;
     private ClienteMD clienteMD;
 
+    //Constructores
     public ClienteDP(String cedula, String nombre, String apellido, String numCelular, String correo) {
         this.cedula = cedula;
         this.nombre = nombre;
@@ -17,9 +20,9 @@ public class ClienteDP {
         this.numCelular = numCelular;
         this.correo = correo;
     }
-    /*public ClienteDP(ClienteMD clienteMD){
-        this.clienteMD = clienteMD;
-    }*/
+    public ClienteDP(){
+        clienteMD = new ClienteMD(this);
+    }
     //getters y setters
     public String getCedula() {
         return cedula;
@@ -62,33 +65,26 @@ public class ClienteDP {
     }
     
     public boolean insertarDP(){
-        //return clienteMD.insertarMD();
-        return false;
+        return clienteMD.insertarMD();
     }
     
     public boolean consultarDP(){
-        //return clienteMD.consultarMD();
-        return false;
+        return clienteMD.consultarMD();
     }
 
     public boolean modificarDP(){
-        //return clienteMD.modificarMD();
-        return false;
+        return clienteMD.actualizarMD();
     }
     
     public boolean eliminarDP(){
-        //return clienteMD.eliminarMD();
-        return false;
+        return clienteMD.eliminarMD();
     }
     
     public boolean verificarExisteDP(){
-        //return clienteMD.verificarExisteMD();
-        return false;
+        return clienteMD.verificarExisteMD();
     }
     
-    /*
     public ArrayList<ClienteDP> consultarTodosDP(){
         return clienteMD.consultarTodosMD();
     }
-    */
 }
