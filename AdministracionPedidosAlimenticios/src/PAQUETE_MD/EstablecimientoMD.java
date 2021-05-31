@@ -19,7 +19,7 @@ public class EstablecimientoMD {
         // conexion a la db
         ProgramaPrincipal conexion = new ProgramaPrincipal();
         con = conexion.getConexion();
-        
+
         this.establecimientoDP = establecimientoDP;
     }
 
@@ -48,17 +48,10 @@ public class EstablecimientoMD {
     public boolean consultarMD() {
         boolean completado = false;
         try {
-            query = "SELECT est_nombre, est_num_telefono, est_calle_principal,"
-                    + " est_calle_secundaria, est_num_direccion, est_tipo"
-                    + " FROM ESTABLECIMIENTO "
-                    + " WHERE est_codigo=?";
-            PreparedStatement st = con.prepareStatement(query);
-            st.setString(1, establecimientoDP.getCodigo());
-            int a = st.executeUpdate();
-
-            query = "SELECT * FROM ESTABLECIMIENTO";
+            query = "SELECT * FROM ESTABLECIMIENTO WHERE est_codigo='"+establecimientoDP.getCodigo()+"'";
             stmt = con.createStatement();
             result = stmt.executeQuery(query);
+            result.next();
 
             // obtener los datos del registro
             String nombre = result.getString("est_nombre");
@@ -129,8 +122,8 @@ public class EstablecimientoMD {
             PreparedStatement st = con.prepareStatement(query);
             st.setString(1, establecimientoDP.getCodigo());
             result = st.executeQuery();
-            
-            if(result.next()){
+
+            if (result.next()) {
                 existe = true;
             }
         } catch (SQLException ex) {
@@ -170,5 +163,4 @@ public class EstablecimientoMD {
     public void cargarDatos() {
 
     }
-
 }
