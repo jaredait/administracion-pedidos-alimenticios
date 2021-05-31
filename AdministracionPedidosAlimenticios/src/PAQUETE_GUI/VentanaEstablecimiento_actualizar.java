@@ -46,7 +46,7 @@ public class VentanaEstablecimiento_actualizar extends javax.swing.JInternalFram
         btn_actualEstab_individual = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
         tf_actualEstab_codigo = new javax.swing.JTextField();
-        btn_crearEstab_guardar = new javax.swing.JButton();
+        btn_actualEstab_guardar = new javax.swing.JButton();
 
         setClosable(true);
         setIconifiable(true);
@@ -79,10 +79,10 @@ public class VentanaEstablecimiento_actualizar extends javax.swing.JInternalFram
 
         jLabel2.setText("Código:");
 
-        btn_crearEstab_guardar.setText("Guardar");
-        btn_crearEstab_guardar.addActionListener(new java.awt.event.ActionListener() {
+        btn_actualEstab_guardar.setText("Guardar");
+        btn_actualEstab_guardar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btn_crearEstab_guardarActionPerformed(evt);
+                btn_actualEstab_guardarActionPerformed(evt);
             }
         });
 
@@ -124,7 +124,7 @@ public class VentanaEstablecimiento_actualizar extends javax.swing.JInternalFram
                                     .addComponent(tf_actualEstab_codigo)))))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(361, 361, 361)
-                        .addComponent(btn_crearEstab_guardar)))
+                        .addComponent(btn_actualEstab_guardar)))
                 .addContainerGap(236, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
@@ -171,7 +171,7 @@ public class VentanaEstablecimiento_actualizar extends javax.swing.JInternalFram
                     .addComponent(jLabel8)
                     .addComponent(tf_actualEstab_tipo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
-                .addComponent(btn_crearEstab_guardar)
+                .addComponent(btn_actualEstab_guardar)
                 .addGap(65, 65, 65))
         );
 
@@ -200,24 +200,20 @@ public class VentanaEstablecimiento_actualizar extends javax.swing.JInternalFram
         }
     }//GEN-LAST:event_btn_actualEstab_individualActionPerformed
 
-    private void btn_crearEstab_guardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_crearEstab_guardarActionPerformed
+    private void btn_actualEstab_guardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_actualEstab_guardarActionPerformed
         if (camposCompletos()) {
-            if (existeEstablecimiento) {
-                JOptionPane.showMessageDialog(jPanel1, "El establecimiento ya existe");
+            if (guardarDatos()) {
+                JOptionPane.showMessageDialog(jPanel1, "¡Actualización exitosa!");
+                limpiarCampos();
             } else {
-                if (guardarDatos()) {
-                    JOptionPane.showMessageDialog(jPanel1, "¡Creación exitosa!");
-                    limpiarCampos();
-                } else {
-                    JOptionPane.showMessageDialog(jPanel1, "Creación fallida");
-                }
+                JOptionPane.showMessageDialog(jPanel1, "Actualización fallida");
             }
         } else {
             JOptionPane.showMessageDialog(jPanel1, "Datos incompletos");
         }
-    }//GEN-LAST:event_btn_crearEstab_guardarActionPerformed
+    }//GEN-LAST:event_btn_actualEstab_guardarActionPerformed
 
-    // metodos de la clase
+// metodos de la clase
     private void cargarEstablecimiento() {
         tf_actualEstab_codigo.setText(establecimientoDP.getCodigo());
         tf_actualEstab_nombre.setText(establecimientoDP.getNombre());
@@ -275,10 +271,11 @@ public class VentanaEstablecimiento_actualizar extends javax.swing.JInternalFram
         tf_actualEstab_calleSecundaria.setText("");
         tf_actualEstab_numDireccion.setText("");
         tf_actualEstab_tipo.setText("");
+        tf_actualEstab_argumento.setText("");
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btn_actualEstab_guardar;
     private javax.swing.JButton btn_actualEstab_individual;
-    private javax.swing.JButton btn_crearEstab_guardar;
     private javax.swing.JComboBox<String> cb_actualEstab_parametro;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
