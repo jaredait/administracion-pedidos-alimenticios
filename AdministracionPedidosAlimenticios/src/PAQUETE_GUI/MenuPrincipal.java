@@ -136,6 +136,11 @@ public class MenuPrincipal extends javax.swing.JFrame {
         submenu_establecimiento.add(sub_establecimiento_consultar);
 
         sub_establecimiento_actualizar.setText("Actualizar establecimiento");
+        sub_establecimiento_actualizar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                sub_establecimiento_actualizarActionPerformed(evt);
+            }
+        });
         submenu_establecimiento.add(sub_establecimiento_actualizar);
 
         sub_establecimiento_eliminar.setText("Eliminar establecimiento");
@@ -164,12 +169,27 @@ public class MenuPrincipal extends javax.swing.JFrame {
         submenu_producto.add(sub_producto_crear);
 
         sub_producto_consultar.setText("Consultar producto");
+        sub_producto_consultar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                sub_producto_consultarActionPerformed(evt);
+            }
+        });
         submenu_producto.add(sub_producto_consultar);
 
         sub_producto_actualizar.setText("Actualizar Producto");
+        sub_producto_actualizar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                sub_producto_actualizarActionPerformed(evt);
+            }
+        });
         submenu_producto.add(sub_producto_actualizar);
 
         sub_producto_eliminar.setText("Eliminar producto");
+        sub_producto_eliminar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                sub_producto_eliminarActionPerformed(evt);
+            }
+        });
         submenu_producto.add(sub_producto_eliminar);
 
         menu_catalogos.add(submenu_producto);
@@ -284,10 +304,33 @@ public class MenuPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_sub_producto_crearActionPerformed
 
     private void sub_cliente_crearActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_sub_cliente_crearActionPerformed
-        VentanaCliente_crear ventanaCliente_crear = new VentanaCliente_crear();
-        escritorio.add(ventanaCliente_crear);
-        ventanaCliente_crear.show();
+
     }//GEN-LAST:event_sub_cliente_crearActionPerformed
+
+    private void sub_producto_consultarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_sub_producto_consultarActionPerformed
+        VentanaProducto_consultar ventanaProducto_consultar = new VentanaProducto_consultar();
+        escritorio.add(ventanaProducto_consultar);
+        ventanaProducto_consultar.show();
+    }//GEN-LAST:event_sub_producto_consultarActionPerformed
+
+    private void sub_producto_actualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_sub_producto_actualizarActionPerformed
+        VentanaProducto_actualizar ventanaProducto_actualizar = new VentanaProducto_actualizar();
+        escritorio.add(ventanaProducto_actualizar);
+        ventanaProducto_actualizar.show();
+    }//GEN-LAST:event_sub_producto_actualizarActionPerformed
+
+    private void sub_producto_eliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_sub_producto_eliminarActionPerformed
+        VentanaProducto_eliminar ventanaProducto_eliminar = new VentanaProducto_eliminar();
+        escritorio.add(ventanaProducto_eliminar);
+        ventanaProducto_eliminar.show();
+    }//GEN-LAST:event_sub_producto_eliminarActionPerformed
+
+    private void sub_establecimiento_actualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_sub_establecimiento_actualizarActionPerformed
+        VentanaEstablecimiento_actualizar ventanaEstablecimiento_actualizar = new VentanaEstablecimiento_actualizar();
+        escritorio.add(ventanaEstablecimiento_actualizar);
+        ventanaEstablecimiento_actualizar.show();
+    }//GEN-LAST:event_sub_establecimiento_actualizarActionPerformed
+
 
     /**
      * @param args the command line arguments
