@@ -4,17 +4,19 @@
  * and open the template in the editor.
  */
 package PAQUETE_DP;
-
+import PAQUETE_MD.ProductoMD;
+import java.util.ArrayList;
 
 public class ProductoDP {
     //atributos
     private String codigo;
     private String nombre;
     private double precio;
-    //private ProductoMD productoMD;
+    private ProductoMD productoMD;
+    
     //constructor
-    public ProductoDP(/*ProductoMD productoMD*/){
-        //this.productoMD = productoMD;
+    public ProductoDP(){
+        this.productoMD = new ProductoMD(this);
     }
 
     public ProductoDP(String codigo, String nombre, double precio) {
@@ -48,33 +50,28 @@ public class ProductoDP {
     }
     
     public boolean insertarDP(){
-        //return productoMD.insertarMD();
-        return false;
+        return productoMD.insertarMD();
     }
     
     public boolean consultarDP(){
-        //return productoMD.consultarMD();
-        return false;
+        return productoMD.consultarMD();
     }
 
     public boolean modificarDP(){
-        //return productoMD.modificarMD();
-        return false;
+        return productoMD.actualizarMD();
     }
     
     public boolean eliminarDP(){
-        //return productoMD.eliminarMD();
-        return false;
+        return productoMD.eliminarMD();
     }
     
     public boolean verificarExisteDP(){
-        //return productoMD.verificarExisteMD();
-        return false;
+        return productoMD.verificarExisteMD();
     }
     
-    /*
+    
     public ArrayList<ProductoDP> consultarTodosDP(){
         return productoMD.consultarTodosMD();
     }
-    */
+    
 }

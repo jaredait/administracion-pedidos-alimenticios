@@ -6,10 +6,9 @@
 package PAQUETE_MD;
 
 import PAQUETE_DP.ProductoDP;
-import java.io.*;
+import PAQUETE_PRINCIPAL.ProgramaPrincipal;
 import java.sql.*;
 import java.util.ArrayList;
-import java.util.Properties;
 import java.util.logging.*;
 
 public class ProductoMD {
@@ -17,33 +16,21 @@ public class ProductoMD {
     private Connection con;
     private Statement stmt;
     private ResultSet result;
-    private String cadena;
+    private String query;
 
     // constructor
     public ProductoMD(ProductoDP productoDP) {
-
-        try {
-            // leer el archivo properties para la conexion a la db
-            this.productoDP = productoDP;
-            Properties props = new Properties();
-            props.load(new FileInputStream("src/sql/conexiondb.properties"));
-            String dburl = props.getProperty("dburl");
-
-            /*
-            // conexion a la db
-            DriverManager.deregisterDriver(new org.apache.derby.jdbc.ClientDriver());
-            con = DriverManager.getConnection(dburl);
-             */
-        } catch (IOException ex) {
-            Logger.getLogger(ProductoMD.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        //conexion a la db
+        ProgramaPrincipal conexion = new ProgramaPrincipal();
+        con = conexion.getConexion();
+        this.productoDP = productoDP;
     }
 
     public boolean insertarMD() {
         boolean completado = false;
         try {
-            PreparedStatement st = con.prepareStatement("INSERT INTO Producto"
-                    + "(codigo, nombre, precio, callePrincipal) values(?,?,?");
+            PreparedStatement st = con.prepareStatement("INSERT INTO PRODUCTO"
+                    + "(prd_codigo, prd_nombre, prd_precio) values(?,?,?");
             st.setString(1, productoDP.getCodigo());
             st.setString(2, productoDP.getNombre());
             st.setString(3, String.valueOf(productoDP.getPrecio()));
@@ -57,16 +44,38 @@ public class ProductoMD {
     }
 
     public boolean consultarMD() {
+        boolean completado = false;
+        try {
+            query = "SELECT prd_nombre, prd_precio"
+                    + " FROM PRODUCTO "
+                    + " WHERE prd_codigo=?";
+            PreparedStatement st = con.prepareStatement(query);
+            st.setString(1, productoDP.getCodigo());
+            int a = st.executeUpdate();
 
-        return false;
+            query = "SELECT * FROM PRODUCTO";
+            stmt = con.createStatement();
+            result = stmt.executeQuery(query);
+
+            // obtener los datos del registro
+            String nombre = result.getString("prd_nombre");
+
+            // cargar los datos al objeto EstablecimientoDP
+            productoDP.setNombre(nombre);
+
+            completado = true;
+        } catch (SQLException ex) {
+            Logger.getLogger(ProductoMD.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return completado;
     }
 
     public boolean actualizarMD() {
         boolean completado = false;
         try {
-            PreparedStatement st = con.prepareStatement("UPDATE Producto"
-                    + "SET pro_nombre=?, pro_precio=?, est_callePrincipal=?, "
-                    + "WHERE pro_codigo=?)");
+            PreparedStatement st = con.prepareStatement("UPDATE PRODUCTO"
+                    + "SET prd_nombre=?, prd_precio=?, "
+                    + "WHERE prd_codigo=?)");
             st.setString(3, productoDP.getCodigo());
             st.setString(1, productoDP.getNombre());
             st.setString(2, String.valueOf(productoDP.getPrecio()));
