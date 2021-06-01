@@ -26,7 +26,7 @@ public class ClienteMD {
         boolean completado = false;
         try {
             PreparedStatement st = con.prepareStatement("INSERT INTO CLIENTE"
-                    + "(cli_cedula, cli_nombre, cli_apellido, cli_numCelular, cli_correo) values(?,?,?,?,?)");
+                    + "(cli_cedula, cli_nombre, cli_apellido, cli_Celular, cli_correo) values(?,?,?,?,?)");
             st.setString(1, clienteDP.getCedula());
             st.setString(2, clienteDP.getNombre());
             st.setString(3, clienteDP.getApellido());
@@ -44,7 +44,7 @@ public class ClienteMD {
     public boolean consultarMD() {
         boolean completado = false;
         try {
-            query = "SELECT * FROM ESTABLECIMIENTO WHERE cli_cedula='"+clienteDP.getCedula()+"'";
+            query = "SELECT * FROM CLIENTE WHERE cli_cedula='"+clienteDP.getCedula()+"'";
             stmt = con.createStatement();
             result = stmt.executeQuery(query);
             result.next();
@@ -52,7 +52,7 @@ public class ClienteMD {
             // Obtener los datos del registro
             String nombre = result.getString("cli_nombre");
             String apellido = result.getString("cli_apellido");
-            String numCelular = result.getString("cli_numCelular");
+            String numCelular = result.getString("cli_Celular");
             String correo = result.getString("cli_correo");
 
             // Cargar los datos al objeto ClienteDP
@@ -63,7 +63,7 @@ public class ClienteMD {
 
             completado = true;
         } catch (SQLException ex) {
-            Logger.getLogger(EstablecimientoMD.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(ClienteMD.class.getName()).log(Level.SEVERE, null, ex);
         }
         return completado;
     }
@@ -72,8 +72,7 @@ public class ClienteMD {
         boolean completado = false;
         try {
             query = "UPDATE CLIENTE SET cli_nombre=?, cli_apellido=?, "
-                    + " cli_numCelular=?, cli_correo=?, "
-                    + "WHERE cli_cedula=?";
+                    + " cli_celular=?, cli_correo=? WHERE cli_cedula=?";
             PreparedStatement st = con.prepareStatement(query);
             st.setString(5, clienteDP.getCedula());
             st.setString(1, clienteDP.getNombre());
@@ -116,7 +115,7 @@ public class ClienteMD {
                 existe = true;
             }
         } catch (SQLException ex) {
-            Logger.getLogger(EstablecimientoMD.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(ClienteMD.class.getName()).log(Level.SEVERE, null, ex);
         }
         return existe;
     }
@@ -135,7 +134,7 @@ public class ClienteMD {
                 String cedula = result.getString("cli_cedula");
                 String nombre = result.getString("cli_nombre");
                 String apellido = result.getString("cli_apellido");
-                String numCelular = result.getString("cli_numCelular");
+                String numCelular = result.getString("cli_Celular");
                 String correo = result.getString("cli_correo");
 
                 clientes.add(new ClienteDP(cedula, nombre, apellido, numCelular, correo));
@@ -143,7 +142,7 @@ public class ClienteMD {
             }
 
         } catch (SQLException ex) {
-            Logger.getLogger(EstablecimientoMD.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(ClienteMD.class.getName()).log(Level.SEVERE, null, ex);
         }
         return clientes;
     }
