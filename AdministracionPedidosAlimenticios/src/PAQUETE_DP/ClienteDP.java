@@ -10,15 +10,17 @@ public class ClienteDP {
     private String apellido;
     private String numCelular;
     private String correo;
+    private String password;
     private ClienteMD clienteMD;
 
     //Constructores
-    public ClienteDP(String cedula, String nombre, String apellido, String numCelular, String correo) {
+    public ClienteDP(String cedula, String nombre, String apellido, String numCelular, String correo, String password) {
         this.cedula = cedula;
         this.nombre = nombre;
         this.apellido = apellido;
         this.numCelular = numCelular;
         this.correo = correo;
+        this.password = password;
     }
     public ClienteDP(){
         clienteMD = new ClienteMD(this);
@@ -62,6 +64,14 @@ public class ClienteDP {
 
     public void setCorreo(String correo) {
         this.correo = correo;
+    }
+    
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
     }
     
     public boolean insertarDP(){
