@@ -1,20 +1,19 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package PAQUETE_GUI;
 
-/**
- *
- * @author lizxi
- */
+import PAQUETE_DP.ClienteDP;
+import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
+
 public class VentanaCliente_eliminar extends javax.swing.JInternalFrame {
 
-    /**
-     * Creates new form VentanaCliente_eliminar
-     */
+    // Atributos
+    private ClienteDP clienteDP;
+    private boolean existeCliente;
+
     public VentanaCliente_eliminar() {
+        // Instanciar atributos de la clase
+        clienteDP = new ClienteDP();
+        existeCliente = false;
         initComponents();
     }
 
@@ -27,21 +26,171 @@ public class VentanaCliente_eliminar extends javax.swing.JInternalFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jPanel1 = new javax.swing.JPanel();
+        jButtonBuscar = new javax.swing.JButton();
+        jTextCedula = new javax.swing.JTextField();
+        jComboBoxParametro = new javax.swing.JComboBox<>();
+        jLabel1 = new javax.swing.JLabel();
+        jButtonEliminar = new javax.swing.JButton();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        jTableEliminar = new javax.swing.JTable();
+
+        setClosable(true);
+        setIconifiable(true);
+        setMaximizable(true);
+        setResizable(true);
+        setTitle("Eliminar Cliente");
+
+        jButtonBuscar.setText("Buscar");
+        jButtonBuscar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonBuscarActionPerformed(evt);
+            }
+        });
+
+        jComboBoxParametro.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Cédula" }));
+
+        jLabel1.setText("Buscar por:");
+
+        jButtonEliminar.setText("Eliminar");
+        jButtonEliminar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonEliminarActionPerformed(evt);
+            }
+        });
+
+        jTableEliminar.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+                "Cédula", "Nombre", "Apellido", "Número Celular", "Correo Electrónico"
+            }
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        jScrollPane1.setViewportView(jTableEliminar);
+
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addGap(345, 345, 345)
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addGroup(jPanel1Layout.createSequentialGroup()
+                                        .addComponent(jLabel1)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addComponent(jComboBoxParametro, javax.swing.GroupLayout.PREFERRED_SIZE, 211, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addGroup(jPanel1Layout.createSequentialGroup()
+                                        .addComponent(jTextCedula, javax.swing.GroupLayout.PREFERRED_SIZE, 211, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(18, 18, 18)
+                                        .addComponent(jButtonBuscar))))
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addGap(447, 447, 447)
+                                .addComponent(jButtonEliminar)))
+                        .addGap(0, 385, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 1028, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap())
+        );
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(37, 37, 37)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel1)
+                    .addComponent(jComboBoxParametro, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(23, 23, 23)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jTextCedula, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jButtonBuscar))
+                .addGap(41, 41, 41)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(32, 32, 32)
+                .addComponent(jButtonEliminar)
+                .addContainerGap(79, Short.MAX_VALUE))
+        );
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 394, Short.MAX_VALUE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 274, Short.MAX_VALUE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void jButtonBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonBuscarActionPerformed
+        clienteDP.setCedula(jTextCedula.getText());
+
+        if (clienteDP.verificarExisteDP()) {
+            clienteDP.consultarDP();
+            cargarCliente();
+            existeCliente = true;
+        } else {
+            existeCliente = false;
+            JOptionPane.showMessageDialog(jPanel1, "El cliente no existe");
+        }
+    }//GEN-LAST:event_jButtonBuscarActionPerformed
+
+    private void jButtonEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonEliminarActionPerformed
+        if (existeCliente) {
+            int confirmacion = JOptionPane.showConfirmDialog(jPanel1, "¿Estás seguro de eliminar el cliente?");
+            if (confirmacion == 0) {
+                if (clienteDP.eliminarDP()) {
+                    limpiarCampos();
+                    JOptionPane.showMessageDialog(jPanel1, "¡Eliminación exitosa!");
+                    existeCliente = false;
+                } else {
+                    JOptionPane.showMessageDialog(jPanel1, "Eliminación fallida");
+                }
+            }
+        } else {
+            JOptionPane.showMessageDialog(jPanel1, "El cliente no existe");
+        }
+    }//GEN-LAST:event_jButtonEliminarActionPerformed
+
+    // Métodos de la clase
+    private void cargarCliente() {
+        DefaultTableModel model = (DefaultTableModel) jTableEliminar.getModel();
+        model.setRowCount(0);
+        
+        model.addRow(new Object[]{clienteDP.getCedula(),
+            clienteDP.getNombre(), clienteDP.getApellido(),
+            clienteDP.getNumCelular(), clienteDP.getCorreo()});
+    }
+
+    private void limpiarCampos() {
+        DefaultTableModel model = (DefaultTableModel) jTableEliminar.getModel();
+        model.setRowCount(0);
+        jTextCedula.setText("");
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton jButtonBuscar;
+    private javax.swing.JButton jButtonEliminar;
+    private javax.swing.JComboBox<String> jComboBoxParametro;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JPanel jPanel1;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JTable jTableEliminar;
+    private javax.swing.JTextField jTextCedula;
     // End of variables declaration//GEN-END:variables
 }
