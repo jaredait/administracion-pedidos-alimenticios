@@ -2,22 +2,18 @@ package PAQUETE_GUI;
 
 import PAQUETE_DP.EstablecimientoDP;
 import PAQUETE_DP.ClienteDP;
-import PAQUETE_GUI.MenuPrincipal;
 import javax.swing.JOptionPane;
 
 public class Login extends javax.swing.JFrame {
-
     // atributos
     EstablecimientoDP establecimientoDP;
     ClienteDP clienteDP;
-    MenuPrincipal menu;
-
+    
     // constructor
     public Login() {
         establecimientoDP = new EstablecimientoDP();
         clienteDP = new ClienteDP();
-        menu = new MenuPrincipal();
-
+        
         initComponents();
     }
 
@@ -113,70 +109,33 @@ public class Login extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btn_login_loginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_login_loginActionPerformed
-        if(datosValidados() == 1){
-            // lanzar menu de establecimiento
-            menuEstablecimiento();
-        }
-        if(datosValidados() == 2){
-            // lanzar menu de cliente
-            menuCliente();
+        if(camposCompletos()){
+            establecimientoDP.setCodigo(tf_login_username.getText());
+            clienteDP.setCedula(tf_login_username.getText());
+            
+            boolean usuarioExiste = false;
+            boolean passwordCorrecto = false;
+            
+            if(establecimientoDP.verificarExisteDP()){
+                establecimientoDP.consultarDP();
+                
+            }
+            if()
+            
+        } else {
+            JOptionPane.showMessageDialog(jPanel1, "Datos incompletos");
         }
     }//GEN-LAST:event_btn_login_loginActionPerformed
 
     // metodos de la clase
-    private boolean camposCompletos() {
+    private boolean camposCompletos(){
         boolean completos = false;
-
-        if (!tf_login_password.getText().equals("") || !tf_login_username.getText().equals("")) {
+        
+        if(!tf_login_password.getText().equals("") || !tf_login_username.getText().equals("")){
             completos = true;
         }
-
+        
         return completos;
-    }
-
-    private int datosValidados() {
-        // acceso:
-        // 0 invalido
-        // 1 establecimiento
-        // 2 cliente
-        
-        int acceso = 0;
-        
-        if (camposCompletos()) {
-            String password = tf_login_password.getText();
-            
-            establecimientoDP.setCodigo(tf_login_username.getText());
-            clienteDP.setCedula(tf_login_username.getText());
-
-            if (establecimientoDP.verificarExisteDP()) {
-                establecimientoDP.consultarDP();
-                if (establecimientoDP.getPassword().equals(password)) {
-                    acceso = 1;
-                } else {
-                    JOptionPane.showMessageDialog(jPanel1, "Datos incorrectos");
-                }
-            } else {
-                if (clienteDP.verificarExisteDP()) {
-                    clienteDP.consultarDP();
-                    if (clienteDP.getPassword().equals(password)) {
-                        acceso = 2;
-                    } else {
-                        JOptionPane.showMessageDialog(jPanel1, "Datos incorrectos");
-                    }
-                }
-            }
-        } else {
-            JOptionPane.showMessageDialog(jPanel1, "Datos incompletos");
-        }
-        return acceso;
-    }
-
-    private void menuEstablecimiento(){
-        menu.setVisible(true);
-    }
-    
-    private void menuCliente(){
-        
     }
     
     public static void main(String args[]) {
