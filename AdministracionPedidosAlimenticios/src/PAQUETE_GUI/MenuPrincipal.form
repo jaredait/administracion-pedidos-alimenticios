@@ -208,11 +208,17 @@
                   <Properties>
                     <Property name="text" type="java.lang.String" value="Crear pedido"/>
                   </Properties>
+                  <Events>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="sub_pedido_crearActionPerformed"/>
+                  </Events>
                 </MenuItem>
                 <MenuItem class="javax.swing.JMenuItem" name="sub_pedido_consultar">
                   <Properties>
                     <Property name="text" type="java.lang.String" value="Consultar pedido"/>
                   </Properties>
+                  <Events>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="sub_pedido_consultarActionPerformed"/>
+                  </Events>
                 </MenuItem>
                 <MenuItem class="javax.swing.JMenuItem" name="sub_pedido_actualizar">
                   <Properties>

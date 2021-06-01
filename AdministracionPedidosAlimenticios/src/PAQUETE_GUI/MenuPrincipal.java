@@ -238,9 +238,19 @@ public class MenuPrincipal extends javax.swing.JFrame {
         submenu_pedido.setText("Pedido");
 
         sub_pedido_crear.setText("Crear pedido");
+        sub_pedido_crear.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                sub_pedido_crearActionPerformed(evt);
+            }
+        });
         submenu_pedido.add(sub_pedido_crear);
 
         sub_pedido_consultar.setText("Consultar pedido");
+        sub_pedido_consultar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                sub_pedido_consultarActionPerformed(evt);
+            }
+        });
         submenu_pedido.add(sub_pedido_consultar);
 
         sub_pedido_actualizar.setText("Actualizar pedido");
@@ -292,14 +302,14 @@ public class MenuPrincipal extends javax.swing.JFrame {
     private void sub_establecimiento_crearActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_sub_establecimiento_crearActionPerformed
         VentanaEstablecimiento_crear ventanaEstablecimiento_crear = new VentanaEstablecimiento_crear();
         escritorio.add(ventanaEstablecimiento_crear);
-        ventanaEstablecimiento_crear.show();        
+        ventanaEstablecimiento_crear.show();
     }//GEN-LAST:event_sub_establecimiento_crearActionPerformed
 
     private void sub_establecimiento_consultarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_sub_establecimiento_consultarActionPerformed
         VentanaEstablecimiento_consultar ventanaEstablecimiento_consultar = new VentanaEstablecimiento_consultar();
         escritorio.add(ventanaEstablecimiento_consultar);
         ventanaEstablecimiento_consultar.show();
-        
+
     }//GEN-LAST:event_sub_establecimiento_consultarActionPerformed
 
     private void sub_producto_crearActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_sub_producto_crearActionPerformed
@@ -349,7 +359,18 @@ public class MenuPrincipal extends javax.swing.JFrame {
         ventanaCliente_eliminar.show();
     }//GEN-LAST:event_sub_cliente_eliminarActionPerformed
 
-    
+    private void sub_pedido_crearActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_sub_pedido_crearActionPerformed
+        VentanaPedido_crear ventanaPedido_crear = new VentanaPedido_crear();
+        escritorio.add(ventanaPedido_crear);
+        ventanaPedido_crear.show();
+    }//GEN-LAST:event_sub_pedido_crearActionPerformed
+
+    private void sub_pedido_consultarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_sub_pedido_consultarActionPerformed
+        VentanaPedido_consultar ventanaPedido_consultar = new VentanaPedido_consultar();
+        escritorio.add(ventanaPedido_consultar);
+        ventanaPedido_consultar.show();
+    }//GEN-LAST:event_sub_pedido_consultarActionPerformed
+
     /**
      * @param args the command line arguments
      */

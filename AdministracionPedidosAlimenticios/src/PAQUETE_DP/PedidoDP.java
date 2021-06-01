@@ -6,6 +6,7 @@ public class PedidoDP {
     private String notificacionCodigo;  // asignar la pk del objeto notificacion
     private int entregaNumero;          //igual
     private String clienteCedula;       //igual
+    private ProductoDP productoDP;
     //private PedidoMD pedidoMD;
     //private NotificacionMD notificacionMD;
     //private EntregaMD entregaMD;
@@ -13,6 +14,7 @@ public class PedidoDP {
     
     // constructores
     public PedidoDP(){
+        productoDP = new ProductoDP();
         //pedidoMD = new PedidoMD();
         //notificacionMD = new NotificacionMD();
         //entregaMD = new EntregaMD();
@@ -76,5 +78,9 @@ public class PedidoDP {
     public boolean verificarExisteDP(){
         return false;
         //return pedidoMD.verificarExisteMD();
+    }
+    
+    public ProductoDP getProductoDP(){
+        return productoDP;
     }
 }
