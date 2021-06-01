@@ -8,12 +8,10 @@ import javax.swing.table.DefaultTableModel;
 public class VentanaCliente_consultar extends javax.swing.JInternalFrame {
     // Atributos 
     ClienteDP clienteDP;
-    boolean existeCliente;
 
     // Constructor
     public VentanaCliente_consultar() {
         clienteDP = new ClienteDP();
-        existeCliente = false;
         initComponents();
     }
 
