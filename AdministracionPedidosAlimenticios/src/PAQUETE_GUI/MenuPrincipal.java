@@ -110,9 +110,19 @@ public class MenuPrincipal extends javax.swing.JFrame {
         submenu_cliente.add(sub_cliente_consultar);
 
         sub_cliente_actualizar.setText("Actualizar cliente");
+        sub_cliente_actualizar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                sub_cliente_actualizarActionPerformed(evt);
+            }
+        });
         submenu_cliente.add(sub_cliente_actualizar);
 
         sub_cliente_eliminar.setText("Eliminar cliente");
+        sub_cliente_eliminar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                sub_cliente_eliminarActionPerformed(evt);
+            }
+        });
         submenu_cliente.add(sub_cliente_eliminar);
 
         menu_catalogos.add(submenu_cliente);
@@ -273,7 +283,9 @@ public class MenuPrincipal extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void sub_cliente_consultarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_sub_cliente_consultarActionPerformed
-        // TODO add your handling code here:
+        VentanaCliente_consultar ventanaCliente_consultar = new VentanaCliente_consultar();
+        escritorio.add(ventanaCliente_consultar);
+        ventanaCliente_consultar.show();
     }//GEN-LAST:event_sub_cliente_consultarActionPerformed
 
     private void sub_establecimiento_eliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_sub_establecimiento_eliminarActionPerformed
@@ -333,6 +345,18 @@ public class MenuPrincipal extends javax.swing.JFrame {
         escritorio.add(ventanaEstablecimiento_actualizar);
         ventanaEstablecimiento_actualizar.show();
     }//GEN-LAST:event_sub_establecimiento_actualizarActionPerformed
+
+    private void sub_cliente_actualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_sub_cliente_actualizarActionPerformed
+        VentanaCliente_actualizar ventanaCliente_actualizar = new VentanaCliente_actualizar();
+        escritorio.add(ventanaCliente_actualizar);
+        ventanaCliente_actualizar.show();
+    }//GEN-LAST:event_sub_cliente_actualizarActionPerformed
+
+    private void sub_cliente_eliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_sub_cliente_eliminarActionPerformed
+        VentanaCliente_eliminar ventanaCliente_eliminar = new VentanaCliente_eliminar();
+        escritorio.add(ventanaCliente_eliminar);
+        ventanaCliente_eliminar.show();
+    }//GEN-LAST:event_sub_cliente_eliminarActionPerformed
 
 
     /**

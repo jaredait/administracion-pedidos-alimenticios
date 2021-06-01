@@ -46,11 +46,17 @@
                   <Properties>
                     <Property name="text" type="java.lang.String" value="Actualizar cliente"/>
                   </Properties>
+                  <Events>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="sub_cliente_actualizarActionPerformed"/>
+                  </Events>
                 </MenuItem>
                 <MenuItem class="javax.swing.JMenuItem" name="sub_cliente_eliminar">
                   <Properties>
                     <Property name="text" type="java.lang.String" value="Eliminar cliente"/>
                   </Properties>
+                  <Events>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="sub_cliente_eliminarActionPerformed"/>
+                  </Events>
                 </MenuItem>
               </SubComponents>
             </Menu>
