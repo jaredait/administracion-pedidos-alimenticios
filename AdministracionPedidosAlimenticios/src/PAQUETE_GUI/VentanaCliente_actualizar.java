@@ -1,20 +1,16 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package PAQUETE_GUI;
 
-/**
- *
- * @author lizxi
- */
-public class VentanaCliente_actualizar extends javax.swing.JInternalFrame {
+import PAQUETE_DP.ClienteDP;
+import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
 
-    /**
-     * Creates new form VentanaCliente_actualizar
-     */
+public class VentanaCliente_actualizar extends javax.swing.JInternalFrame {
+    ClienteDP clienteDP;
+    boolean existeCliente;
+    
     public VentanaCliente_actualizar() {
+        clienteDP = new ClienteDP();
+        existeCliente = false;
         initComponents();
     }
 
@@ -27,21 +23,259 @@ public class VentanaCliente_actualizar extends javax.swing.JInternalFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jPanel1 = new javax.swing.JPanel();
+        jLabel1 = new javax.swing.JLabel();
+        jComboBoxParametro = new javax.swing.JComboBox<>();
+        jTextCedulaActual = new javax.swing.JTextField();
+        jButtonBuscar = new javax.swing.JButton();
+        jButtonGuardar = new javax.swing.JButton();
+        jLabel9 = new javax.swing.JLabel();
+        jTextCedula = new javax.swing.JTextField();
+        jLabel2 = new javax.swing.JLabel();
+        jTextNombre = new javax.swing.JTextField();
+        jLabel3 = new javax.swing.JLabel();
+        jTextApellido = new javax.swing.JTextField();
+        jLabel4 = new javax.swing.JLabel();
+        jTextCelular = new javax.swing.JTextField();
+        jLabel5 = new javax.swing.JLabel();
+        jTextCorreo = new javax.swing.JTextField();
+
+        setClosable(true);
+        setIconifiable(true);
+        setMaximizable(true);
+        setResizable(true);
+        setTitle("Actualizar Cliente");
+
+        jLabel1.setText("Buscar por:");
+
+        jComboBoxParametro.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Cédula" }));
+
+        jButtonBuscar.setText("Buscar");
+        jButtonBuscar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonBuscarActionPerformed(evt);
+            }
+        });
+
+        jButtonGuardar.setText("Guardar");
+        jButtonGuardar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonGuardarActionPerformed(evt);
+            }
+        });
+
+        jLabel9.setText("Cédula:");
+
+        jTextCedula.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                jTextCedulaFocusLost(evt);
+            }
+        });
+
+        jLabel2.setText("Nombre:");
+
+        jLabel3.setText("Apellido:");
+
+        jLabel4.setText("Número Celular:");
+
+        jLabel5.setText("Correo Electrónico:");
+
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(304, 304, 304)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addComponent(jLabel1)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(jComboBoxParametro, javax.swing.GroupLayout.PREFERRED_SIZE, 211, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addComponent(jTextCedulaActual, javax.swing.GroupLayout.PREFERRED_SIZE, 211, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(jButtonBuscar))))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(137, 137, 137)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addGap(81, 81, 81)
+                                .addComponent(jLabel9))
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addGap(72, 72, 72)
+                                .addComponent(jLabel3))
+                            .addComponent(jLabel2, javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jLabel4, javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jLabel5, javax.swing.GroupLayout.Alignment.TRAILING))
+                        .addGap(31, 31, 31)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jTextCedula)
+                            .addComponent(jTextNombre)
+                            .addComponent(jTextApellido)
+                            .addComponent(jTextCelular)
+                            .addComponent(jTextCorreo))))
+                .addContainerGap(236, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(jButtonGuardar)
+                .addGap(332, 332, 332))
+        );
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addGap(45, 45, 45)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel1)
+                    .addComponent(jComboBoxParametro, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(23, 23, 23)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jTextCedulaActual, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jButtonBuscar))
+                .addGap(37, 37, 37)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jTextCedula, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel9))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jTextNombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel2))
+                .addGap(18, 18, 18)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jTextApellido, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel3))
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(14, 14, 14)
+                        .addComponent(jTextCelular, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(18, 18, 18)
+                        .addComponent(jLabel4)))
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(17, 17, 17)
+                        .addComponent(jLabel5))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(18, 18, 18)
+                        .addComponent(jTextCorreo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(43, 43, 43)
+                .addComponent(jButtonGuardar)
+                .addContainerGap(76, Short.MAX_VALUE))
+        );
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 394, Short.MAX_VALUE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 274, Short.MAX_VALUE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void jButtonBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonBuscarActionPerformed
+        clienteDP.setCedula(jTextCedulaActual.getText());
+
+        if (clienteDP.verificarExisteDP()) {
+            clienteDP.consultarDP();
+            cargarCliente();
+        } else {
+            JOptionPane.showMessageDialog(jPanel1, "El cliente no existe");
+        }
+    }//GEN-LAST:event_jButtonBuscarActionPerformed
+
+    private void jButtonGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonGuardarActionPerformed
+        if (camposCompletos()) {
+            if (guardarDatos()) {
+                JOptionPane.showMessageDialog(jPanel1, "¡Actualización exitosa!");
+                limpiarCampos();
+            } else {
+                JOptionPane.showMessageDialog(jPanel1, "Actualización fallida");
+            }
+        } else {
+            JOptionPane.showMessageDialog(jPanel1, "Datos incompletos");
+        }
+    }//GEN-LAST:event_jButtonGuardarActionPerformed
+
+    private void jTextCedulaFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jTextCedulaFocusLost
+        clienteDP.setCedula(jTextCedula.getText());
+        if (clienteDP.verificarExisteDP()) {
+            JOptionPane.showMessageDialog(jPanel1, "El cliente ya existe");
+            existeCliente = true;
+        } else {
+            existeCliente = false;
+        }
+    }//GEN-LAST:event_jTextCedulaFocusLost
+    // metodos de la clase
+    private void cargarCliente() {
+        jTextCedula.setText(clienteDP.getCedula());
+        jTextNombre.setText(clienteDP.getNombre());
+        jTextApellido.setText(clienteDP.getApellido());
+        jTextCelular.setText(clienteDP.getNumCelular());
+        jTextCorreo.setText(clienteDP.getCorreo());
+    }
+
+    private boolean camposCompletos() {
+        boolean valido = true;
+
+        String cedula = jTextCedula.getText().trim();
+        String nombre = jTextNombre.getText().trim();
+        String apellido = jTextApellido.getText().trim();
+        String numCelular = jTextCelular.getText().trim();
+        String correo = jTextCorreo.getText().trim();
+        
+        if (cedula.equals("") || nombre.equals("") || apellido.equals("")
+                || numCelular.equals("") || correo.equals("")) {
+            valido = false;
+        }
+        return valido;
+    }
+
+    private boolean guardarDatos() {
+        String cedula = jTextCedula.getText().trim();
+        String nombre = jTextNombre.getText().trim();
+        String apellido = jTextApellido.getText().trim();
+        String numCelular = jTextCelular.getText().trim();
+        String correo = jTextCorreo.getText().trim();
+        
+        clienteDP.setCedula(cedula);
+        clienteDP.setNombre(nombre);
+        clienteDP.setApellido(apellido);
+        clienteDP.setNumCelular(numCelular);
+        clienteDP.setCorreo(correo);
+
+        return clienteDP.modificarDP();
+    }
+
+    private void limpiarCampos() {
+        jTextCedula.setText("");
+        jTextNombre.setText("");
+        jTextApellido.setText("");
+        jTextCelular.setText("");
+        jTextCorreo.setText("");
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton jButtonBuscar;
+    private javax.swing.JButton jButtonGuardar;
+    private javax.swing.JComboBox<String> jComboBoxParametro;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel9;
+    private javax.swing.JPanel jPanel1;
+    private javax.swing.JTextField jTextApellido;
+    private javax.swing.JTextField jTextCedula;
+    private javax.swing.JTextField jTextCedulaActual;
+    private javax.swing.JTextField jTextCelular;
+    private javax.swing.JTextField jTextCorreo;
+    private javax.swing.JTextField jTextNombre;
     // End of variables declaration//GEN-END:variables
 }
