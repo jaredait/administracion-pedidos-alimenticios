@@ -7,14 +7,15 @@ import java.util.ArrayList;
 import javax.swing.table.DefaultTableModel;
 
 public class VentanaPedido_crear extends javax.swing.JInternalFrame {
+
     // atributos
     PedidoDP pedidoDP;
     ArrayList<ProductoDP> productos;
-    
+
     public VentanaPedido_crear() {
         pedidoDP = new PedidoDP();
         cargarProductos();
-        
+
         initComponents();
     }
 
@@ -80,6 +81,11 @@ public class VentanaPedido_crear extends javax.swing.JInternalFrame {
         jScrollPane2.setViewportView(tb_crearPedido_actual);
 
         btn_crearPedido_guardar.setText("Guardar");
+        btn_crearPedido_guardar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_crearPedido_guardarActionPerformed(evt);
+            }
+        });
 
         btn_crearPedido_agregar.setText("Agregar");
         btn_crearPedido_agregar.addActionListener(new java.awt.event.ActionListener() {
@@ -89,6 +95,11 @@ public class VentanaPedido_crear extends javax.swing.JInternalFrame {
         });
 
         btn_crearPedido_eliminar.setText("Eliminar");
+        btn_crearPedido_eliminar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_crearPedido_eliminarActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -154,18 +165,37 @@ public class VentanaPedido_crear extends javax.swing.JInternalFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btn_crearPedido_agregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_crearPedido_agregarActionPerformed
-        
+        int index = tb_crearPedido_productos.getSelectedRow();
+        addProductoAPedido(productos.get(index));
     }//GEN-LAST:event_btn_crearPedido_agregarActionPerformed
 
+    private void btn_crearPedido_eliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_crearPedido_eliminarActionPerformed
+        eliminarProductoDePedido(tb_crearPedido_actual.getSelectedRow());
+    }//GEN-LAST:event_btn_crearPedido_eliminarActionPerformed
+
+    private void btn_crearPedido_guardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_crearPedido_guardarActionPerformed
+        
+    }//GEN-LAST:event_btn_crearPedido_guardarActionPerformed
+
     // metodos de la clase
-    public void cargarProductos(){
+    public void cargarProductos() {
         productos = pedidoDP.getProductoDP().consultarTodosDP();
         DefaultTableModel model = (DefaultTableModel) tb_crearPedido_productos.getModel();
         model.setRowCount(0);
-        
-        for(ProductoDP temp : productos){
+
+        for (ProductoDP temp : productos) {
             model.addRow(new Object[]{temp.getCodigo(), temp.getNombre(), temp.getPrecio()});
         }
+    }
+
+    public void addProductoAPedido(ProductoDP producto) {
+        DefaultTableModel model = (DefaultTableModel) tb_crearPedido_actual.getModel();
+        model.addRow(new Object[]{producto.getCodigo(), producto.getNombre(), producto.getPrecio()});
+    }
+
+    public void eliminarProductoDePedido(int index) {
+        DefaultTableModel model = (DefaultTableModel) tb_crearPedido_actual.getModel();
+        model.removeRow(index);
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
