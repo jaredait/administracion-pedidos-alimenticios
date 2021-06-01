@@ -93,6 +93,9 @@
           <Properties>
             <Property name="text" type="java.lang.String" value="Guardar"/>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btn_crearProductoGuardarActionPerformed"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JTextField" name="txt_crearProductoPrecio">
         </Component>
@@ -112,6 +115,9 @@
           </Properties>
         </Component>
         <Component class="javax.swing.JTextField" name="txt_crearProductoCodigo">
+          <Events>
+            <EventHandler event="focusLost" listener="java.awt.event.FocusListener" parameters="java.awt.event.FocusEvent" handler="txt_crearProductoCodigoFocusLost"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JTextField" name="txt_crearProductoNombre">
         </Component>
