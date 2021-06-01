@@ -27,7 +27,7 @@ public class VentanaCliente_crear extends javax.swing.JInternalFrame {
 
         jPanel1 = new javax.swing.JPanel();
         jTextCorreo = new javax.swing.JTextField();
-        jButton1 = new javax.swing.JButton();
+        jButtonGuardar = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
@@ -44,10 +44,10 @@ public class VentanaCliente_crear extends javax.swing.JInternalFrame {
         setResizable(true);
         setTitle("Crear cliente");
 
-        jButton1.setText("Guardar");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        jButtonGuardar.setText("Guardar");
+        jButtonGuardar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                jButtonGuardarActionPerformed(evt);
             }
         });
 
@@ -87,7 +87,7 @@ public class VentanaCliente_crear extends javax.swing.JInternalFrame {
                             .addComponent(jLabel5, javax.swing.GroupLayout.Alignment.TRAILING))))
                 .addGap(31, 31, 31)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jButton1)
+                    .addComponent(jButtonGuardar)
                     .addComponent(jTextCorreo, javax.swing.GroupLayout.PREFERRED_SIZE, 260, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jTextNombre, javax.swing.GroupLayout.PREFERRED_SIZE, 260, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jTextApellido, javax.swing.GroupLayout.PREFERRED_SIZE, 260, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -125,7 +125,7 @@ public class VentanaCliente_crear extends javax.swing.JInternalFrame {
                         .addGap(18, 18, 18)
                         .addComponent(jTextCorreo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(41, 41, 41)
-                .addComponent(jButton1)
+                .addComponent(jButtonGuardar)
                 .addContainerGap(51, Short.MAX_VALUE))
         );
 
@@ -143,12 +143,12 @@ public class VentanaCliente_crear extends javax.swing.JInternalFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void jButtonGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonGuardarActionPerformed
         if (camposCompletos()) {
             if (existeCliente) {
                 JOptionPane.showMessageDialog(jPanel1, "El cliente ya existe");
             } else {
-                if (clienteDP.insertarDP()) {
+                if (guardarDatos()) {
                     JOptionPane.showMessageDialog(jPanel1, "¡Creación exitosa!");
                     limpiarCampos();
                 } else {
@@ -158,7 +158,7 @@ public class VentanaCliente_crear extends javax.swing.JInternalFrame {
         } else {
             JOptionPane.showMessageDialog(jPanel1, "Datos incompletos");
         }
-    }//GEN-LAST:event_jButton1ActionPerformed
+    }//GEN-LAST:event_jButtonGuardarActionPerformed
 
     private void jTextCedulaFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jTextCedulaFocusLost
         clienteDP.setCedula(jTextCedula.getText());
@@ -212,7 +212,7 @@ public class VentanaCliente_crear extends javax.swing.JInternalFrame {
 
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButtonGuardar;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;

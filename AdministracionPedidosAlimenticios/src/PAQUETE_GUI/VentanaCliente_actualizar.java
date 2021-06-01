@@ -6,11 +6,9 @@ import javax.swing.table.DefaultTableModel;
 
 public class VentanaCliente_actualizar extends javax.swing.JInternalFrame {
     ClienteDP clienteDP;
-    boolean existeCliente;
     
     public VentanaCliente_actualizar() {
         clienteDP = new ClienteDP();
-        existeCliente = false;
         initComponents();
     }
 
@@ -66,6 +64,7 @@ public class VentanaCliente_actualizar extends javax.swing.JInternalFrame {
 
         jLabel9.setText("Cédula:");
 
+        jTextCedula.setEditable(false);
         jTextCedula.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusLost(java.awt.event.FocusEvent evt) {
                 jTextCedulaFocusLost(evt);
@@ -203,13 +202,7 @@ public class VentanaCliente_actualizar extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_jButtonGuardarActionPerformed
 
     private void jTextCedulaFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jTextCedulaFocusLost
-        clienteDP.setCedula(jTextCedula.getText());
-        if (clienteDP.verificarExisteDP()) {
-            JOptionPane.showMessageDialog(jPanel1, "El cliente ya existe");
-            existeCliente = true;
-        } else {
-            existeCliente = false;
-        }
+
     }//GEN-LAST:event_jTextCedulaFocusLost
     // metodos de la clase
     private void cargarCliente() {
