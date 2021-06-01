@@ -33,7 +33,7 @@ public class ProductoMD {
                     + "(prd_codigo, prd_nombre, prd_precio) values(?,?,?");
             st.setString(1, productoDP.getCodigo());
             st.setString(2, productoDP.getNombre());
-            st.setString(3, String.valueOf(productoDP.getPrecio()));
+            st.setDouble(3, productoDP.getPrecio());
 
             int a = st.executeUpdate();
             completado = true;
@@ -53,11 +53,11 @@ public class ProductoMD {
 
             // obtener los datos del registro
             String nombre = result.getString("prd_nombre");
-            String precio = result.getString("prd_precio");
+            double precio = result.getDouble("prd_precio");
 
-            // cargar los datos al objeto EstablecimientoDP
+            // cargar los datos al objeto ProductoDP
             productoDP.setNombre(nombre);
-            productoDP.setPrecio(Double.parseDouble(precio));
+            productoDP.setPrecio(precio);
 
             completado = true;
         } catch (SQLException ex) {
@@ -69,12 +69,11 @@ public class ProductoMD {
     public boolean actualizarMD() {
         boolean completado = false;
         try {
-            PreparedStatement st = con.prepareStatement("UPDATE PRODUCTO"
-                    + "SET prd_nombre=?, prd_precio=?, "
-                    + "WHERE prd_codigo=?)");
+            query = "UPDATE PRODUCTO SET prd_nombre=?, prd_precio=? WHERE prd_codigo=?";
+            PreparedStatement st = con.prepareStatement(query);
             st.setString(3, productoDP.getCodigo());
             st.setString(1, productoDP.getNombre());
-            st.setString(2, String.valueOf(productoDP.getPrecio()));
+            st.setDouble(2, productoDP.getPrecio());
 
             int a = st.executeUpdate();
             completado = true;
@@ -87,8 +86,8 @@ public class ProductoMD {
     public boolean eliminarMD() {
         boolean completado = false;
         try {
-            PreparedStatement st = con.prepareStatement("DELETE FROM Producto"
-                    + " WHERE pro_codigo=?");
+            query = "DELETE FROM PRODUCTO WHERE prd_codigo=?";
+            PreparedStatement st = con.prepareStatement(query);
             st.setString(1, productoDP.getCodigo());
 
             int a = st.executeUpdate();
@@ -103,12 +102,14 @@ public class ProductoMD {
     public boolean verificarExisteMD() {
         boolean existe = false;
         try {
-            PreparedStatement st = con.prepareStatement("SELECT 1 "
-                    + "FROM Producto WHERE pro_codigo=? LIMIT 1");
+            query = "SELECT 1 FROM PRODUCTO WHERE prd_codigo=? LIMIT 1";
+            PreparedStatement st = con.prepareStatement(query);
             st.setString(1, productoDP.getCodigo());
-            
-            int a = st.executeUpdate();
-            existe = true;
+            result = st.executeQuery();
+
+            if (result.next()) {
+                existe = true;
+            }
         } catch (SQLException ex) {
             Logger.getLogger(ProductoMD.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -117,7 +118,27 @@ public class ProductoMD {
 
     public ArrayList<ProductoDP> consultarTodosMD() {
 
-        return null;
+        ArrayList<ProductoDP> productos = new ArrayList<>();
+        try {
+            query = "SELECT * FROM PRODUCTO";
+            stmt = con.createStatement();
+            result = stmt.executeQuery(query);
+
+            // llenar el ArrayList de objetos ProductoDP
+            while (result.next()) {
+                // obtener los datos del registro
+                String codigo = result.getString("prd_codigo");
+                String nombre = result.getString("prd_nombre");
+                double precio = result.getDouble("prd_precio");
+
+                productos.add(new ProductoDP(codigo, nombre, precio));
+
+            }
+
+        } catch (SQLException ex) {
+            Logger.getLogger(ProductoMD.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return productos;
     }
 
     public void cargarDatos() {
