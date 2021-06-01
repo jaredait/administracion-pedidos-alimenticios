@@ -78,6 +78,7 @@ public class VentanaProducto_actualizar extends javax.swing.JInternalFrame {
 
         jLabel3.setText("Precio:");
 
+        txt_actualizarPrdCodigo.setEditable(false);
         txt_actualizarPrdCodigo.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusLost(java.awt.event.FocusEvent evt) {
                 txt_actualizarPrdCodigoFocusLost(evt);
