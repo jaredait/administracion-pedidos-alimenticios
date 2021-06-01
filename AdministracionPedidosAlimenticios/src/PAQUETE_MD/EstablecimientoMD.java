@@ -28,7 +28,7 @@ public class EstablecimientoMD {
         try {
             PreparedStatement st = con.prepareStatement("INSERT INTO ESTABLECIMIENTO"
                     + " (est_codigo, est_nombre, est_num_telefono, est_calle_principal, "
-                    + " est_calle_secundaria, est_num_direccion, est_tipo, est_password) values(?,?,?,?,?,?,?,?)");
+                    + " est_calle_secundaria, est_num_direccion, est_tipo) values(?,?,?,?,?,?,?)");
             st.setString(1, establecimientoDP.getCodigo());
             st.setString(2, establecimientoDP.getNombre());
             st.setString(3, establecimientoDP.getNumTelefono());
@@ -36,7 +36,6 @@ public class EstablecimientoMD {
             st.setString(5, establecimientoDP.getCalleSecundaria());
             st.setString(6, establecimientoDP.getNumDireccion());
             st.setString(7, establecimientoDP.getTipo());
-            st.setString(8, establecimientoDP.getPassword());
 
             int a = st.executeUpdate();
             completado = true;
@@ -61,7 +60,6 @@ public class EstablecimientoMD {
             String calleSecundaria = result.getString("est_calle_secundaria");
             String numDireccion = result.getString("est_num_direccion");
             String tipo = result.getString("est_tipo");
-            String password = result.getString("est_password");
 
             // cargar los datos al objeto EstablecimientoDP
             establecimientoDP.setNombre(nombre);
@@ -70,7 +68,6 @@ public class EstablecimientoMD {
             establecimientoDP.setCalleSecundaria(calleSecundaria);
             establecimientoDP.setNumDireccion(numDireccion);
             establecimientoDP.setTipo(tipo);
-            establecimientoDP.setPassword(password);
 
             completado = true;
         } catch (SQLException ex) {
@@ -84,16 +81,15 @@ public class EstablecimientoMD {
         try {
             query = "UPDATE ESTABLECIMIENTO SET est_nombre=?, est_num_telefono=?, "
                     + " est_calle_principal=?, est_calle_secundaria=?, "
-                    + " est_num_direccion=?, est_tipo=?, est_password WHERE est_codigo=?";
+                    + " est_num_direccion=?, est_tipo=? WHERE est_codigo=?";
             PreparedStatement st = con.prepareStatement(query);
-            st.setString(8, establecimientoDP.getCodigo());
+            st.setString(7, establecimientoDP.getCodigo());
             st.setString(1, establecimientoDP.getNombre());
             st.setString(2, establecimientoDP.getNumTelefono());
             st.setString(3, establecimientoDP.getCallePrincipal());
             st.setString(4, establecimientoDP.getCalleSecundaria());
             st.setString(5, establecimientoDP.getNumDireccion());
             st.setString(6, establecimientoDP.getTipo());
-            st.setString(7, establecimientoDP.getPassword());
 
             int a = st.executeUpdate();
             completado = true;
@@ -153,11 +149,9 @@ public class EstablecimientoMD {
                 String calleSecundaria = result.getString("est_calle_secundaria");
                 String numDireccion = result.getString("est_num_direccion");
                 String tipo = result.getString("est_tipo");
-                String password = result.getString("est_password");
 
-                establecimientos.add(new EstablecimientoDP(codigo, nombre, 
-                        numTelefono, callePrincipal, calleSecundaria, 
-                        numDireccion, tipo, password));
+                establecimientos.add(new EstablecimientoDP(codigo, nombre, numTelefono, callePrincipal, calleSecundaria, numDireccion, tipo));
+
             }
 
         } catch (SQLException ex) {

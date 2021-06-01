@@ -26,13 +26,12 @@ public class ClienteMD {
         boolean completado = false;
         try {
             PreparedStatement st = con.prepareStatement("INSERT INTO CLIENTE"
-                    + "(cli_cedula, cli_nombre, cli_apellido, cli_Celular, cli_correo, cli_password) values(?,?,?,?,?,?)");
+                    + "(cli_cedula, cli_nombre, cli_apellido, cli_Celular, cli_correo) values(?,?,?,?,?)");
             st.setString(1, clienteDP.getCedula());
             st.setString(2, clienteDP.getNombre());
             st.setString(3, clienteDP.getApellido());
             st.setString(4, clienteDP.getNumCelular());
             st.setString(5, clienteDP.getCorreo());
-            st.setString(6, clienteDP.getPassword());
 
             int a = st.executeUpdate();
             completado = true;
@@ -55,14 +54,12 @@ public class ClienteMD {
             String apellido = result.getString("cli_apellido");
             String numCelular = result.getString("cli_Celular");
             String correo = result.getString("cli_correo");
-            String password = result.getString("cli_password");
 
             // Cargar los datos al objeto ClienteDP
             clienteDP.setNombre(nombre);
             clienteDP.setApellido(apellido);
             clienteDP.setNumCelular(numCelular);
             clienteDP.setCorreo(correo);
-            clienteDP.setPassword(password);
 
             completado = true;
         } catch (SQLException ex) {
@@ -75,14 +72,13 @@ public class ClienteMD {
         boolean completado = false;
         try {
             query = "UPDATE CLIENTE SET cli_nombre=?, cli_apellido=?, "
-                    + " cli_celular=?, cli_correo=?, cli_password=? WHERE cli_cedula=?";
+                    + " cli_celular=?, cli_correo=? WHERE cli_cedula=?";
             PreparedStatement st = con.prepareStatement(query);
-            st.setString(6, clienteDP.getCedula());
+            st.setString(5, clienteDP.getCedula());
             st.setString(1, clienteDP.getNombre());
             st.setString(2, clienteDP.getApellido());
             st.setString(3, clienteDP.getNumCelular());
             st.setString(4, clienteDP.getCorreo());
-            st.setString(5, clienteDP.getPassword());
 
             int a = st.executeUpdate();
             completado = true;
@@ -140,9 +136,8 @@ public class ClienteMD {
                 String apellido = result.getString("cli_apellido");
                 String numCelular = result.getString("cli_Celular");
                 String correo = result.getString("cli_correo");
-                String password = result.getString("cli_password");
 
-                clientes.add(new ClienteDP(cedula, nombre, apellido, numCelular, correo, password));
+                clientes.add(new ClienteDP(cedula, nombre, apellido, numCelular, correo));
 
             }
 
