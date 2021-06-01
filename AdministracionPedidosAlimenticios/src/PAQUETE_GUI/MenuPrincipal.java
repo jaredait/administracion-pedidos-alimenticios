@@ -164,11 +164,6 @@ public class MenuPrincipal extends javax.swing.JFrame {
         menu_catalogos.add(submenu_establecimiento);
 
         submenu_producto.setText("Producto");
-        submenu_producto.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                submenu_productoActionPerformed(evt);
-            }
-        });
 
         sub_producto_crear.setText("Crear producto");
         sub_producto_crear.addActionListener(new java.awt.event.ActionListener() {
@@ -307,10 +302,6 @@ public class MenuPrincipal extends javax.swing.JFrame {
         
     }//GEN-LAST:event_sub_establecimiento_consultarActionPerformed
 
-    private void submenu_productoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_submenu_productoActionPerformed
-        
-    }//GEN-LAST:event_submenu_productoActionPerformed
-
     private void sub_producto_crearActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_sub_producto_crearActionPerformed
         VentanaProducto_crear ventanaProducto_crear = new VentanaProducto_crear();
         escritorio.add(ventanaProducto_crear);
@@ -358,7 +349,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
         ventanaCliente_eliminar.show();
     }//GEN-LAST:event_sub_cliente_eliminarActionPerformed
 
-
+    
     /**
      * @param args the command line arguments
      */
