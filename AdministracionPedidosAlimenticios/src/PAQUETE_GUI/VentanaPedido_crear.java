@@ -5,6 +5,7 @@ import PAQUETE_DP.ProductoDP;
 
 import java.util.ArrayList;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableColumn;
 
 public class VentanaPedido_crear extends javax.swing.JInternalFrame {
 
@@ -174,7 +175,8 @@ public class VentanaPedido_crear extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_btn_crearPedido_eliminarActionPerformed
 
     private void btn_crearPedido_guardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_crearPedido_guardarActionPerformed
-        
+        guardarPedidos();
+        pedidoDP.insertarDP();
     }//GEN-LAST:event_btn_crearPedido_guardarActionPerformed
 
     // metodos de la clase
@@ -196,6 +198,14 @@ public class VentanaPedido_crear extends javax.swing.JInternalFrame {
     public void eliminarProductoDePedido(int index) {
         DefaultTableModel model = (DefaultTableModel) tb_crearPedido_actual.getModel();
         model.removeRow(index);
+    }
+
+    public void guardarPedidos() {
+        int numeroProductos = tb_crearPedido_actual.getRowCount();
+        for(int i = 0; i < numeroProductos; i++){
+            String codigo = tb_crearPedido_actual.getComponentAt(0, i).toString();
+            pedidoDP.addProductoDP(new ProductoDP(codigo));
+        }
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

@@ -92,7 +92,8 @@ public class PedidoDP {
         return productoDP;
     }
 
-    public boolean addProductoDP(String codigoProducto) {
+    public boolean addProductoDP(ProductoDP nuevoProducto) {
+        productos.add(nuevoProducto);
         return false;
         //return pedidoMD.addProducto(codigoProducto);
     }
