@@ -44,16 +44,10 @@ public class ClienteMD {
     public boolean consultarMD() {
         boolean completado = false;
         try {
-            query = "SELECT cli_nombre, cli_apellido, cli_numCelular, cli_correo"
-                    + " FROM CLIENTE "
-                    + " WHERE cli_cedula=?";
-            PreparedStatement st = con.prepareStatement(query);
-            st.setString(1, clienteDP.getCedula());
-            int a = st.executeUpdate();
-
-            query = "SELECT * FROM CLIENTE";
+            query = "SELECT * FROM ESTABLECIMIENTO WHERE cli_cedula='"+clienteDP.getCedula()+"'";
             stmt = con.createStatement();
             result = stmt.executeQuery(query);
+            result.next();
 
             // Obtener los datos del registro
             String nombre = result.getString("cli_nombre");
