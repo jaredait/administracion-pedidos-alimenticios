@@ -1,5 +1,6 @@
 package PAQUETE_DP;
 
+import PAQUETE_MD.PedidoMD;
 import java.util.ArrayList;
 
 public class PedidoDP {
@@ -11,6 +12,7 @@ public class PedidoDP {
     private String clienteCedula;       //igual
     private ProductoDP productoDP;
     private ArrayList<ProductoDP> productos;
+    private PedidoMD pedidoMD;
     //private PedidoMD pedidoMD;
     //private NotificacionMD notificacionMD;
     //private EntregaMD entregaMD;
@@ -20,10 +22,13 @@ public class PedidoDP {
     public PedidoDP() {
         productoDP = new ProductoDP();
         productos = new ArrayList<>();
-        //pedidoMD = new PedidoMD();
+        pedidoMD = new PedidoMD(this);
         //notificacionMD = new NotificacionMD();
         //entregaMD = new EntregaMD();
         //clienteDP = new ClienteDP();
+        
+        //asignar un numero de pedido al objeto
+        getPedidoNumero();
     }
 
     public PedidoDP(int pedidoNumero, String notificacionCodigo, int entregaNumero,
@@ -79,7 +84,7 @@ public class PedidoDP {
     }
 
     /*
-    public ArrayList<PedidoMD> consultarTodosDP(){
+    public ArrayList<PedidoDP> consultarTodosDP(){
         return pedidoMD.consultarTodosMD();
     }
      */
@@ -96,5 +101,13 @@ public class PedidoDP {
         productos.add(nuevoProducto);
         return false;
         //return pedidoMD.addProducto(codigoProducto);
+    }
+    
+    public ArrayList<ProductoDP> getProductos(){
+        return productos;
+    }
+    
+    public void setNumeroPedido(){
+        pedidoNumero = pedidoMD.getNumeroPedido() + 1;
     }
 }
