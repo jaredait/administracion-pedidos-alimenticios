@@ -23,7 +23,7 @@ public class ProgramaPrincipal {
     public Connection getConexion() {
          Connection connection = null;
         try {
-            Class.forName("com.mysql.jdbc.Driver");
+            Class.forName("com.mysql.cj.jdbc.Driver");
             
             // leer el archivo .properties
             Properties props = new Properties();
