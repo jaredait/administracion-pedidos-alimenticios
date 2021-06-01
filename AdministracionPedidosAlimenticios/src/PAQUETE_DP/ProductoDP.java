@@ -25,6 +25,10 @@ public class ProductoDP {
         this.precio = precio;
     }
     
+    public ProductoDP(String codigo){
+        this.codigo = codigo;
+    }
+    
     public String getCodigo() {
         return codigo;
     }
