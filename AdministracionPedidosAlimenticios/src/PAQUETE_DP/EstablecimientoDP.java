@@ -13,6 +13,7 @@ public class EstablecimientoDP {
     private String numDireccion;
     private String tipo;
     private EstablecimientoMD establecimientoMD;
+    private String password;
     
     //constructores
     public EstablecimientoDP(){
@@ -20,7 +21,7 @@ public class EstablecimientoDP {
     }
     public EstablecimientoDP(String codigo, String nombre, String numTelefono,
              String callePrincipal,  String calleSecundaria, 
-             String numDireccion, String tipo){
+             String numDireccion, String tipo, String password){
         this.codigo = codigo;
         this.nombre = nombre;
         this.numTelefono = numTelefono;
@@ -28,6 +29,7 @@ public class EstablecimientoDP {
         this.calleSecundaria = calleSecundaria;
         this.numDireccion = numDireccion;
         this.tipo = tipo;
+        this.password = password;
     }
     
     public String getCodigo(){
@@ -110,4 +112,11 @@ public class EstablecimientoDP {
         return establecimientoMD.consultarTodosMD();
     }
     
+    public String getPassword(){
+        return password;
+    }    
+    
+    public void setPassword(String password){
+        this.password = password;
+    }
 }
