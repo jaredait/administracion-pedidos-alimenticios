@@ -30,12 +30,11 @@ public class ProductoMD {
         boolean completado = false;
         try {
             PreparedStatement st = con.prepareStatement("INSERT INTO PRODUCTO"
-                    + "(prd_codigo, est_codigo, ped_numero, prd_nombre, prd_precio) values(?,?,?,?,?)");
+                    + "(prd_codigo, est_codigo, prd_nombre, prd_precio) values(?,?,?,?)");
             st.setString(1, productoDP.getCodigo());
-            st.setString(2, "e002");
-            st.setInt(3, 001);
-            st.setString(4, productoDP.getNombre());
-            st.setDouble(5, productoDP.getPrecio());
+            st.setString(2, "e001");
+            st.setString(3, productoDP.getNombre());
+            st.setDouble(4, productoDP.getPrecio());
 
             int a = st.executeUpdate();
             completado = true;
