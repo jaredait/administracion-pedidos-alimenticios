@@ -37,8 +37,6 @@ public class VentanaCliente_actualizar extends javax.swing.JInternalFrame {
         jTextCelular = new javax.swing.JTextField();
         jLabel5 = new javax.swing.JLabel();
         jTextCorreo = new javax.swing.JTextField();
-        jLabel6 = new javax.swing.JLabel();
-        jPasswordField1 = new javax.swing.JPasswordField();
 
         setClosable(true);
         setIconifiable(true);
@@ -81,8 +79,6 @@ public class VentanaCliente_actualizar extends javax.swing.JInternalFrame {
 
         jLabel5.setText("Correo Electrónico:");
 
-        jLabel6.setText("Contaseña:");
-
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -111,21 +107,19 @@ public class VentanaCliente_actualizar extends javax.swing.JInternalFrame {
                                 .addComponent(jLabel3))
                             .addComponent(jLabel2, javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(jLabel4, javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jLabel5, javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jLabel6, javax.swing.GroupLayout.Alignment.TRAILING))
+                            .addComponent(jLabel5, javax.swing.GroupLayout.Alignment.TRAILING))
                         .addGap(31, 31, 31)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jTextCedula)
                             .addComponent(jTextNombre)
                             .addComponent(jTextApellido)
                             .addComponent(jTextCelular)
-                            .addComponent(jTextCorreo)
-                            .addComponent(jPasswordField1))))
+                            .addComponent(jTextCorreo))))
                 .addContainerGap(236, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addGap(0, 0, Short.MAX_VALUE)
                 .addComponent(jButtonGuardar)
-                .addGap(346, 346, 346))
+                .addGap(332, 332, 332))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -157,17 +151,16 @@ public class VentanaCliente_actualizar extends javax.swing.JInternalFrame {
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(18, 18, 18)
                         .addComponent(jLabel4)))
-                .addGap(18, 18, 18)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jTextCorreo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel5))
-                .addGap(18, 18, 18)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel6)
-                    .addComponent(jPasswordField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(32, 32, 32)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(17, 17, 17)
+                        .addComponent(jLabel5))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(18, 18, 18)
+                        .addComponent(jTextCorreo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(43, 43, 43)
                 .addComponent(jButtonGuardar)
-                .addContainerGap(53, Short.MAX_VALUE))
+                .addContainerGap(76, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -218,7 +211,6 @@ public class VentanaCliente_actualizar extends javax.swing.JInternalFrame {
         jTextApellido.setText(clienteDP.getApellido());
         jTextCelular.setText(clienteDP.getNumCelular());
         jTextCorreo.setText(clienteDP.getCorreo());
-        jPasswordField1.setText(clienteDP.getPassword());
     }
 
     private boolean camposCompletos() {
@@ -229,10 +221,9 @@ public class VentanaCliente_actualizar extends javax.swing.JInternalFrame {
         String apellido = jTextApellido.getText().trim();
         String numCelular = jTextCelular.getText().trim();
         String correo = jTextCorreo.getText().trim();
-        String password = jPasswordField1.getSelectedText().trim();
         
         if (cedula.equals("") || nombre.equals("") || apellido.equals("")
-                || numCelular.equals("") || correo.equals("") || password.equals("")) {
+                || numCelular.equals("") || correo.equals("")) {
             valido = false;
         }
         return valido;
@@ -244,14 +235,12 @@ public class VentanaCliente_actualizar extends javax.swing.JInternalFrame {
         String apellido = jTextApellido.getText().trim();
         String numCelular = jTextCelular.getText().trim();
         String correo = jTextCorreo.getText().trim();
-        String password = jPasswordField1.getSelectedText().trim();
         
         clienteDP.setCedula(cedula);
         clienteDP.setNombre(nombre);
         clienteDP.setApellido(apellido);
         clienteDP.setNumCelular(numCelular);
         clienteDP.setCorreo(correo);
-        clienteDP.setPassword(password);
 
         return clienteDP.modificarDP();
     }
@@ -262,7 +251,6 @@ public class VentanaCliente_actualizar extends javax.swing.JInternalFrame {
         jTextApellido.setText("");
         jTextCelular.setText("");
         jTextCorreo.setText("");
-        jPasswordField1.setText("");
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -274,10 +262,8 @@ public class VentanaCliente_actualizar extends javax.swing.JInternalFrame {
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JPasswordField jPasswordField1;
     private javax.swing.JTextField jTextApellido;
     private javax.swing.JTextField jTextCedula;
     private javax.swing.JTextField jTextCedulaActual;
