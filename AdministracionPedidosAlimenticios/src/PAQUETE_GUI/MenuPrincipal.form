@@ -172,6 +172,9 @@
                   <Properties>
                     <Property name="text" type="java.lang.String" value="Eliminar entrega"/>
                   </Properties>
+                  <Events>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="sub_entrega_eliminarActionPerformed"/>
+                  </Events>
                 </MenuItem>
               </SubComponents>
             </Menu>
