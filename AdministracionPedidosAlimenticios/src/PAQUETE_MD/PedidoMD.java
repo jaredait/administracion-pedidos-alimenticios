@@ -3,7 +3,7 @@ package PAQUETE_MD;
 import PAQUETE_DP.PedidoDP;
 import PAQUETE_DP.ProductoDP;
 import PAQUETE_PRINCIPAL.ProgramaPrincipal;
-import com.sun.xml.internal.bind.v2.runtime.output.SAXOutput;
+//import com.sun.xml.internal.bind.v2.runtime.output.SAXOutput;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -58,6 +58,24 @@ public class PedidoMD {
         return completado;
     }
 
+    public boolean actualizarMD(){
+        boolean completado = false;
+        try {
+            query = "UPDATE DETALLE_PEDIDO SET PRD_CODIGO=? WHERE PED_NUMERO=?";
+            ArrayList<ProductoDP> productos = pedidoDP.getProductos();
+            for (ProductoDP temp : productos) {
+                PreparedStatement st = con.prepareStatement(query);
+                st = con.prepareStatement(query);
+                st.setInt(2, pedidoDP.getPedidoNumero());
+                st.setString(1, temp.getCodigo());
+                int a = st.executeUpdate();
+            }
+            completado = true;
+        } catch (SQLException ex) {
+            Logger.getLogger(PedidoMD.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return completado;
+    }
     public int getNumeroPedido() {
         int numero = 0;
         try {
@@ -73,33 +91,6 @@ public class PedidoMD {
         }
         return numero;
     }
-
-    public ArrayList<PedidoDP> consultarTodosMD() {
-
-        ArrayList<PedidoDP> pedidos = new ArrayList<>();
-        try {
-            query = "SELECT d.PRD_CODIGO, p.PRD_NOMBRE, p.PRD_PRECIO"
-                    + "FROM DETALLE_PEDIDO d, PRODUCTO p"
-                    + "WHERE d.PRD_CODIGO = p.PRD_CODIGO AND d.PED_NUMERO = ?;";
-            stmt = con.createStatement();
-            result = stmt.executeQuery(query);
-
-            // Llenar el ArrayList de objetos PedidoDP
-            while (result.next()) {
-                // Obtener los datos del registro
-                String codigo = result.getString("d.prd_codigo");
-                String nombre = result.getString("p.prd_nombre");
-                Double precio = result.getDouble("p.prd_precio");
-
-                //pedidos.add(new PedidoDP(codigo, nombre, precio));
-
-            }
-
-        } catch (SQLException ex) {
-            Logger.getLogger(ClienteMD.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        return pedidos;
-    }   
         
     public ArrayList<ProductoDP> consultarDetalleMD() {
         ArrayList<ProductoDP> productos = new ArrayList<>();

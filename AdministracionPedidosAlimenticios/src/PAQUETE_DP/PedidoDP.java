@@ -86,11 +86,10 @@ public class PedidoDP {
         return false;
         //return pedidoMD.consultarMD();
     }
-
-    public ArrayList<PedidoDP> consultarTodosDP(){
-        return pedidoMD.consultarTodosMD();
-    }
     
+    public boolean modificarDP(){
+        return pedidoMD.actualizarMD();
+    }
     public ArrayList<ProductoDP> consultarDetalleDP(){
         return pedidoMD.consultarDetalleMD();
     }

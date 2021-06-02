@@ -10,13 +10,11 @@ public class VentanaPedido_actualizar extends javax.swing.JInternalFrame {
 
     PedidoDP pedidoDP;
     ArrayList<ProductoDP> productos;
-    ArrayList<PedidoDP> pedidos;
-    
+
     public VentanaPedido_actualizar() {
         pedidoDP = new PedidoDP();
         initComponents();
         cargarProductos();
-        cargarPedido();
     }
 
     /**
@@ -89,6 +87,11 @@ public class VentanaPedido_actualizar extends javax.swing.JInternalFrame {
         jScrollPane2.setViewportView(tb_actualPedido_actual);
 
         btn_actualPedido_guardar.setText("Guardar");
+        btn_actualPedido_guardar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_actualPedido_guardarActionPerformed(evt);
+            }
+        });
 
         jLabel3.setText("Buscar por:");
 
@@ -102,8 +105,18 @@ public class VentanaPedido_actualizar extends javax.swing.JInternalFrame {
         });
 
         btn_actualPedido_eliminar.setText("Eliminar");
+        btn_actualPedido_eliminar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_actualPedido_eliminarActionPerformed(evt);
+            }
+        });
 
         btn_actualPedido_agregar.setText("Agregar");
+        btn_actualPedido_agregar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_actualPedido_agregarActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -186,15 +199,25 @@ public class VentanaPedido_actualizar extends javax.swing.JInternalFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btn_actualPedido_individualActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_actualPedido_individualActionPerformed
-        pedidoDP.setPedidoNumero(Integer.parseInt(tf_actualPedido_argumento.getText()));
-
-        if (pedidoDP.verificarExisteDP()) {
-            pedidoDP.consultarDP();
-            cargarPedido();
-        } else {
-            JOptionPane.showMessageDialog(jPanel1, "El pedido no existe");
-        }
+        int pedidoNumero = Integer.parseInt(tf_actualPedido_argumento.getText());
+        pedidoDP.setPedidoNumero(pedidoNumero);
+        cargarDetallePedido();
     }//GEN-LAST:event_btn_actualPedido_individualActionPerformed
+
+    private void btn_actualPedido_guardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_actualPedido_guardarActionPerformed
+        guardarPedido();
+        pedidoDP.modificarDP();
+    }//GEN-LAST:event_btn_actualPedido_guardarActionPerformed
+
+    private void btn_actualPedido_agregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_actualPedido_agregarActionPerformed
+        int index = tb_actualPedido_producto.getSelectedRow();
+        addProductoAPedido(productos.get(index));
+    }//GEN-LAST:event_btn_actualPedido_agregarActionPerformed
+
+    private void btn_actualPedido_eliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_actualPedido_eliminarActionPerformed
+        eliminarProductoDePedido(tb_actualPedido_actual.getSelectedRow());
+    }//GEN-LAST:event_btn_actualPedido_eliminarActionPerformed
+    
     public void cargarProductos() {
         productos = pedidoDP.getProductoDP().consultarTodosDP();
         DefaultTableModel model = (DefaultTableModel) tb_actualPedido_producto.getModel();
@@ -204,11 +227,20 @@ public class VentanaPedido_actualizar extends javax.swing.JInternalFrame {
             model.addRow(new Object[]{temp.getCodigo(), temp.getNombre(), temp.getPrecio()});
         }
     }
-    
-    public void cargarPedido(){
-        
+
+    public void cargarDetallePedido() {
+        ArrayList<ProductoDP> pedidos = pedidoDP.consultarDetalleDP();
+        System.out.println(productos.size());
+        DefaultTableModel model = (DefaultTableModel) tb_actualPedido_actual.getModel();
+        model.setRowCount(0);
+
+        for (ProductoDP temp : pedidos) {
+            model.addRow(new Object[]{temp.getCodigo(), temp.getNombre(),
+                temp.getPrecio()});
+        }
     }
-    /*public void addProductoAPedido(ProductoDP producto) {
+
+    public void addProductoAPedido(ProductoDP producto) {
         DefaultTableModel model = (DefaultTableModel) tb_actualPedido_actual.getModel();
         model.addRow(new Object[]{producto.getCodigo(), producto.getNombre(), producto.getPrecio()});
     }
@@ -218,13 +250,14 @@ public class VentanaPedido_actualizar extends javax.swing.JInternalFrame {
         model.removeRow(index);
     }
 
-    public void guardarPedidos() {
-        int numeroProductos = tb_crearPedido_actual.getRowCount();
-        for(int i = 0; i < numeroProductos; i++){
-            String codigo = tb_crearPedido_actual.getComponentAt(0, i).toString();
+    public void guardarPedido() {
+        pedidoDP.reiniciarLista();
+        int numeroProductos = tb_actualPedido_actual.getRowCount();
+        for (int i = 0; i < numeroProductos; i++) {
+            String codigo = tb_actualPedido_actual.getValueAt(i, 0).toString();
             pedidoDP.addProductoDP(new ProductoDP(codigo));
         }
-    }*/
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btn_actualPedido_agregar;
