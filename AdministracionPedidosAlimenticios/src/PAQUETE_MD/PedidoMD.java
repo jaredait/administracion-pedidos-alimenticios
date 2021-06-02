@@ -58,17 +58,23 @@ public class PedidoMD {
         return completado;
     }
 
-    public boolean actualizarMD(){
+    public boolean actualizarMD() {
         boolean completado = false;
         try {
-            query = "UPDATE DETALLE_PEDIDO SET PRD_CODIGO=? WHERE PED_NUMERO=?";
-            ArrayList<ProductoDP> productos = pedidoDP.getProductos();
+            query = "DELETE FROM DETALLE_PEDIDO WHERE PED_NUMERO=?";
+            PreparedStatement st = con.prepareStatement(query);
+            st.setInt(1, pedidoDP.getPedidoNumero());
+
+            int a = st.executeUpdate();
+            ArrayList<ProductoDP> productos = pedidoDP.getProductos();          
+            query = "INSERT INTO DETALLE_PEDIDO (PED_NUMERO, PRD_CODIGO)"
+                    + "VALUES(?, ?) ON DUPLICATE KEY UPDATE PRD_CODIGO = VALUES(PRD_CODIGO)";
             for (ProductoDP temp : productos) {
-                PreparedStatement st = con.prepareStatement(query);
                 st = con.prepareStatement(query);
-                st.setInt(2, pedidoDP.getPedidoNumero());
-                st.setString(1, temp.getCodigo());
-                int a = st.executeUpdate();
+                st.setInt(1, pedidoDP.getPedidoNumero());
+                System.out.println(temp.getCodigo());
+                st.setString(2, temp.getCodigo());
+                a = st.executeUpdate();
             }
             completado = true;
         } catch (SQLException ex) {
@@ -76,6 +82,26 @@ public class PedidoMD {
         }
         return completado;
     }
+    
+    public boolean eliminarMD(){
+        boolean completado = false;
+        try {
+            query = "DELETE FROM PEDIDO WHERE PED_NUMERO=?";
+            PreparedStatement st = con.prepareStatement(query);
+            st.setInt(1, pedidoDP.getPedidoNumero());
+            int a = st.executeUpdate();
+            
+            query = "DELETE FROM DETALLE_PEDIDO WHERE PED_NUMERO=?";
+            st = con.prepareStatement(query);
+            st.setInt(1, pedidoDP.getPedidoNumero());
+            a = st.executeUpdate();
+            completado = true;
+        } catch (SQLException ex) {
+            Logger.getLogger(ClienteMD.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return completado;
+    }
+
     public int getNumeroPedido() {
         int numero = 0;
         try {
@@ -111,7 +137,6 @@ public class PedidoMD {
         }
         return productos;
     }
-    
 
     public boolean consultarMD() {
         boolean completado = false;
@@ -166,6 +191,23 @@ public class PedidoMD {
             Logger.getLogger(PedidoMD.class.getName()).log(Level.SEVERE, null, ex);
         }
         return pedidos;
+    }
+    
+    public boolean verificarExisteMD() {
+        boolean existe = false;
+        try {
+            query = "SELECT 1 FROM PEDIDO WHERE PED_NUMERO=? LIMIT 1";
+            PreparedStatement st = con.prepareStatement(query);
+            st.setInt(1, pedidoDP.getPedidoNumero());
+            result = st.executeQuery();
+
+            if (result.next()) {
+                existe = true;
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(PedidoMD.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return existe;
     }
 
 }

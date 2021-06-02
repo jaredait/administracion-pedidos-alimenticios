@@ -9,10 +9,12 @@ import javax.swing.table.DefaultTableModel;
 public class VentanaPedido_actualizar extends javax.swing.JInternalFrame {
 
     PedidoDP pedidoDP;
+    private boolean existePedido;
     ArrayList<ProductoDP> productos;
 
     public VentanaPedido_actualizar() {
         pedidoDP = new PedidoDP();
+        existePedido = false;
         initComponents();
         cargarProductos();
     }
@@ -45,6 +47,7 @@ public class VentanaPedido_actualizar extends javax.swing.JInternalFrame {
         setIconifiable(true);
         setMaximizable(true);
         setResizable(true);
+        setTitle("Actualizar pedido");
 
         jLabel1.setText("Productos");
 
@@ -201,12 +204,20 @@ public class VentanaPedido_actualizar extends javax.swing.JInternalFrame {
     private void btn_actualPedido_individualActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_actualPedido_individualActionPerformed
         int pedidoNumero = Integer.parseInt(tf_actualPedido_argumento.getText());
         pedidoDP.setPedidoNumero(pedidoNumero);
-        cargarDetallePedido();
+        if (pedidoDP.verificarExisteDP()) {
+            cargarDetallePedido();
+            existePedido = true;
+        } else {
+            existePedido = false;
+            JOptionPane.showMessageDialog(jPanel1, "El pedido no existe");
+        }
     }//GEN-LAST:event_btn_actualPedido_individualActionPerformed
 
     private void btn_actualPedido_guardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_actualPedido_guardarActionPerformed
         guardarPedido();
         pedidoDP.modificarDP();
+        JOptionPane.showMessageDialog(jPanel1, "¡Actualización exitosa!");
+        limpiarCampos();
     }//GEN-LAST:event_btn_actualPedido_guardarActionPerformed
 
     private void btn_actualPedido_agregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_actualPedido_agregarActionPerformed
@@ -217,7 +228,7 @@ public class VentanaPedido_actualizar extends javax.swing.JInternalFrame {
     private void btn_actualPedido_eliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_actualPedido_eliminarActionPerformed
         eliminarProductoDePedido(tb_actualPedido_actual.getSelectedRow());
     }//GEN-LAST:event_btn_actualPedido_eliminarActionPerformed
-    
+
     public void cargarProductos() {
         productos = pedidoDP.getProductoDP().consultarTodosDP();
         DefaultTableModel model = (DefaultTableModel) tb_actualPedido_producto.getModel();
@@ -230,7 +241,6 @@ public class VentanaPedido_actualizar extends javax.swing.JInternalFrame {
 
     public void cargarDetallePedido() {
         ArrayList<ProductoDP> pedidos = pedidoDP.consultarDetalleDP();
-        System.out.println(productos.size());
         DefaultTableModel model = (DefaultTableModel) tb_actualPedido_actual.getModel();
         model.setRowCount(0);
 
@@ -257,6 +267,12 @@ public class VentanaPedido_actualizar extends javax.swing.JInternalFrame {
             String codigo = tb_actualPedido_actual.getValueAt(i, 0).toString();
             pedidoDP.addProductoDP(new ProductoDP(codigo));
         }
+    }
+
+    private void limpiarCampos() {
+        DefaultTableModel model = (DefaultTableModel) tb_actualPedido_actual.getModel();
+        model.setRowCount(0);
+        tf_actualPedido_argumento.setText("");
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
