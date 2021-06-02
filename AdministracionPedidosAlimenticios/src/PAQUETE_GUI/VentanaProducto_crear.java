@@ -208,7 +208,6 @@ public class VentanaProducto_crear extends javax.swing.JInternalFrame {
         for (int i=0; i < establecimientos.size(); i++){
            cb_CrearPrdCodEst.addItem(establecimientos.get(i).getCodigo());
         }
-        
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
