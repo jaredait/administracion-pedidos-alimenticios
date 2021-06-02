@@ -41,6 +41,11 @@ public class PedidoDP {
         this.clienteCedula = clienteCedula;
         productos = new ArrayList<>();
     }
+    
+    public PedidoDP(int pedidoNumero){
+        this.pedidoNumero = pedidoNumero;
+        pedidoMD = new PedidoMD(this);
+    }
 
     // metodos de la clase
     public int getPedidoNumero() {
@@ -88,6 +93,10 @@ public class PedidoDP {
 
     public ArrayList<ProductoDP> consultarDetalleDP(){
         return pedidoMD.consultarDetalleMD();
+    }
+    
+    public ArrayList<PedidoDP> consultarTodosPedidosDP(){
+        return pedidoMD.consultarTodosPedidosMD();
     }
      
     public boolean verificarExisteDP() {

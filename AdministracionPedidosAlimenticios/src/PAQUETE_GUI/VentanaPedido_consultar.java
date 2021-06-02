@@ -163,7 +163,7 @@ public class VentanaPedido_consultar extends javax.swing.JInternalFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btn_consPedido_todosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_consPedido_todosActionPerformed
-        
+        cargarPedidos();
     }//GEN-LAST:event_btn_consPedido_todosActionPerformed
 
     private void btn_consPedido_individualActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_consPedido_individualActionPerformed
@@ -176,13 +176,23 @@ public class VentanaPedido_consultar extends javax.swing.JInternalFrame {
     
     private void cargarDetallePedido(){
         ArrayList<ProductoDP> productos = pedidoDP.consultarDetalleDP();
-        System.out.println(productos.size());
         DefaultTableModel model = (DefaultTableModel) tb_consPedido_detalle.getModel();
         model.setRowCount(0);
         
         for(ProductoDP temp : productos){
             model.addRow(new Object[]{temp.getCodigo(), temp.getNombre(),
             temp.getPrecio()});
+        }
+    }
+    
+    private void cargarPedidos(){
+        ArrayList<PedidoDP> pedidos = pedidoDP.consultarTodosPedidosDP();
+        DefaultTableModel model = (DefaultTableModel) tb_consPedido_general.getModel();
+        model.setRowCount(0);
+        
+        for(PedidoDP temp : pedidos){
+            model.addRow(new Object[]{temp.getPedidoNumero(), temp.getNotificacionCodigo(),
+            temp.getEntregaNumero(), temp.getClienteCedula()});
         }
     }
 
