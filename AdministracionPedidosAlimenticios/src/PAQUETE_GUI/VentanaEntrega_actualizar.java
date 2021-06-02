@@ -160,12 +160,18 @@ public class VentanaEntrega_actualizar extends javax.swing.JInternalFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btn_consulEntrega_guardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_consulEntrega_guardarActionPerformed
-        // TODO add your handling code here:
+        cargarDatos();
     }//GEN-LAST:event_btn_consulEntrega_guardarActionPerformed
 
     // metodos de la clase
     
-    public void guardar
+    public void cargarDatos(){
+        String nuevoTipo = cb_actualEntrega_tipo.getItemAt(cb_actualEntrega_tipo.getSelectedIndex());
+        String nuevoComentario = ta_actualEntrega_comentario.getText();
+        
+        entregaDP.setTipo(nuevoTipo);
+        entregaDP.setComentario(nuevoComentario);
+    }
     
     public void cargarTiposEntrega() {
         try {
