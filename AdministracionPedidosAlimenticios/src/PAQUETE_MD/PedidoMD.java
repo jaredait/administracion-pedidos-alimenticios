@@ -3,6 +3,7 @@ package PAQUETE_MD;
 import PAQUETE_DP.PedidoDP;
 import PAQUETE_DP.ProductoDP;
 import PAQUETE_PRINCIPAL.ProgramaPrincipal;
+import com.sun.xml.internal.bind.v2.runtime.output.SAXOutput;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -45,6 +46,7 @@ public class PedidoMD {
             for(ProductoDP temp : productos){
                 st = con.prepareStatement(query);
                 st.setInt(1, pedidoDP.getPedidoNumero());
+                System.out.println(temp.getCodigo());
                 st.setString(2, temp.getCodigo());
                 a = st.executeUpdate();
             }

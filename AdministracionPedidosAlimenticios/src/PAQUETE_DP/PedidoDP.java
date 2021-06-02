@@ -13,7 +13,6 @@ public class PedidoDP {
     private ProductoDP productoDP;
     private ArrayList<ProductoDP> productos;
     private PedidoMD pedidoMD;
-    //private PedidoMD pedidoMD;
     //private NotificacionMD notificacionMD;
     //private EntregaMD entregaMD;
     //private ClienteDP clienteDP;
@@ -74,8 +73,9 @@ public class PedidoDP {
     }
 
     public boolean insertarDP() {
-        return false;
-        //return pedidoMD.insertarMD();
+        boolean resultado = pedidoMD.insertarMD();
+        setNumeroPedido();
+        return resultado;
     }
 
     public boolean consultarDP() {

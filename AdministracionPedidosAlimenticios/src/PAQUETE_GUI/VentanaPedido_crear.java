@@ -15,9 +15,10 @@ public class VentanaPedido_crear extends javax.swing.JInternalFrame {
 
     public VentanaPedido_crear() {
         pedidoDP = new PedidoDP();
-        cargarProductos();
 
         initComponents();
+        
+        cargarProductos();
     }
 
     @SuppressWarnings("unchecked")
@@ -203,7 +204,7 @@ public class VentanaPedido_crear extends javax.swing.JInternalFrame {
     public void guardarPedidos() {
         int numeroProductos = tb_crearPedido_actual.getRowCount();
         for(int i = 0; i < numeroProductos; i++){
-            String codigo = tb_crearPedido_actual.getComponentAt(0, i).toString();
+            String codigo = tb_crearPedido_actual.getValueAt(0, i).toString();
             pedidoDP.addProductoDP(new ProductoDP(codigo));
         }
     }
