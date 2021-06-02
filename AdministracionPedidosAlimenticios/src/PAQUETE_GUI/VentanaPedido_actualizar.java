@@ -1,21 +1,22 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package PAQUETE_GUI;
 
-/**
- *
- * @author ASUS
- */
+import PAQUETE_DP.PedidoDP;
+import PAQUETE_DP.ProductoDP;
+import java.util.ArrayList;
+import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
+
 public class VentanaPedido_actualizar extends javax.swing.JInternalFrame {
 
-    /**
-     * Creates new form VentanaPedido_actualizar
-     */
+    PedidoDP pedidoDP;
+    ArrayList<ProductoDP> productos;
+    ArrayList<PedidoDP> pedidos;
+    
     public VentanaPedido_actualizar() {
+        pedidoDP = new PedidoDP();
         initComponents();
+        cargarProductos();
+        cargarPedido();
     }
 
     /**
@@ -41,6 +42,11 @@ public class VentanaPedido_actualizar extends javax.swing.JInternalFrame {
         btn_actualPedido_individual = new javax.swing.JButton();
         btn_actualPedido_eliminar = new javax.swing.JButton();
         btn_actualPedido_agregar = new javax.swing.JButton();
+
+        setClosable(true);
+        setIconifiable(true);
+        setMaximizable(true);
+        setResizable(true);
 
         jLabel1.setText("Productos");
 
@@ -89,6 +95,11 @@ public class VentanaPedido_actualizar extends javax.swing.JInternalFrame {
         cb_actualPedido_parametro.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Código" }));
 
         btn_actualPedido_individual.setText("Buscar");
+        btn_actualPedido_individual.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_actualPedido_individualActionPerformed(evt);
+            }
+        });
 
         btn_actualPedido_eliminar.setText("Eliminar");
 
@@ -174,6 +185,46 @@ public class VentanaPedido_actualizar extends javax.swing.JInternalFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void btn_actualPedido_individualActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_actualPedido_individualActionPerformed
+        pedidoDP.setPedidoNumero(Integer.parseInt(tf_actualPedido_argumento.getText()));
+
+        if (pedidoDP.verificarExisteDP()) {
+            pedidoDP.consultarDP();
+            cargarPedido();
+        } else {
+            JOptionPane.showMessageDialog(jPanel1, "El pedido no existe");
+        }
+    }//GEN-LAST:event_btn_actualPedido_individualActionPerformed
+    public void cargarProductos() {
+        productos = pedidoDP.getProductoDP().consultarTodosDP();
+        DefaultTableModel model = (DefaultTableModel) tb_actualPedido_producto.getModel();
+        model.setRowCount(0);
+
+        for (ProductoDP temp : productos) {
+            model.addRow(new Object[]{temp.getCodigo(), temp.getNombre(), temp.getPrecio()});
+        }
+    }
+    
+    public void cargarPedido(){
+        
+    }
+    /*public void addProductoAPedido(ProductoDP producto) {
+        DefaultTableModel model = (DefaultTableModel) tb_actualPedido_actual.getModel();
+        model.addRow(new Object[]{producto.getCodigo(), producto.getNombre(), producto.getPrecio()});
+    }
+
+    public void eliminarProductoDePedido(int index) {
+        DefaultTableModel model = (DefaultTableModel) tb_actualPedido_actual.getModel();
+        model.removeRow(index);
+    }
+
+    public void guardarPedidos() {
+        int numeroProductos = tb_crearPedido_actual.getRowCount();
+        for(int i = 0; i < numeroProductos; i++){
+            String codigo = tb_crearPedido_actual.getComponentAt(0, i).toString();
+            pedidoDP.addProductoDP(new ProductoDP(codigo));
+        }
+    }*/
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btn_actualPedido_agregar;
