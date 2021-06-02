@@ -27,6 +27,7 @@ public class ProductoDP {
     
     public ProductoDP(String codigo){
         this.codigo = codigo;
+        this.productoMD = new ProductoMD(this);
     }
     
     public String getCodigo() {

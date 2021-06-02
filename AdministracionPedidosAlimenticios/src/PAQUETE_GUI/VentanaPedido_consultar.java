@@ -1,21 +1,20 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package PAQUETE_GUI;
 
-/**
- *
- * @author ASUS
- */
-public class VentanaPedido_consultar extends javax.swing.JInternalFrame {
+import PAQUETE_DP.PedidoDP;
+import PAQUETE_DP.ProductoDP;
+import java.util.ArrayList;
+import javax.swing.table.DefaultTableModel;
 
-    /**
-     * Creates new form VentanaPedido_consultar
-     */
+public class VentanaPedido_consultar extends javax.swing.JInternalFrame {
+    // atributos
+    private PedidoDP pedidoDP;
+    private ProductoDP productoDP;
+    
     public VentanaPedido_consultar() {
         initComponents();
+        
+        pedidoDP = new PedidoDP();
+        productoDP = new ProductoDP();
     }
 
     /**
@@ -29,68 +28,109 @@ public class VentanaPedido_consultar extends javax.swing.JInternalFrame {
 
         jLabel1 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        tb_crearPedido_producto = new javax.swing.JTable();
+        tb_consPedido_general = new javax.swing.JTable();
         btn_consPedido_todos = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
         cb_consPedido_parametro = new javax.swing.JComboBox<>();
         tf_consPedido_argumento = new javax.swing.JTextField();
         btn_consPedido_individual = new javax.swing.JButton();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        tb_consPedido_detalle = new javax.swing.JTable();
+        jLabel3 = new javax.swing.JLabel();
 
-        jLabel1.setText("Pedidos encontrados:");
+        jLabel1.setText("Pedidos:");
 
-        tb_crearPedido_producto.setModel(new javax.swing.table.DefaultTableModel(
+        tb_consPedido_general.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
             new String [] {
-                "Código de producto", "Descripción", "Precio", "Cliente"
+                "Número de pedido", "Código de notificación", "Número de entrega", "Cliente"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, true, true, false
+                false, false, false, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
                 return canEdit [columnIndex];
             }
         });
-        jScrollPane1.setViewportView(tb_crearPedido_producto);
+        jScrollPane1.setViewportView(tb_consPedido_general);
+        if (tb_consPedido_general.getColumnModel().getColumnCount() > 0) {
+            tb_consPedido_general.getColumnModel().getColumn(3).setHeaderValue("Cliente");
+        }
 
         btn_consPedido_todos.setText("Buscar todos");
+        btn_consPedido_todos.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_consPedido_todosActionPerformed(evt);
+            }
+        });
 
         jLabel2.setText("Buscar por:");
 
         cb_consPedido_parametro.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Código" }));
 
         btn_consPedido_individual.setText("Buscar");
+        btn_consPedido_individual.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_consPedido_individualActionPerformed(evt);
+            }
+        });
+
+        tb_consPedido_detalle.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+                "Código de producto", "Descripción", "Precio"
+            }
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, true, true
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        jScrollPane2.setViewportView(tb_consPedido_detalle);
+
+        jLabel3.setText("Detalle pedido:");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(89, 89, 89)
+                .addComponent(btn_consPedido_todos)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(70, 70, 70)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(jLabel1)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 627, Short.MAX_VALUE)))
-                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                        .addGap(89, 89, 89)
-                        .addComponent(btn_consPedido_todos)
+                        .addComponent(jLabel2)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(jLabel2)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(cb_consPedido_parametro, javax.swing.GroupLayout.PREFERRED_SIZE, 211, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(tf_consPedido_argumento, javax.swing.GroupLayout.PREFERRED_SIZE, 211, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(18, 18, 18)
-                                .addComponent(btn_consPedido_individual)))))
+                        .addComponent(cb_consPedido_parametro, javax.swing.GroupLayout.PREFERRED_SIZE, 211, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(tf_consPedido_argumento, javax.swing.GroupLayout.PREFERRED_SIZE, 211, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(btn_consPedido_individual)))
                 .addGap(38, 38, 38))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 714, Short.MAX_VALUE)
+                .addGap(15, 15, 15))
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 723, Short.MAX_VALUE)
+                .addContainerGap())
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel3)
+                    .addComponent(jLabel1))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -108,16 +148,43 @@ public class VentanaPedido_consultar extends javax.swing.JInternalFrame {
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(tf_consPedido_argumento, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(btn_consPedido_individual))))
-                .addGap(30, 30, 30)
+                .addGap(16, 16, 16)
                 .addComponent(jLabel1)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 103, Short.MAX_VALUE)
                 .addGap(18, 18, 18)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(24, Short.MAX_VALUE))
+                .addComponent(jLabel3)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 216, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(26, 26, 26))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void btn_consPedido_todosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_consPedido_todosActionPerformed
+        
+    }//GEN-LAST:event_btn_consPedido_todosActionPerformed
+
+    private void btn_consPedido_individualActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_consPedido_individualActionPerformed
+        int pedidoNumero = Integer.parseInt(tf_consPedido_argumento.getText());
+        pedidoDP.setPedidoNumero(pedidoNumero);
+        cargarDetallePedido();
+    }//GEN-LAST:event_btn_consPedido_individualActionPerformed
+
+    // metodos de la clase
+    
+    private void cargarDetallePedido(){
+        ArrayList<ProductoDP> productos = pedidoDP.consultarDetalleDP();
+        System.out.println(productos.size());
+        DefaultTableModel model = (DefaultTableModel) tb_consPedido_detalle.getModel();
+        model.setRowCount(0);
+        
+        for(ProductoDP temp : productos){
+            model.addRow(new Object[]{temp.getCodigo(), temp.getNombre(),
+            temp.getPrecio()});
+        }
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btn_consPedido_individual;
@@ -125,8 +192,11 @@ public class VentanaPedido_consultar extends javax.swing.JInternalFrame {
     private javax.swing.JComboBox<String> cb_consPedido_parametro;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable tb_crearPedido_producto;
+    private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JTable tb_consPedido_detalle;
+    private javax.swing.JTable tb_consPedido_general;
     private javax.swing.JTextField tf_consPedido_argumento;
     // End of variables declaration//GEN-END:variables
 }

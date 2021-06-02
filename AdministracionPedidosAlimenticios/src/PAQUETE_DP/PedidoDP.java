@@ -91,6 +91,10 @@ public class PedidoDP {
         return pedidoMD.consultarTodosMD();
     }
     
+    public ArrayList<ProductoDP> consultarDetalleDP(){
+        return pedidoMD.consultarDetalleMD();
+    }
+     
     public boolean verificarExisteDP() {
         return false;
         //return pedidoMD.verificarExisteMD();

@@ -3,7 +3,7 @@ package PAQUETE_MD;
 import PAQUETE_DP.PedidoDP;
 import PAQUETE_DP.ProductoDP;
 import PAQUETE_PRINCIPAL.ProgramaPrincipal;
-//import com.sun.xml.internal.bind.v2.runtime.output.SAXOutput;
+import com.sun.xml.internal.bind.v2.runtime.output.SAXOutput;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -39,7 +39,7 @@ public class PedidoMD {
             PreparedStatement st = con.prepareStatement(query);
             st.setInt(1, pedidoDP.getPedidoNumero());
             int a = st.executeUpdate();
-            
+
             // insertar el detalle del pedido en DETALLE_PEDIDO
             ArrayList<ProductoDP> productos = pedidoDP.getProductos();
             query = "INSERT INTO DETALLE_PEDIDO VALUES(?,?)";
@@ -99,5 +99,25 @@ public class PedidoMD {
             Logger.getLogger(ClienteMD.class.getName()).log(Level.SEVERE, null, ex);
         }
         return pedidos;
+    }   
+        
+    public ArrayList<ProductoDP> consultarDetalleMD() {
+        ArrayList<ProductoDP> productos = new ArrayList<>();
+        try {
+            query = "SELECT prd_codigo FROM DETALLE_PEDIDO WHERE ped_numero="
+                    + pedidoDP.getPedidoNumero();
+            stmt = con.createStatement();
+            result = stmt.executeQuery(query);
+            
+            while(result.next()){
+                String codigo = result.getString("prd_codigo");
+                ProductoDP temp = new ProductoDP(codigo);
+                temp.consultarDP();
+                productos.add(temp);
+            }               
+        } catch (SQLException ex) {
+            Logger.getLogger(PedidoMD.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return productos;
     }
 }
