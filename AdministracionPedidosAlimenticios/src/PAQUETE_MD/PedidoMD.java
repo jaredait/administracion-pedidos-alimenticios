@@ -51,7 +51,7 @@ public class PedidoMD {
                 a = st.executeUpdate();
             }
             completado = true;
-            
+
         } catch (SQLException ex) {
             Logger.getLogger(PedidoMD.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -92,15 +92,14 @@ public class PedidoMD {
                 Double precio = result.getDouble("p.prd_precio");
 
                 //pedidos.add(new PedidoDP(codigo, nombre, precio));
-
             }
 
         } catch (SQLException ex) {
             Logger.getLogger(ClienteMD.class.getName()).log(Level.SEVERE, null, ex);
         }
         return pedidos;
-    }   
-        
+    }
+
     public ArrayList<ProductoDP> consultarDetalleMD() {
         ArrayList<ProductoDP> productos = new ArrayList<>();
         try {
@@ -114,16 +113,13 @@ public class PedidoMD {
                 ProductoDP temp = new ProductoDP(codigo);
                 temp.consultarDP();
                 productos.add(temp);
-
             }
-
-            }               
-
         } catch (SQLException ex) {
             Logger.getLogger(PedidoMD.class.getName()).log(Level.SEVERE, null, ex);
         }
         return productos;
     }
+    
 
     public boolean consultarMD() {
         boolean completado = false;
@@ -162,7 +158,7 @@ public class PedidoMD {
 
     public ArrayList<PedidoDP> consultarTodosPedidosMD() {
         ArrayList<PedidoDP> pedidos = new ArrayList<>();
-        
+
         try {
             query = "SELECT * FROM PEDIDO";
             stmt = con.createStatement();
