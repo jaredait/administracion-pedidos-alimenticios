@@ -95,6 +95,11 @@ public class PedidoDP {
     public boolean modificarDP(){
         return pedidoMD.actualizarMD();
     }
+    
+    public boolean eliminarDP(){
+        return pedidoMD.eliminarMD();
+    }
+    
     public ArrayList<ProductoDP> consultarDetalleDP(){
         return pedidoMD.consultarDetalleMD();
     }
@@ -104,8 +109,7 @@ public class PedidoDP {
     }
      
     public boolean verificarExisteDP() {
-        return false;
-        //return pedidoMD.verificarExisteMD();
+        return pedidoMD.verificarExisteMD();
     }
 
     public ProductoDP getProductoDP() {

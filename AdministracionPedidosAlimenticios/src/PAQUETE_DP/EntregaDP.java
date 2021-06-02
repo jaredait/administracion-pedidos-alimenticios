@@ -1,25 +1,27 @@
 package PAQUETE_DP;
 
-//import PAQUETE_DP.PedidoDP;
+import PAQUETE_DP.PedidoDP;
+import PAQUETE_MD.EntregaMD;
 
 public class EntregaDP {
-    private int numero;
+    private int entregaNumero;
     private String tipo;
     private String comentario;
-    //private EntregaMD entregaMD()
-    //private PedidoDP pedidoDP;
+    private int pedidoNumero;
+    private EntregaMD entregaMD;
+    private PedidoDP pedidoDP;
     
     // constructores
     public EntregaDP(){
-        //pedidoDP = new PedidoDP(this);
+        this.entregaMD = new EntregaMD(this);
     }
     
-    public int getNumero(){
-        return numero;
+    public int getEntregaNumero(){
+        return entregaNumero;
     }
     
-    public void setNumero(int numero){
-        this.numero = numero;
+    public void setEntregaNumero(int numero){
+        this.entregaNumero = numero;
     }
     
     public String getTipo(){
@@ -38,6 +40,14 @@ public class EntregaDP {
         this.comentario = comentario;
     }
     
+    private int getPedidoNumero(){
+        return  pedidoNumero;
+    }
+    
+    private void setPedidoNumero(int pedidoNumero){
+        this.pedidoNumero = pedidoNumero;
+    }
+    
     public boolean insertarDP(){
         //return entregaMD.insertarMD();
         return false;
@@ -49,8 +59,7 @@ public class EntregaDP {
     }
     
     public boolean modificarDP(){
-        // return entregaMD.modificarMD();
-        return false;
+        return entregaMD.modificarMD();
     }
     
     public boolean eliminarDP(){
