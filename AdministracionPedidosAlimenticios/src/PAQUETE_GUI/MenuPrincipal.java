@@ -212,6 +212,11 @@ public class MenuPrincipal extends javax.swing.JFrame {
         submenu_entrega.add(sub_entrega_consultar);
 
         sub_entrega_actualizar.setText("Actualizar entrega");
+        sub_entrega_actualizar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                sub_entrega_actualizarActionPerformed(evt);
+            }
+        });
         submenu_entrega.add(sub_entrega_actualizar);
 
         sub_entrega_eliminar.setText("Eliminar entrega");
@@ -381,6 +386,12 @@ public class MenuPrincipal extends javax.swing.JFrame {
         escritorio.add(ventanaPedido_actualizar);
         ventanaPedido_actualizar.show();
     }//GEN-LAST:event_sub_pedido_actualizarActionPerformed
+
+    private void sub_entrega_actualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_sub_entrega_actualizarActionPerformed
+        VentanaEntrega_actualizar ventanaEntrega_actualizar = new VentanaEntrega_actualizar();
+        escritorio.add(ventanaEntrega_actualizar);
+        ventanaEntrega_actualizar.show();
+    }//GEN-LAST:event_sub_entrega_actualizarActionPerformed
 
     /**
      * @param args the command line arguments
