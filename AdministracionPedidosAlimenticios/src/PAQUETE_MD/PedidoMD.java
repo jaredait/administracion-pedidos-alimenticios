@@ -92,32 +92,6 @@ public class PedidoMD {
         return numero;
     }
 
-    public ArrayList<PedidoDP> consultarTodosMD() {
-
-        ArrayList<PedidoDP> pedidos = new ArrayList<>();
-        try {
-            query = "SELECT d.PRD_CODIGO, p.PRD_NOMBRE, p.PRD_PRECIO"
-                    + "FROM DETALLE_PEDIDO d, PRODUCTO p"
-                    + "WHERE d.PRD_CODIGO = p.PRD_CODIGO AND d.PED_NUMERO = ?;";
-            stmt = con.createStatement();
-            result = stmt.executeQuery(query);
-
-            // Llenar el ArrayList de objetos PedidoDP
-            while (result.next()) {
-                // Obtener los datos del registro
-                String codigo = result.getString("d.prd_codigo");
-                String nombre = result.getString("p.prd_nombre");
-                Double precio = result.getDouble("p.prd_precio");
-
-                //pedidos.add(new PedidoDP(codigo, nombre, precio));
-            }
-
-        } catch (SQLException ex) {
-            Logger.getLogger(ClienteMD.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        return pedidos;
-    }
-
     public ArrayList<ProductoDP> consultarDetalleMD() {
         ArrayList<ProductoDP> productos = new ArrayList<>();
         try {
