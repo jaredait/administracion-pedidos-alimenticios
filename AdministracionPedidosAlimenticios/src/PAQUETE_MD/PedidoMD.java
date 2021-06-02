@@ -46,7 +46,6 @@ public class PedidoMD {
             for(ProductoDP temp : productos){
                 st = con.prepareStatement(query);
                 st.setInt(1, pedidoDP.getPedidoNumero());
-                System.out.println(temp.getCodigo());
                 st.setString(2, temp.getCodigo());
                 a = st.executeUpdate();
             }

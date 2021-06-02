@@ -21,13 +21,16 @@ public class PedidoDP {
     public PedidoDP() {
         productoDP = new ProductoDP();
         productos = new ArrayList<>();
-        pedidoMD = new PedidoMD(this);
+        
         //notificacionMD = new NotificacionMD();
         //entregaMD = new EntregaMD();
         //clienteDP = new ClienteDP();
         
         //asignar un numero de pedido al objeto
-        getPedidoNumero();
+        pedidoNumero = 0;
+        pedidoMD = new PedidoMD(this);
+        setNumeroPedido();
+        
     }
 
     public PedidoDP(int pedidoNumero, String notificacionCodigo, int entregaNumero,
@@ -101,6 +104,10 @@ public class PedidoDP {
         productos.add(nuevoProducto);
         return false;
         //return pedidoMD.addProducto(codigoProducto);
+    }
+    
+    public void reiniciarLista(){
+        productos.clear();
     }
     
     public ArrayList<ProductoDP> getProductos(){

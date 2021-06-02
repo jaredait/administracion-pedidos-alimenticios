@@ -202,9 +202,10 @@ public class VentanaPedido_crear extends javax.swing.JInternalFrame {
     }
 
     public void guardarPedidos() {
+        pedidoDP.reiniciarLista();
         int numeroProductos = tb_crearPedido_actual.getRowCount();
         for(int i = 0; i < numeroProductos; i++){
-            String codigo = tb_crearPedido_actual.getValueAt(0, i).toString();
+            String codigo = tb_crearPedido_actual.getValueAt(i, 0).toString();
             pedidoDP.addProductoDP(new ProductoDP(codigo));
         }
     }
