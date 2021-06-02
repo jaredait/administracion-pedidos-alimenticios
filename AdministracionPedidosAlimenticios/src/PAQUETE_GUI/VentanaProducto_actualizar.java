@@ -5,7 +5,9 @@
  */
 package PAQUETE_GUI;
 
+import PAQUETE_DP.EstablecimientoDP;
 import PAQUETE_DP.ProductoDP;
+import java.util.ArrayList;
 import javax.swing.JOptionPane;
 
 
@@ -14,11 +16,14 @@ public class VentanaProducto_actualizar extends javax.swing.JInternalFrame {
     // atributos
     ProductoDP productoDP;
     boolean existeProducto;
+    private EstablecimientoDP establecimientoDP;
     
     public VentanaProducto_actualizar() {
         productoDP = new ProductoDP();
         existeProducto = false;
+        establecimientoDP = new EstablecimientoDP();
         initComponents();
+        cargarComboBox();
     }
 
     
@@ -40,6 +45,8 @@ public class VentanaProducto_actualizar extends javax.swing.JInternalFrame {
         jComboBox1 = new javax.swing.JComboBox<>();
         txt_ActPrdParam = new javax.swing.JTextField();
         btn_buscarParamActPrd = new javax.swing.JButton();
+        jLabel5 = new javax.swing.JLabel();
+        cb_CrearPrdCodEst = new javax.swing.JComboBox<>();
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -102,6 +109,8 @@ public class VentanaProducto_actualizar extends javax.swing.JInternalFrame {
             }
         });
 
+        jLabel5.setText("CodEstablecimiento:");
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -116,15 +125,14 @@ public class VentanaProducto_actualizar extends javax.swing.JInternalFrame {
                                 .addComponent(jLabel3))
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addComponent(jLabel2)
-                                .addGap(4, 4, 4)))
+                                .addGap(4, 4, 4))
+                            .addComponent(jLabel5))
                         .addGap(45, 45, 45)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(txt_actualizarPrdNombre, javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(txt_actualizarPrdCodigo, javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(txt_actualizarPrdPrecio, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(272, 272, 272)
-                        .addComponent(btn_actualizarPrd))
+                            .addComponent(txt_actualizarPrdPrecio)
+                            .addComponent(cb_CrearPrdCodEst, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                         .addGap(213, 213, 213)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
@@ -136,7 +144,11 @@ public class VentanaProducto_actualizar extends javax.swing.JInternalFrame {
                                 .addComponent(jLabel4)
                                 .addGap(18, 18, 18)
                                 .addComponent(jComboBox1, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))))
-                .addContainerGap(158, Short.MAX_VALUE))
+                .addGap(205, 205, 205))
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(288, 288, 288)
+                .addComponent(btn_actualizarPrd)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -149,7 +161,11 @@ public class VentanaProducto_actualizar extends javax.swing.JInternalFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(txt_ActPrdParam, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btn_buscarParamActPrd))
-                .addGap(35, 35, 35)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 21, Short.MAX_VALUE)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel5)
+                    .addComponent(cb_CrearPrdCodEst, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1)
                     .addComponent(txt_actualizarPrdCodigo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -161,9 +177,9 @@ public class VentanaProducto_actualizar extends javax.swing.JInternalFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3)
                     .addComponent(txt_actualizarPrdPrecio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(39, 39, 39)
+                .addGap(37, 37, 37)
                 .addComponent(btn_actualizarPrd)
-                .addContainerGap(34, Short.MAX_VALUE))
+                .addGap(58, 58, 58))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -220,6 +236,7 @@ public class VentanaProducto_actualizar extends javax.swing.JInternalFrame {
 // metodos de la clase
     private void cargarProducto() {
         txt_actualizarPrdCodigo.setText(productoDP.getCodigo());
+        cb_CrearPrdCodEst.setSelectedItem(productoDP.getCodigoEstablecimiento());
         txt_actualizarPrdNombre.setText(productoDP.getNombre());
         txt_actualizarPrdPrecio.setText(String.valueOf(productoDP.getPrecio()));
     }
@@ -239,10 +256,12 @@ public class VentanaProducto_actualizar extends javax.swing.JInternalFrame {
 
     private boolean guardarDatos() {
         String codigo = txt_actualizarPrdCodigo.getText().trim();
+        String codigoEstablecimiento = cb_CrearPrdCodEst.getSelectedItem().toString();
         String nombre = txt_actualizarPrdNombre.getText().trim();
         String precio = txt_actualizarPrdPrecio.getText().trim();
 
         productoDP.setCodigo(codigo);
+        productoDP.setCodigoEstablecimiento(codigoEstablecimiento);
         productoDP.setNombre(nombre);
         productoDP.setPrecio(Double.parseDouble(precio));
 
@@ -254,15 +273,27 @@ public class VentanaProducto_actualizar extends javax.swing.JInternalFrame {
         txt_actualizarPrdNombre.setText("");
         txt_actualizarPrdPrecio.setText("");
     }
+    
+    private void cargarComboBox(){
+        ArrayList<EstablecimientoDP> establecimientos = new ArrayList<>();
+        establecimientos = establecimientoDP.consultarTodosDP();
+        for (int i=0; i < establecimientos.size(); i++){
+           cb_CrearPrdCodEst.addItem(establecimientos.get(i).getCodigo());
+        }
+        
+    }
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btn_actualizarPrd;
     private javax.swing.JButton btn_buscarParamActPrd;
+    private javax.swing.JComboBox<String> cb_CrearPrdCodEst;
     private javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTable1;

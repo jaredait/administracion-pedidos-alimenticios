@@ -5,7 +5,9 @@
  */
 package PAQUETE_GUI;
 
+import PAQUETE_DP.EstablecimientoDP;
 import PAQUETE_DP.ProductoDP;
+import java.util.ArrayList;
 import javax.swing.JOptionPane;
 
 
@@ -14,14 +16,16 @@ public class VentanaProducto_crear extends javax.swing.JInternalFrame {
     // atributos
     private ProductoDP productoDP;
     private boolean existeProducto;
+    private EstablecimientoDP establecimientoDP;
 
     // constructor
     public VentanaProducto_crear() {
         // instanciar atributos de la clase
         productoDP = new ProductoDP();
         existeProducto = false;
-        
+        establecimientoDP = new EstablecimientoDP();
         initComponents();
+        cargarComboBox();
     }
 
     
@@ -37,7 +41,7 @@ public class VentanaProducto_crear extends javax.swing.JInternalFrame {
         jLabel3 = new javax.swing.JLabel();
         txt_crearProductoCodigo = new javax.swing.JTextField();
         txt_crearProductoNombre = new javax.swing.JTextField();
-        jComboBox1 = new javax.swing.JComboBox<>();
+        cb_CrearPrdCodEst = new javax.swing.JComboBox<>();
         jLabel4 = new javax.swing.JLabel();
 
         setClosable(true);
@@ -65,7 +69,11 @@ public class VentanaProducto_crear extends javax.swing.JInternalFrame {
             }
         });
 
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        cb_CrearPrdCodEst.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cb_CrearPrdCodEstActionPerformed(evt);
+            }
+        });
 
         jLabel4.setText("Cod. Establecimiento:");
 
@@ -86,7 +94,7 @@ public class VentanaProducto_crear extends javax.swing.JInternalFrame {
                     .addComponent(jLabel4))
                 .addGap(40, 40, 40)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jComboBox1, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(cb_CrearPrdCodEst, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(txt_crearProductoCodigo)
                     .addComponent(txt_crearProductoNombre)
                     .addComponent(txt_crearProductoPrecio, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -97,7 +105,7 @@ public class VentanaProducto_crear extends javax.swing.JInternalFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addGap(29, 29, 29)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(cb_CrearPrdCodEst, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel4))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -156,6 +164,10 @@ public class VentanaProducto_crear extends javax.swing.JInternalFrame {
             JOptionPane.showMessageDialog(jPanel1, "Datos incompletos");
         }
     }//GEN-LAST:event_btn_crearProductoGuardarActionPerformed
+
+    private void cb_CrearPrdCodEstActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cb_CrearPrdCodEstActionPerformed
+        
+    }//GEN-LAST:event_cb_CrearPrdCodEstActionPerformed
 // metodos de la clase
     private boolean camposCompletos() {
         boolean valido = true;
@@ -172,10 +184,12 @@ public class VentanaProducto_crear extends javax.swing.JInternalFrame {
 
     private boolean guardarDatos() {
         String codigo = txt_crearProductoCodigo.getText().trim();
+        String codigoEstablecimiento = cb_CrearPrdCodEst.getSelectedItem().toString();
         String nombre = txt_crearProductoNombre.getText().trim();
         String precio = txt_crearProductoPrecio.getText().trim();
 
         productoDP.setCodigo(codigo);
+        productoDP.setCodigoEstablecimiento(codigoEstablecimiento);
         productoDP.setNombre(nombre);
         productoDP.setPrecio(Double.parseDouble(precio));
 
@@ -187,11 +201,19 @@ public class VentanaProducto_crear extends javax.swing.JInternalFrame {
         txt_crearProductoNombre.setText("");
         txt_crearProductoPrecio.setText("");
     }
-
+    
+    private void cargarComboBox(){
+        ArrayList<EstablecimientoDP> establecimientos = new ArrayList<>();
+        establecimientos = establecimientoDP.consultarTodosDP();
+        for (int i=0; i < establecimientos.size(); i++){
+           cb_CrearPrdCodEst.addItem(establecimientos.get(i).getCodigo());
+        }
+        
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btn_crearProductoGuardar;
-    private javax.swing.JComboBox<String> jComboBox1;
+    private javax.swing.JComboBox<String> cb_CrearPrdCodEst;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
