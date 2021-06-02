@@ -232,15 +232,35 @@ public class MenuPrincipal extends javax.swing.JFrame {
         submenu_notificacion.setText("Notificación");
 
         sub_notificacion_crear.setText("Crear notificación");
+        sub_notificacion_crear.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                sub_notificacion_crearActionPerformed(evt);
+            }
+        });
         submenu_notificacion.add(sub_notificacion_crear);
 
         sub_notificacion_consultar.setText("Consultar notificación");
+        sub_notificacion_consultar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                sub_notificacion_consultarActionPerformed(evt);
+            }
+        });
         submenu_notificacion.add(sub_notificacion_consultar);
 
         sub_notificacion_actualizar.setText("Actualizar notificación");
+        sub_notificacion_actualizar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                sub_notificacion_actualizarActionPerformed(evt);
+            }
+        });
         submenu_notificacion.add(sub_notificacion_actualizar);
 
         sub_notificacion_eliminar.setText("Eliminar notificación");
+        sub_notificacion_eliminar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                sub_notificacion_eliminarActionPerformed(evt);
+            }
+        });
         submenu_notificacion.add(sub_notificacion_eliminar);
 
         menu_procesos.add(submenu_notificacion);
@@ -412,6 +432,30 @@ public class MenuPrincipal extends javax.swing.JFrame {
         escritorio.add(ventanaEntrega_eliminar);
         ventanaEntrega_eliminar.show();
     }//GEN-LAST:event_sub_entrega_eliminarActionPerformed
+
+    private void sub_notificacion_crearActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_sub_notificacion_crearActionPerformed
+        VentanaNotificacion_crear ventanaNotificacion_crear = new VentanaNotificacion_crear();
+        escritorio.add(ventanaNotificacion_crear);
+        ventanaNotificacion_crear.show();
+    }//GEN-LAST:event_sub_notificacion_crearActionPerformed
+
+    private void sub_notificacion_consultarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_sub_notificacion_consultarActionPerformed
+        VentanaNotificacion_consultar ventanaNotificacion_consultar = new VentanaNotificacion_consultar();
+        escritorio.add(ventanaNotificacion_consultar);
+        ventanaNotificacion_consultar.show();
+    }//GEN-LAST:event_sub_notificacion_consultarActionPerformed
+
+    private void sub_notificacion_actualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_sub_notificacion_actualizarActionPerformed
+        VentanaNotificacion_actualizar ventanaNotificacion_actualizar = new VentanaNotificacion_actualizar();
+        escritorio.add(ventanaNotificacion_actualizar);
+        ventanaNotificacion_actualizar.show();
+    }//GEN-LAST:event_sub_notificacion_actualizarActionPerformed
+
+    private void sub_notificacion_eliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_sub_notificacion_eliminarActionPerformed
+        VentanaNotificacion_eliminar ventanaNotificacion_eliminar = new VentanaNotificacion_eliminar();
+        escritorio.add(ventanaNotificacion_eliminar);
+        ventanaNotificacion_eliminar.show();
+    }//GEN-LAST:event_sub_notificacion_eliminarActionPerformed
     /**
      * @param args the command line arguments
      */
