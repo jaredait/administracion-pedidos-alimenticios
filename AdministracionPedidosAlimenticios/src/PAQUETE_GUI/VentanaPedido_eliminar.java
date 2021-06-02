@@ -1,20 +1,20 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package PAQUETE_GUI;
 
-/**
- *
- * @author ASUS
- */
+import PAQUETE_DP.PedidoDP;
+import PAQUETE_DP.ProductoDP;
+import java.util.ArrayList;
+import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
+
 public class VentanaPedido_eliminar extends javax.swing.JInternalFrame {
 
-    /**
-     * Creates new form VentanaPedido_eliminar
-     */
+    PedidoDP pedidoDP;
+    private boolean existePedido;
+    ArrayList<ProductoDP> productos;
+
     public VentanaPedido_eliminar() {
+        pedidoDP = new PedidoDP();
+        existePedido = false;
         initComponents();
     }
 
@@ -34,17 +34,33 @@ public class VentanaPedido_eliminar extends javax.swing.JInternalFrame {
         tf_elimPedido_argumento = new javax.swing.JTextField();
         btn_elimPedido_individual = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
-        tb_crearPedido_producto = new javax.swing.JTable();
+        tb_eliminarPedido_producto = new javax.swing.JTable();
+
+        setClosable(true);
+        setIconifiable(true);
+        setMaximizable(true);
+        setResizable(true);
+        setTitle("Eliminar pedido");
 
         btn_consPedido_todos.setText("Eliminar");
+        btn_consPedido_todos.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_consPedido_todosActionPerformed(evt);
+            }
+        });
 
         jLabel2.setText("Buscar por:");
 
         cb_elimPedido_parametro.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Código" }));
 
         btn_elimPedido_individual.setText("Buscar");
+        btn_elimPedido_individual.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_elimPedido_individualActionPerformed(evt);
+            }
+        });
 
-        tb_crearPedido_producto.setModel(new javax.swing.table.DefaultTableModel(
+        tb_eliminarPedido_producto.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
@@ -60,7 +76,7 @@ public class VentanaPedido_eliminar extends javax.swing.JInternalFrame {
                 return canEdit [columnIndex];
             }
         });
-        jScrollPane1.setViewportView(tb_crearPedido_producto);
+        jScrollPane1.setViewportView(tb_eliminarPedido_producto);
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -121,6 +137,51 @@ public class VentanaPedido_eliminar extends javax.swing.JInternalFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void btn_elimPedido_individualActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_elimPedido_individualActionPerformed
+        int pedidoNumero = Integer.parseInt(tf_elimPedido_argumento.getText());
+        pedidoDP.setPedidoNumero(pedidoNumero);
+        if (pedidoDP.verificarExisteDP()) {
+            cargarDetallePedido();
+            existePedido = true;
+        } else {
+            existePedido = false;
+            JOptionPane.showMessageDialog(jPanel1, "El pedido no existe");
+        }
+    }//GEN-LAST:event_btn_elimPedido_individualActionPerformed
+
+    private void btn_consPedido_todosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_consPedido_todosActionPerformed
+        if (existePedido) {
+            int confirmacion = JOptionPane.showConfirmDialog(jPanel1, "¿Estás seguro de eliminar el pedido?");
+            if (confirmacion == 0) {
+                if (pedidoDP.eliminarDP()) {
+                    limpiarCampos();
+                    JOptionPane.showMessageDialog(jPanel1, "¡Eliminación exitosa!");
+                    existePedido = false;
+                } else {
+                    JOptionPane.showMessageDialog(jPanel1, "Eliminación fallida");
+                }
+            }
+        } else {
+            JOptionPane.showMessageDialog(jPanel1, "El pedido no existe");
+        }
+    }//GEN-LAST:event_btn_consPedido_todosActionPerformed
+    public void cargarDetallePedido() {
+        ArrayList<ProductoDP> pedidos = pedidoDP.consultarDetalleDP();
+        DefaultTableModel model = (DefaultTableModel) tb_eliminarPedido_producto.getModel();
+        model.setRowCount(0);
+
+        for (ProductoDP temp : pedidos) {
+            model.addRow(new Object[]{temp.getCodigo(), temp.getNombre(),
+                temp.getPrecio(), pedidoDP.getClienteCedula()});
+        }
+
+    }
+
+    private void limpiarCampos() {
+        DefaultTableModel model = (DefaultTableModel) tb_eliminarPedido_producto.getModel();
+        model.setRowCount(0);
+        tf_elimPedido_argumento.setText("");
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btn_consPedido_todos;
@@ -129,7 +190,7 @@ public class VentanaPedido_eliminar extends javax.swing.JInternalFrame {
     private javax.swing.JLabel jLabel2;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable tb_crearPedido_producto;
+    private javax.swing.JTable tb_eliminarPedido_producto;
     private javax.swing.JTextField tf_elimPedido_argumento;
     // End of variables declaration//GEN-END:variables
 }
