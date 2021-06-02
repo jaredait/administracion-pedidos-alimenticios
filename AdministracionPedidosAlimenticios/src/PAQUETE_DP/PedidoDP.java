@@ -21,7 +21,7 @@ public class PedidoDP {
     public PedidoDP() {
         productoDP = new ProductoDP();
         productos = new ArrayList<>();
-        
+        pedidoMD = new PedidoMD(this);
         //notificacionMD = new NotificacionMD();
         //entregaMD = new EntregaMD();
         //clienteDP = new ClienteDP();
@@ -31,6 +31,7 @@ public class PedidoDP {
         pedidoMD = new PedidoMD(this);
         setNumeroPedido();
         
+        getPedidoNumero();
     }
 
     public PedidoDP(int pedidoNumero, String notificacionCodigo, int entregaNumero,
@@ -86,11 +87,10 @@ public class PedidoDP {
         //return pedidoMD.consultarMD();
     }
 
-    /*
     public ArrayList<PedidoDP> consultarTodosDP(){
         return pedidoMD.consultarTodosMD();
     }
-     */
+    
     public boolean verificarExisteDP() {
         return false;
         //return pedidoMD.verificarExisteMD();
@@ -109,7 +109,7 @@ public class PedidoDP {
     public void reiniciarLista(){
         productos.clear();
     }
-    
+
     public ArrayList<ProductoDP> getProductos(){
         return productos;
     }

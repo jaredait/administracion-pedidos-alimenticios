@@ -3,7 +3,7 @@ package PAQUETE_MD;
 import PAQUETE_DP.PedidoDP;
 import PAQUETE_DP.ProductoDP;
 import PAQUETE_PRINCIPAL.ProgramaPrincipal;
-import com.sun.xml.internal.bind.v2.runtime.output.SAXOutput;
+//import com.sun.xml.internal.bind.v2.runtime.output.SAXOutput;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -43,13 +43,15 @@ public class PedidoMD {
             // insertar el detalle del pedido en DETALLE_PEDIDO
             ArrayList<ProductoDP> productos = pedidoDP.getProductos();
             query = "INSERT INTO DETALLE_PEDIDO VALUES(?,?)";
-            for(ProductoDP temp : productos){
+            for (ProductoDP temp : productos) {
                 st = con.prepareStatement(query);
                 st.setInt(1, pedidoDP.getPedidoNumero());
+                System.out.println(temp.getCodigo());
                 st.setString(2, temp.getCodigo());
                 a = st.executeUpdate();
             }
             completado = true;
+            
         } catch (SQLException ex) {
             Logger.getLogger(PedidoMD.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -70,5 +72,32 @@ public class PedidoMD {
             Logger.getLogger(PedidoMD.class.getName()).log(Level.SEVERE, null, ex);
         }
         return numero;
+    }
+
+    public ArrayList<PedidoDP> consultarTodosMD() {
+
+        ArrayList<PedidoDP> pedidos = new ArrayList<>();
+        try {
+            query = "SELECT d.PRD_CODIGO, p.PRD_NOMBRE, p.PRD_PRECIO"
+                    + "FROM DETALLE_PEDIDO d, PRODUCTO p"
+                    + "WHERE d.PRD_CODIGO = p.PRD_CODIGO AND d.PED_NUMERO = ?;";
+            stmt = con.createStatement();
+            result = stmt.executeQuery(query);
+
+            // Llenar el ArrayList de objetos PedidoDP
+            while (result.next()) {
+                // Obtener los datos del registro
+                String codigo = result.getString("d.prd_codigo");
+                String nombre = result.getString("p.prd_nombre");
+                Double precio = result.getDouble("p.prd_precio");
+
+                //pedidos.add(new PedidoDP(codigo, nombre, precio));
+
+            }
+
+        } catch (SQLException ex) {
+            Logger.getLogger(ClienteMD.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return pedidos;
     }
 }

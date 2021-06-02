@@ -15,9 +15,7 @@ public class VentanaPedido_crear extends javax.swing.JInternalFrame {
 
     public VentanaPedido_crear() {
         pedidoDP = new PedidoDP();
-
         initComponents();
-        
         cargarProductos();
     }
 
