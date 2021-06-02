@@ -12,6 +12,7 @@ public class ProductoDP {
     private String codigo;
     private String nombre;
     private double precio;
+    private String codigoEstablecimiento;
     private ProductoMD productoMD;
     
     //constructor
@@ -19,8 +20,9 @@ public class ProductoDP {
         this.productoMD = new ProductoMD(this);
     }
 
-    public ProductoDP(String codigo, String nombre, double precio) {
+    public ProductoDP(String codigo, String codigoEstablecimiento, String nombre, double precio) {
         this.codigo = codigo;
+        this.codigoEstablecimiento = codigoEstablecimiento;
         this.nombre = nombre;
         this.precio = precio;
     }
@@ -52,6 +54,14 @@ public class ProductoDP {
 
     public void setPrecio(double precio) {
         this.precio = precio;
+    }
+
+    public String getCodigoEstablecimiento() {
+        return codigoEstablecimiento;
+    }
+
+    public void setCodigoEstablecimiento(String codigoEstablecimiento) {
+        this.codigoEstablecimiento = codigoEstablecimiento;
     }
     
     public boolean insertarDP(){

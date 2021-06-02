@@ -32,7 +32,7 @@ public class ProductoMD {
             PreparedStatement st = con.prepareStatement("INSERT INTO PRODUCTO"
                     + "(prd_codigo, est_codigo, prd_nombre, prd_precio) values(?,?,?,?)");
             st.setString(1, productoDP.getCodigo());
-            st.setString(2, "e001");
+            st.setString(2, productoDP.getCodigoEstablecimiento());
             st.setString(3, productoDP.getNombre());
             st.setDouble(4, productoDP.getPrecio());
 
@@ -41,7 +41,6 @@ public class ProductoMD {
         } catch (SQLException ex) {
             Logger.getLogger(ProductoMD.class.getName()).log(Level.SEVERE, null, ex);
         }
-        System.out.println(productoDP.getCodigo() + productoDP.getNombre() + productoDP.getPrecio());
         return completado;
     }
 
@@ -54,10 +53,12 @@ public class ProductoMD {
             result.next();
 
             // obtener los datos del registro
+            String codigoEstablecimiento = result.getString("est_codigo");
             String nombre = result.getString("prd_nombre");
             double precio = result.getDouble("prd_precio");
 
             // cargar los datos al objeto ProductoDP
+            productoDP.setCodigoEstablecimiento(codigoEstablecimiento);
             productoDP.setNombre(nombre);
             productoDP.setPrecio(precio);
 
@@ -71,11 +72,12 @@ public class ProductoMD {
     public boolean actualizarMD() {
         boolean completado = false;
         try {
-            query = "UPDATE PRODUCTO SET prd_nombre=?, prd_precio=? WHERE prd_codigo=?";
+            query = "UPDATE PRODUCTO SET est_codigo=?, prd_nombre=?, prd_precio=? WHERE prd_codigo=?";
             PreparedStatement st = con.prepareStatement(query);
-            st.setString(3, productoDP.getCodigo());
-            st.setString(1, productoDP.getNombre());
-            st.setDouble(2, productoDP.getPrecio());
+            st.setString(4, productoDP.getCodigo());
+            st.setString(1, productoDP.getCodigoEstablecimiento()); 
+            st.setString(2, productoDP.getNombre());
+            st.setDouble(3, productoDP.getPrecio());
 
             int a = st.executeUpdate();
             completado = true;
@@ -130,10 +132,11 @@ public class ProductoMD {
             while (result.next()) {
                 // obtener los datos del registro
                 String codigo = result.getString("prd_codigo");
+                String codigoEstablecimiento = result.getString("est_codigo");
                 String nombre = result.getString("prd_nombre");
                 double precio = result.getDouble("prd_precio");
 
-                productos.add(new ProductoDP(codigo, nombre, precio));
+                productos.add(new ProductoDP(codigo, codigoEstablecimiento, nombre, precio));
 
             }
 

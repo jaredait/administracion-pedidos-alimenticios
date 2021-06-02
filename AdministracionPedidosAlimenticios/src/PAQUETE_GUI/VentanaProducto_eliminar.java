@@ -48,11 +48,11 @@ public class VentanaProducto_eliminar extends javax.swing.JInternalFrame {
 
             },
             new String [] {
-                "Código", "Nombre", "Precio"
+                "Código", "CodEstablecimiento", "Nombre", "Precio"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false, false
+                false, false, false, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
@@ -172,7 +172,7 @@ public class VentanaProducto_eliminar extends javax.swing.JInternalFrame {
         DefaultTableModel model = (DefaultTableModel) tb_ElimPrd.getModel();
         model.setRowCount(0);
 
-        model.addRow(new Object[]{productoDP.getCodigo(),
+        model.addRow(new Object[]{productoDP.getCodigo(), productoDP.getCodigoEstablecimiento(),
             productoDP.getNombre(), productoDP.getPrecio()});
     }
 

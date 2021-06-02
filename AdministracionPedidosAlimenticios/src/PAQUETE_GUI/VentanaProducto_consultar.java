@@ -46,11 +46,11 @@ public class VentanaProducto_consultar extends javax.swing.JInternalFrame {
 
             },
             new String [] {
-                "Código", "Nombre", "Precio"
+                "Código", "CodEstablecimiento", "Nombre", "Precio"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false, false
+                false, false, false, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
@@ -159,7 +159,7 @@ public class VentanaProducto_consultar extends javax.swing.JInternalFrame {
         DefaultTableModel model = (DefaultTableModel) tb_consultarPrd.getModel();
         model.setRowCount(0);
 
-        model.addRow(new Object[]{productoDP.getCodigo(),
+        model.addRow(new Object[]{productoDP.getCodigo(), productoDP.getCodigoEstablecimiento(),
             productoDP.getNombre(), productoDP.getPrecio()});
     }
 
@@ -168,7 +168,7 @@ public class VentanaProducto_consultar extends javax.swing.JInternalFrame {
         model.setRowCount(0);
 
         for (ProductoDP temp : establecimientos) {
-            model.addRow(new Object[]{temp.getCodigo(), temp.getNombre(), 
+            model.addRow(new Object[]{temp.getCodigo(), temp.getCodigoEstablecimiento(), temp.getNombre(), 
                 temp.getPrecio()});
         }
     }

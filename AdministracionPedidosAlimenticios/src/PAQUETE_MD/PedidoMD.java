@@ -51,7 +51,7 @@ public class PedidoMD {
                 a = st.executeUpdate();
             }
             completado = true;
-            
+
         } catch (SQLException ex) {
             Logger.getLogger(PedidoMD.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -91,7 +91,33 @@ public class PedidoMD {
         }
         return numero;
     }
-        
+
+    public ArrayList<PedidoDP> consultarTodosMD() {
+
+        ArrayList<PedidoDP> pedidos = new ArrayList<>();
+        try {
+            query = "SELECT d.PRD_CODIGO, p.PRD_NOMBRE, p.PRD_PRECIO"
+                    + "FROM DETALLE_PEDIDO d, PRODUCTO p"
+                    + "WHERE d.PRD_CODIGO = p.PRD_CODIGO AND d.PED_NUMERO = ?;";
+            stmt = con.createStatement();
+            result = stmt.executeQuery(query);
+
+            // Llenar el ArrayList de objetos PedidoDP
+            while (result.next()) {
+                // Obtener los datos del registro
+                String codigo = result.getString("d.prd_codigo");
+                String nombre = result.getString("p.prd_nombre");
+                Double precio = result.getDouble("p.prd_precio");
+
+                //pedidos.add(new PedidoDP(codigo, nombre, precio));
+            }
+
+        } catch (SQLException ex) {
+            Logger.getLogger(ClienteMD.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return pedidos;
+    }
+
     public ArrayList<ProductoDP> consultarDetalleMD() {
         ArrayList<ProductoDP> productos = new ArrayList<>();
         try {
@@ -99,16 +125,73 @@ public class PedidoMD {
                     + pedidoDP.getPedidoNumero();
             stmt = con.createStatement();
             result = stmt.executeQuery(query);
-            
-            while(result.next()){
+
+            while (result.next()) {
                 String codigo = result.getString("prd_codigo");
                 ProductoDP temp = new ProductoDP(codigo);
                 temp.consultarDP();
                 productos.add(temp);
-            }               
+            }
         } catch (SQLException ex) {
             Logger.getLogger(PedidoMD.class.getName()).log(Level.SEVERE, null, ex);
         }
         return productos;
     }
+    
+
+    public boolean consultarMD() {
+        boolean completado = false;
+        try {
+            query = "SELECT * FROM PEDIDO WHERE ped_numero=" + pedidoDP.getPedidoNumero();
+            stmt = con.createStatement();
+            result = stmt.executeQuery(query);
+            result.next();
+
+            // controlar la excepcion porque puede retornar un valor null
+            try {
+                String notifCodigo = result.getString("not_codigo");
+                pedidoDP.setNotificacionCodigo(notifCodigo);
+            } catch (Exception e) {
+                System.out.println(e.toString());
+            }
+            try {
+                int entregaNumero = result.getInt("ent_numero");
+                pedidoDP.setEntregaNumero(entregaNumero);
+            } catch (Exception e) {
+                System.out.println(e.toString());
+            }
+            try {
+                String cliCedula = result.getString("cli_cedula");
+                pedidoDP.setClienteCedula(cliCedula);
+            } catch (Exception e) {
+                System.out.println(e.toString());
+            }
+
+            completado = true;
+        } catch (SQLException ex) {
+            Logger.getLogger(PedidoMD.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return completado;
+    }
+
+    public ArrayList<PedidoDP> consultarTodosPedidosMD() {
+        ArrayList<PedidoDP> pedidos = new ArrayList<>();
+
+        try {
+            query = "SELECT * FROM PEDIDO";
+            stmt = con.createStatement();
+            result = stmt.executeQuery(query);
+
+            while (result.next()) {
+                int pedidoNumero = result.getInt("ped_numero");
+                PedidoDP temp = new PedidoDP(pedidoNumero);
+                temp.consultarDP();
+                pedidos.add(temp);
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(PedidoMD.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return pedidos;
+    }
+
 }
