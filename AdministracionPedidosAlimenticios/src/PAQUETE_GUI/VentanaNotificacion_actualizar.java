@@ -204,8 +204,8 @@ public class VentanaNotificacion_actualizar extends javax.swing.JInternalFrame {
     
     // metodos de la clase
     private void cargarProducto() {
-        txt_actualizarNotCodigo.setText(notificacionDP.getCodigo());
         cb_CrearNotCodPed.setSelectedItem(notificacionDP.getNumPedido());
+        txt_actualizarNotCodigo.setText(notificacionDP.getCodigo());
         txt_actualizarNotDetalle.setText(notificacionDP.getDetalle());
     }
     
