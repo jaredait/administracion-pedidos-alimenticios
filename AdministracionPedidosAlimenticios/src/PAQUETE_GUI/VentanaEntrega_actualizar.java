@@ -43,6 +43,11 @@ public class VentanaEntrega_actualizar extends javax.swing.JInternalFrame {
         btn_consulEntrega_guardar = new javax.swing.JButton();
 
         btn_consulEntrega_buscar.setText("Buscar");
+        btn_consulEntrega_buscar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_consulEntrega_buscarActionPerformed(evt);
+            }
+        });
 
         jLabel1.setText("Código de entrega/pedido:");
 
@@ -160,12 +165,18 @@ public class VentanaEntrega_actualizar extends javax.swing.JInternalFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btn_consulEntrega_guardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_consulEntrega_guardarActionPerformed
-        cargarDatos();
+        guardarNuevosDatos();
+        entregaDP.modificarDP();
     }//GEN-LAST:event_btn_consulEntrega_guardarActionPerformed
 
+    private void btn_consulEntrega_buscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_consulEntrega_buscarActionPerformed
+        
+    }//GEN-LAST:event_btn_consulEntrega_buscarActionPerformed
+
     // metodos de la clase
+    public void  cargarEntrega
     
-    public void cargarDatos(){
+    public void guardarNuevosDatos(){
         String nuevoTipo = cb_actualEntrega_tipo.getItemAt(cb_actualEntrega_tipo.getSelectedIndex());
         String nuevoComentario = ta_actualEntrega_comentario.getText();
         
