@@ -63,8 +63,7 @@ public class EntregaDP {
     }
     
     public boolean eliminarDP(){
-        //return entregaMD.eliminarMD();
-        return false;
+        return entregaMD.eliminarMD();
     }
     
     public boolean verificarExisteDP(){

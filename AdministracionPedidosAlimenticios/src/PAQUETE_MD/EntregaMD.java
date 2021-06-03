@@ -27,7 +27,7 @@ public class EntregaMD {
 
         this.entregaDP = new EntregaDP();
     }
-    
+
     public boolean insertarMD() {
         boolean completado = false;
         try {
@@ -45,7 +45,7 @@ public class EntregaMD {
         }
         return completado;
     }
-    
+
     public boolean modificarMD() {
         boolean completado = false;
         try {
@@ -55,7 +55,7 @@ public class EntregaMD {
             st.setString(2, entregaDP.getComentario());
             st.setInt(3, entregaDP.getEntregaNumero());
             int a = st.executeUpdate();
-            
+
             completado = true;
         } catch (SQLException ex) {
             Logger.getLogger(EntregaMD.class.getName()).log(Level.SEVERE, null, ex);
@@ -65,10 +65,19 @@ public class EntregaMD {
 
     public boolean eliminarMD() {
         boolean completado = false;
+        try {
+            query = "delete from ENTREGA where ent_numero=?";
+            PreparedStatement st = con.prepareStatement(query);
+            st.setInt(1, entregaDP.getEntregaNumero());
+            int a = st.executeUpdate();
+            completado = true;
+        } catch (SQLException ex) {
+            Logger.getLogger(EntregaMD.class.getName()).log(Level.SEVERE, null, ex);
+        }
         return completado;
     }
-    
-    public boolean verificarExisteMD(){
+
+    public boolean verificarExisteMD() {
         boolean existe = false;
         try {
             query = "SELECT 1 FROM ENTREGA WHERE ENT_NUMERO=? LIMIT 1";

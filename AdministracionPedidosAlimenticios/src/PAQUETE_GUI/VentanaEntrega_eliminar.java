@@ -1,20 +1,19 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package PAQUETE_GUI;
 
-/**
- *
- * @author ASUS
- */
+import PAQUETE_DP.EntregaDP;
+import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
+
 public class VentanaEntrega_eliminar extends javax.swing.JInternalFrame {
 
-    /**
-     * Creates new form VentanaEntrega_eliminar
-     */
+    // atributos
+    private EntregaDP entregaDP;
+    private boolean entregaExiste;
+
     public VentanaEntrega_eliminar() {
+        entregaDP = new EntregaDP();
+        entregaExiste = false;
+
         initComponents();
     }
 
@@ -38,6 +37,11 @@ public class VentanaEntrega_eliminar extends javax.swing.JInternalFrame {
         jLabel1.setText("Código de entrega/pedido:");
 
         btn_elimEntrega_buscar.setText("Buscar");
+        btn_elimEntrega_buscar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_elimEntrega_buscarActionPerformed(evt);
+            }
+        });
 
         tb_elimEntrega_tabla.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -58,6 +62,11 @@ public class VentanaEntrega_eliminar extends javax.swing.JInternalFrame {
         jScrollPane1.setViewportView(tb_elimEntrega_tabla);
 
         btn_elimEntrega_eliminar.setText("Eliminar");
+        btn_elimEntrega_eliminar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_elimEntrega_eliminarActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -109,6 +118,58 @@ public class VentanaEntrega_eliminar extends javax.swing.JInternalFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void btn_elimEntrega_buscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_elimEntrega_buscarActionPerformed
+        try {
+            int numero = Integer.parseInt(tf_elimEntrega_argumento.getText());
+            entregaDP.setEntregaNumero(numero);
+            if (entregaDP.verificarExisteDP()) {
+                entregaDP.consultarDP();
+                cargarDatos();
+                entregaExiste = true;
+            } else {
+                JOptionPane.showMessageDialog(jPanel1, "Entrega no existe");
+                entregaExiste = false;
+            }
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(jPanel1, "Número no válido");
+            entregaExiste = false;
+        }
+    }//GEN-LAST:event_btn_elimEntrega_buscarActionPerformed
+
+    private void btn_elimEntrega_eliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_elimEntrega_eliminarActionPerformed
+        if (entregaExiste) {
+            int confirmacion = JOptionPane.showConfirmDialog(jLabel1, "¿Estás seguro de eliminar la entrega?");
+            if (confirmacion == 0) {
+                if (entregaDP.eliminarDP()) {
+                    limpiarCampos();
+                    JOptionPane.showMessageDialog(jLabel1, "¡Eliminación exitosa!");
+                    entregaExiste = false;
+                } else {
+                    JOptionPane.showMessageDialog(jLabel1, "Eliminación fallida");
+                }
+            }
+        } else {
+            JOptionPane.showMessageDialog(jLabel1, "La entrega no existe");
+        }
+    }//GEN-LAST:event_btn_elimEntrega_eliminarActionPerformed
+
+    // metodos de la clase
+    public void cargarDatos() {
+        int numeroEntrega = entregaDP.getEntregaNumero();
+        int numeroPedido = entregaDP.getPedidoNumero();
+        String tipo = entregaDP.getTipo();
+        String comentario = entregaDP.getComentario();
+
+        DefaultTableModel model = (DefaultTableModel) tb_elimEntrega_tabla.getModel();
+        model.setRowCount(0);
+        model.addRow(new Object[]{numeroEntrega, numeroPedido, tipo, comentario});
+    }
+    
+    public void limpiarCampos(){
+        DefaultTableModel model = (DefaultTableModel) tb_elimEntrega_tabla.getModel();
+        model.setRowCount(0);
+        tf_elimEntrega_argumento.setText("");
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btn_elimEntrega_buscar;
