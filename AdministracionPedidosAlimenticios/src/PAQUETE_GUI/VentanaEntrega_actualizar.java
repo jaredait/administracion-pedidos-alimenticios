@@ -8,12 +8,13 @@ import java.util.logging.Logger;
 import PAQUETE_DP.EntregaDP;
 
 public class VentanaEntrega_actualizar extends javax.swing.JInternalFrame {
+
     // atributos
     EntregaDP entregaDP;
-    
+
     public VentanaEntrega_actualizar() {
         entregaDP = new EntregaDP();
-        
+
         initComponents();
         cargarTiposEntrega();
     }
@@ -166,24 +167,48 @@ public class VentanaEntrega_actualizar extends javax.swing.JInternalFrame {
 
     private void btn_consulEntrega_guardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_consulEntrega_guardarActionPerformed
         guardarNuevosDatos();
-        entregaDP.modificarDP();
     }//GEN-LAST:event_btn_consulEntrega_guardarActionPerformed
 
     private void btn_consulEntrega_buscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_consulEntrega_buscarActionPerformed
-        
+        int numero = Integer.parseInt(tf_actualEntrega_argumento1.getText());
+        entregaDP.setEntregaNumero(numero);
+        entregaDP.consultarDP();
+        cargarEntrega();
     }//GEN-LAST:event_btn_consulEntrega_buscarActionPerformed
 
     // metodos de la clase
-    public void  cargarEntrega
-    
-    public void guardarNuevosDatos(){
+    public void cargarEntrega() {
+        try {
+            tf_actualEntrega_entNumero.setText(String.valueOf(entregaDP.getEntregaNumero()));
+            tf_actualEntrega_pedNumero.setText(String.valueOf(entregaDP.getPedidoNumero()));
+
+            Properties props = new Properties();
+            props.load(new FileInputStream("src/PAQUETE_PRINCIPAL/parametros.properties"));
+            String[] tipos = props.getProperty("tiposEntrega").split(",");
+
+            int index = 0;
+            for (int i = 0; i < tipos.length; i++) {
+                if (tipos[i].equals(entregaDP.getTipo())) {
+                    index = i;
+                }
+            }
+            cb_actualEntrega_tipo.setSelectedIndex(index);
+            ta_actualEntrega_comentario.setText(entregaDP.getComentario());
+        } catch (IOException ex) {
+            Logger.getLogger(VentanaEntrega_actualizar.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+
+    public void guardarNuevosDatos() {
         String nuevoTipo = cb_actualEntrega_tipo.getItemAt(cb_actualEntrega_tipo.getSelectedIndex());
         String nuevoComentario = ta_actualEntrega_comentario.getText();
-        
+
         entregaDP.setTipo(nuevoTipo);
         entregaDP.setComentario(nuevoComentario);
+
+        entregaDP.modificarDP();
     }
-    
+
     public void cargarTiposEntrega() {
         try {
             Properties props = new Properties();
