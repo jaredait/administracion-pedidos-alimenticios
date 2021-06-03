@@ -154,11 +154,17 @@
                   <Properties>
                     <Property name="text" type="java.lang.String" value="Crear entrega"/>
                   </Properties>
+                  <Events>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="sub_entrega_crearActionPerformed"/>
+                  </Events>
                 </MenuItem>
                 <MenuItem class="javax.swing.JMenuItem" name="sub_entrega_consultar">
                   <Properties>
                     <Property name="text" type="java.lang.String" value="Consultar entrega"/>
                   </Properties>
+                  <Events>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="sub_entrega_consultarActionPerformed"/>
+                  </Events>
                 </MenuItem>
                 <MenuItem class="javax.swing.JMenuItem" name="sub_entrega_actualizar">
                   <Properties>
