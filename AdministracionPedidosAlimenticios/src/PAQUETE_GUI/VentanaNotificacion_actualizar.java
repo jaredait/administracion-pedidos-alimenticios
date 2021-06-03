@@ -35,13 +35,14 @@ public class VentanaNotificacion_actualizar extends javax.swing.JInternalFrame {
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         txt_actualizarNotCodigo = new javax.swing.JTextField();
-        txt_actualizarNotDetalle = new javax.swing.JTextField();
         jLabel4 = new javax.swing.JLabel();
         jComboBox1 = new javax.swing.JComboBox<>();
         txt_ActNotParam = new javax.swing.JTextField();
         btn_buscarParamActNot = new javax.swing.JButton();
         jLabel5 = new javax.swing.JLabel();
         cb_CrearNotCodPed = new javax.swing.JComboBox<>();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        txt_actualizarNotDetalle = new javax.swing.JTextArea();
 
         setClosable(true);
         setIconifiable(true);
@@ -67,12 +68,6 @@ public class VentanaNotificacion_actualizar extends javax.swing.JInternalFrame {
             }
         });
 
-        txt_actualizarNotDetalle.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txt_actualizarNotDetalleActionPerformed(evt);
-            }
-        });
-
         jLabel4.setText("Buscar por:");
 
         jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Código" }));
@@ -86,26 +81,36 @@ public class VentanaNotificacion_actualizar extends javax.swing.JInternalFrame {
 
         jLabel5.setText("Número de Pedido:");
 
+        txt_actualizarNotDetalle.setColumns(20);
+        txt_actualizarNotDetalle.setLineWrap(true);
+        txt_actualizarNotDetalle.setRows(5);
+        jScrollPane1.setViewportView(txt_actualizarNotDetalle);
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(181, 181, 181)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jLabel1)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(jLabel2)
+                        .addGap(4, 4, 4))
+                    .addComponent(jLabel5))
+                .addGap(45, 45, 45)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(181, 181, 181)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jLabel1)
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(jLabel2)
-                                .addGap(4, 4, 4))
-                            .addComponent(jLabel5))
-                        .addGap(45, 45, 45)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(txt_actualizarNotDetalle, javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(txt_actualizarNotCodigo, javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(cb_CrearNotCodPed, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                            .addComponent(cb_CrearNotCodPed, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addGap(205, 205, 205))))
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(213, 213, 213)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addGroup(jPanel1Layout.createSequentialGroup()
@@ -115,12 +120,11 @@ public class VentanaNotificacion_actualizar extends javax.swing.JInternalFrame {
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addComponent(jLabel4)
                                 .addGap(18, 18, 18)
-                                .addComponent(jComboBox1, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))))
-                .addGap(205, 205, 205))
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(285, 285, 285)
-                .addComponent(btn_actualizarNot)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                .addComponent(jComboBox1, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(278, 278, 278)
+                        .addComponent(btn_actualizarNot)))
+                .addGap(205, 213, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -141,24 +145,29 @@ public class VentanaNotificacion_actualizar extends javax.swing.JInternalFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1)
                     .addComponent(txt_actualizarNotCodigo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(21, 21, 21)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel2)
-                    .addComponent(txt_actualizarNotDetalle, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(24, 24, 24)
+                        .addComponent(jLabel2))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(18, 18, 18)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(12, 12, 12)
                 .addComponent(btn_actualizarNot)
-                .addGap(115, 115, 115))
+                .addGap(51, 51, 51))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 257, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 321, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
 
         pack();
@@ -187,23 +196,19 @@ public class VentanaNotificacion_actualizar extends javax.swing.JInternalFrame {
         }
     }//GEN-LAST:event_txt_actualizarNotCodigoFocusLost
 
-    private void txt_actualizarNotDetalleActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txt_actualizarNotDetalleActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txt_actualizarNotDetalleActionPerformed
-
     private void btn_buscarParamActNotActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_buscarParamActNotActionPerformed
         notificacionDP.setCodigo(txt_ActNotParam.getText());
 
         if (notificacionDP.verificarExisteDP()) {
             notificacionDP.consultarDP();
-            cargarProducto();
+            cargarNotificacion();
         } else {
             JOptionPane.showMessageDialog(jPanel1, "La notificación no existe");
         }
     }//GEN-LAST:event_btn_buscarParamActNotActionPerformed
     
     // metodos de la clase
-    private void cargarProducto() {
+    private void cargarNotificacion() {
         cb_CrearNotCodPed.setSelectedItem(notificacionDP.getNumPedido());
         txt_actualizarNotCodigo.setText(notificacionDP.getCodigo());
         txt_actualizarNotDetalle.setText(notificacionDP.getDetalle());
@@ -257,8 +262,9 @@ public class VentanaNotificacion_actualizar extends javax.swing.JInternalFrame {
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTextField txt_ActNotParam;
     private javax.swing.JTextField txt_actualizarNotCodigo;
-    private javax.swing.JTextField txt_actualizarNotDetalle;
+    private javax.swing.JTextArea txt_actualizarNotDetalle;
     // End of variables declaration//GEN-END:variables
 }
