@@ -38,6 +38,12 @@ public class VentanaPedido_consultar extends javax.swing.JInternalFrame {
         tb_consPedido_detalle = new javax.swing.JTable();
         jLabel3 = new javax.swing.JLabel();
 
+        setClosable(true);
+        setIconifiable(true);
+        setMaximizable(true);
+        setResizable(true);
+        setTitle("Consultar Pedidos");
+
         jLabel1.setText("Pedidos:");
 
         tb_consPedido_general.setModel(new javax.swing.table.DefaultTableModel(
