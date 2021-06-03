@@ -163,11 +163,11 @@ public class VentanaProducto_consultar extends javax.swing.JInternalFrame {
             productoDP.getNombre(), productoDP.getPrecio()});
     }
 
-    private void cargarProducto(ArrayList<ProductoDP> establecimientos) {
+    private void cargarProducto(ArrayList<ProductoDP> productos) {
         DefaultTableModel model = (DefaultTableModel) tb_consultarPrd.getModel();
         model.setRowCount(0);
 
-        for (ProductoDP temp : establecimientos) {
+        for (ProductoDP temp : productos) {
             model.addRow(new Object[]{temp.getCodigo(), temp.getCodigoEstablecimiento(), temp.getNombre(), 
                 temp.getPrecio()});
         }
