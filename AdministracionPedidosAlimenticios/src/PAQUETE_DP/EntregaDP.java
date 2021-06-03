@@ -40,11 +40,11 @@ public class EntregaDP {
         this.comentario = comentario;
     }
     
-    public int getPedidoNumero(){
+    private int getPedidoNumero(){
         return  pedidoNumero;
     }
     
-    public void setPedidoNumero(int pedidoNumero){
+    private void setPedidoNumero(int pedidoNumero){
         this.pedidoNumero = pedidoNumero;
     }
     
@@ -66,8 +66,9 @@ public class EntregaDP {
         return entregaMD.eliminarMD();
     }
     
-    public boolean verificarExisteDP(){
-        return entregaMD.verificarExisteMD();
+    public boolean verificarExiste(){
+        //return entregaMD.verificarExisteMD();
+        return false;
     }
     /*
     public ArrayList<EntregaDP> consultarTodosDP(){
