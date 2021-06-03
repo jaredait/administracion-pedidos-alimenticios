@@ -206,9 +206,19 @@ public class MenuPrincipal extends javax.swing.JFrame {
         submenu_entrega.setText("Entrega");
 
         sub_entrega_crear.setText("Crear entrega");
+        sub_entrega_crear.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                sub_entrega_crearActionPerformed(evt);
+            }
+        });
         submenu_entrega.add(sub_entrega_crear);
 
         sub_entrega_consultar.setText("Consultar entrega");
+        sub_entrega_consultar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                sub_entrega_consultarActionPerformed(evt);
+            }
+        });
         submenu_entrega.add(sub_entrega_consultar);
 
         sub_entrega_actualizar.setText("Actualizar entrega");
@@ -456,6 +466,18 @@ public class MenuPrincipal extends javax.swing.JFrame {
         escritorio.add(ventanaNotificacion_eliminar);
         ventanaNotificacion_eliminar.show();
     }//GEN-LAST:event_sub_notificacion_eliminarActionPerformed
+
+    private void sub_entrega_crearActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_sub_entrega_crearActionPerformed
+        VentanaEntrega_crear ventanaEntrega_crear = new VentanaEntrega_crear();
+        escritorio.add(ventanaEntrega_crear);
+        ventanaEntrega_crear.show();
+    }//GEN-LAST:event_sub_entrega_crearActionPerformed
+
+    private void sub_entrega_consultarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_sub_entrega_consultarActionPerformed
+        VentanaEntrega_consultar ventanaEntrega_consultar = new VentanaEntrega_consultar();
+        escritorio.add(ventanaEntrega_consultar);
+        ventanaEntrega_consultar.show();
+    }//GEN-LAST:event_sub_entrega_consultarActionPerformed
     /**
      * @param args the command line arguments
      */
