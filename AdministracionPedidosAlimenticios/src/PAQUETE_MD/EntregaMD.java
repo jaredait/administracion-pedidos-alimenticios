@@ -7,6 +7,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -92,6 +93,57 @@ public class EntregaMD {
             Logger.getLogger(EntregaMD.class.getName()).log(Level.SEVERE, null, ex);
         }
         return existe;
+    }
+
+    public boolean consultarMD() {
+        boolean completado = false;
+        try {
+            query = "SELECT * FROM ENTREGA WHERE ent_numero='" + entregaDP.getEntregaNumero() + "'";
+            stmt = con.createStatement();
+            result = stmt.executeQuery(query);
+            result.next();
+
+            // obtener los datos del registro
+            int numPedido = result.getInt("ped_numero");
+            String entTipo = result.getString("ent_tipo");
+            String comentario = result.getString("ent_comentario");
+
+            // cargar los datos al objeto EntregaDP
+            entregaDP.setPedidoNumero(numPedido);
+            entregaDP.setTipo(entTipo);
+            entregaDP.setComentario(comentario);
+
+            completado = true;
+        } catch (SQLException ex) {
+            Logger.getLogger(EntregaMD.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return completado;
+    }
+
+    public ArrayList<EntregaDP> consultarTodosMD() {
+
+        ArrayList<EntregaDP> entregas = new ArrayList<EntregaDP>();
+        try {
+            query = "SELECT * FROM ENTREGA";
+            stmt = con.createStatement();
+            result = stmt.executeQuery(query);
+
+            // llenar el ArrayList de objetos EntregaDP
+            while (result.next()) {
+                // obtener los datos del registro
+                int numEntrega = result.getInt("ent_numero");
+                int numPedido = result.getInt("ped_numero");
+                String entTipo = result.getString("ent_tipo");
+                String comentario = result.getString("ent_comentario");
+
+                entregas.add(new EntregaDP(numEntrega, numPedido, entTipo, comentario));
+
+            }
+
+        } catch (SQLException ex) {
+            Logger.getLogger(EntregaMD.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return entregas;
     }
 
 }

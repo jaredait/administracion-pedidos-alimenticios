@@ -1,20 +1,15 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package PAQUETE_GUI;
 
-/**
- *
- * @author lizxi
- */
+import PAQUETE_DP.EntregaDP;
+import java.util.ArrayList;
+import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
+
 public class VentanaEntrega_consultar extends javax.swing.JInternalFrame {
 
-    /**
-     * Creates new form VentanaEntrega_consultar
-     */
+    private EntregaDP entregaDP;
     public VentanaEntrega_consultar() {
+        entregaDP = new EntregaDP();
         initComponents();
     }
 
@@ -27,21 +22,165 @@ public class VentanaEntrega_consultar extends javax.swing.JInternalFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jPanel1 = new javax.swing.JPanel();
+        bt_consultarParamEntrega = new javax.swing.JButton();
+        cb_consultarEntrega = new javax.swing.JComboBox<>();
+        tf_parametroConsultarEntrega = new javax.swing.JTextField();
+        jLabel1 = new javax.swing.JLabel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        tb_consultarEntrega = new javax.swing.JTable();
+        bt_consultarTodosEntrega = new javax.swing.JButton();
+
+        setClosable(true);
+        setIconifiable(true);
+        setMaximizable(true);
+        setResizable(true);
+        setTitle("Consultar entrega");
+
+        bt_consultarParamEntrega.setText("Consultar");
+        bt_consultarParamEntrega.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                bt_consultarParamEntregaActionPerformed(evt);
+            }
+        });
+
+        cb_consultarEntrega.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Número Entrega" }));
+
+        jLabel1.setText("Buscar por:");
+
+        tb_consultarEntrega.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+                "Número Entrega", "Número Pedido", "Tipo de Entrega", "Comentario"
+            }
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        jScrollPane1.setViewportView(tb_consultarEntrega);
+        if (tb_consultarEntrega.getColumnModel().getColumnCount() > 0) {
+            tb_consultarEntrega.getColumnModel().getColumn(3).setPreferredWidth(600);
+        }
+
+        bt_consultarTodosEntrega.setText("Consultar todos");
+        bt_consultarTodosEntrega.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                bt_consultarTodosEntregaActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(21, 21, 21)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 1037, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(23, Short.MAX_VALUE))
+            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jPanel1Layout.createSequentialGroup()
+                    .addGap(165, 165, 165)
+                    .addComponent(bt_consultarTodosEntrega)
+                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 377, Short.MAX_VALUE)
+                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addGroup(jPanel1Layout.createSequentialGroup()
+                            .addComponent(jLabel1)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(cb_consultarEntrega, javax.swing.GroupLayout.PREFERRED_SIZE, 211, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGroup(jPanel1Layout.createSequentialGroup()
+                            .addComponent(tf_parametroConsultarEntrega, javax.swing.GroupLayout.PREFERRED_SIZE, 211, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGap(18, 18, 18)
+                            .addComponent(bt_consultarParamEntrega)))
+                    .addGap(68, 68, 68)))
+        );
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addContainerGap(106, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 481, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(21, 21, 21))
+            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jPanel1Layout.createSequentialGroup()
+                    .addContainerGap()
+                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(jPanel1Layout.createSequentialGroup()
+                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                .addComponent(jLabel1)
+                                .addComponent(cb_consultarEntrega, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGap(23, 23, 23)
+                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                .addComponent(tf_parametroConsultarEntrega, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(bt_consultarParamEntrega)))
+                        .addGroup(jPanel1Layout.createSequentialGroup()
+                            .addGap(28, 28, 28)
+                            .addComponent(bt_consultarTodosEntrega)))
+                    .addContainerGap(519, Short.MAX_VALUE)))
+        );
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 394, Short.MAX_VALUE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 274, Short.MAX_VALUE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void bt_consultarParamEntregaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bt_consultarParamEntregaActionPerformed
+        entregaDP.setEntregaNumero(Integer.parseInt(tf_parametroConsultarEntrega.getText()));
+
+        if (entregaDP.verificarExisteDP()) {
+            entregaDP.consultarDP();
+            cargarEntrega();
+        } else {
+            JOptionPane.showMessageDialog(jPanel1, "El número de entrega no existe");
+        }
+    }//GEN-LAST:event_bt_consultarParamEntregaActionPerformed
+
+    private void bt_consultarTodosEntregaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bt_consultarTodosEntregaActionPerformed
+        cargarEntrega(entregaDP.consultarTodosDP());
+    }//GEN-LAST:event_bt_consultarTodosEntregaActionPerformed
+    
+    private void cargarEntrega() {
+        DefaultTableModel model = (DefaultTableModel) tb_consultarEntrega.getModel();
+        model.setRowCount(0);
+
+        model.addRow(new Object[]{entregaDP.getEntregaNumero(),
+            entregaDP.getPedidoNumero(), entregaDP.getTipo(),
+            entregaDP.getComentario()});
+    }
+    
+    private void cargarEntrega(ArrayList<EntregaDP> entregas) {
+        DefaultTableModel model = (DefaultTableModel) tb_consultarEntrega.getModel();
+        model.setRowCount(0);
+
+        for (EntregaDP temp : entregas) {
+            model.addRow(new Object[]{temp.getEntregaNumero(),
+            temp.getPedidoNumero(), temp.getTipo(),
+            temp.getComentario()});
+        }
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton bt_consultarParamEntrega;
+    private javax.swing.JButton bt_consultarTodosEntrega;
+    private javax.swing.JComboBox<String> cb_consultarEntrega;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JPanel jPanel1;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JTable tb_consultarEntrega;
+    private javax.swing.JTextField tf_parametroConsultarEntrega;
     // End of variables declaration//GEN-END:variables
 }

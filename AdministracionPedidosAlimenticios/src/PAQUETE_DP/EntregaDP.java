@@ -2,6 +2,7 @@ package PAQUETE_DP;
 
 import PAQUETE_DP.PedidoDP;
 import PAQUETE_MD.EntregaMD;
+import java.util.ArrayList;
 
 public class EntregaDP {
     private int entregaNumero;
@@ -14,6 +15,14 @@ public class EntregaDP {
     // constructores
     public EntregaDP(){
         this.entregaMD = new EntregaMD(this);
+    }
+
+    public EntregaDP(int entregaNumero, int pedidoNumero, String tipo, String comentario) {
+        this.entregaNumero = entregaNumero;
+        this.pedidoNumero = pedidoNumero;
+        this.tipo = tipo;
+        this.comentario = comentario;
+        
     }
     
     public int getEntregaNumero(){
@@ -54,8 +63,7 @@ public class EntregaDP {
     }
     
     public boolean consultarDP(){
-        //return entregaMD.consultarMD();
-        return false;
+        return entregaMD.consultarMD();
     }
     
     public boolean modificarDP(){
@@ -69,9 +77,8 @@ public class EntregaDP {
     public boolean verificarExisteDP(){
         return entregaMD.verificarExisteMD();
     }
-    /*
+    
     public ArrayList<EntregaDP> consultarTodosDP(){
         return entregaMD.consultarTodosMD();
     }
-*/
 }
