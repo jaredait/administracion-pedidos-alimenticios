@@ -21,10 +21,10 @@ public class PedidoDP {
     public PedidoDP() {
         productoDP = new ProductoDP();
         productos = new ArrayList<>();
-        pedidoMD = new PedidoMD(this);
+        //pedidoMD = new PedidoMD(this);
+        //clienteDP  = new ClienteDP();
         //notificacionMD = new NotificacionMD();
         //entregaMD = new EntregaMD();
-        //clienteDP = new ClienteDP();
         
         //asignar un numero de pedido al objeto
         pedidoNumero = 0;

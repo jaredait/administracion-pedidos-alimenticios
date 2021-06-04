@@ -12,7 +12,7 @@ public class ProgramaPrincipal {
         // Conexion a la db
         ProgramaPrincipal conexion = new ProgramaPrincipal();
         Connection connection = null;
-        connection = conexion.getConexion();
+        //connection = conexion.getConexion();
         System.out.println("Conexion: " + connection);
         
         MenuPrincipal menuPrincipal = new MenuPrincipal();
