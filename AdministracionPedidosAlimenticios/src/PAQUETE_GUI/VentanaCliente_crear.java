@@ -167,12 +167,17 @@ public class VentanaCliente_crear extends javax.swing.JInternalFrame {
 
     private void jTextCedulaFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jTextCedulaFocusLost
         clienteDP.setCedula(jTextCedula.getText());
-        if (clienteDP.verificarExisteDP()) {
-            JOptionPane.showMessageDialog(jPanel1, "El cliente ya existe");
-            existeCliente = true;
+        if (verificarCedula()) {
+            if (clienteDP.verificarExisteDP()) {
+                JOptionPane.showMessageDialog(jPanel1, "El cliente ya existe");
+                existeCliente = true;
+            } else {
+                existeCliente = false;
+            }
         } else {
-            existeCliente = false;
+            JOptionPane.showMessageDialog(jPanel1, "Cédula no válida");
         }
+
     }//GEN-LAST:event_jTextCedulaFocusLost
 
     // metodos de la clase
